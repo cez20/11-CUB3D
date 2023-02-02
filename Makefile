@@ -25,6 +25,7 @@ OBJ_DIR		=	obj/
 
 MAIN_F	=		\
 main.c			\
+error.c
 
 ENGINE_F	=	\
 #files.c

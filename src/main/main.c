@@ -2,9 +2,13 @@
 
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	t_game	game;
 
-	printf("Coucou\n");
+	if (argc != 2)
+		error(ERR_ARGS);
+	game.fd = open(argv[1], O_RDONLY);
+	if (game.fd == -1)
+		error(ERR_FD);
+	//map_valid_extension(argv[1], game.fd);
 	return (0);
 }
