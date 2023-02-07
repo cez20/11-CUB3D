@@ -76,5 +76,7 @@ void	error(char *str);
 
 //*** VALIDATION.C ***
 void	map_to_table(int fd, t_game *game);
+void	flood_fill(int x, int y, t_game *game);
+void	print_map(char **map);
 
 #endif

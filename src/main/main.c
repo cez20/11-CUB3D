@@ -18,5 +18,10 @@ int	main(int argc, char **argv)
 		error(ERR_FD);
 	//map_valid_extension(argv[1], game.fd);
 	map_to_table(game.fd, &game);
+	printf("[ MAP BEFORE FLOODFILL ]\n");
+	print_map(game.map);
+	flood_fill(11, 2, &game); // ints = starting player coordinates
+	printf("\n[ MAP AFTER FLOODFILL ]\n");
+	print_map(game.map);
 	return (clean_exit(&game));
 }

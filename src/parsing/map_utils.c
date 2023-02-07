@@ -1,6 +1,6 @@
 #include "../include/cub3d.h"
 
-static void print_map(char **map)
+void print_map(char **map)
 {
 	int	i;
 
@@ -47,7 +47,6 @@ static void	set_dimensions(t_game *game)
 {
 	game->height = count_lines(game->map);
 	game->width = count_max_row(game->map);
-	printf("height = %d | width = %d\n", game->height, game->width);
 }
 
 void	map_to_table(int fd, t_game *game)
@@ -66,7 +65,6 @@ void	map_to_table(int fd, t_game *game)
 		xfree(line);
 	}
 	game->map = ft_split(map, '\n');
-	print_map(game->map);
 	set_dimensions(game);
 	xfree(map);
 	close(fd);
