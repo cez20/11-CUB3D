@@ -15,28 +15,14 @@
 char	*ft_strjoin_free(char const *s1, char const *s2)
 {
 	char	*temp;
-	size_t	index_dst;
-	size_t	index_src;
 
-	index_dst = 0;
-	index_src = 0;
-	if (s1 == NULL || s2 == NULL)
+	if (s2 == NULL)
 		return (NULL);
-	temp = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
-	if (temp == 0)
-		return (NULL);
-	while (s1[index_dst] != '\0')
-	{
-		temp[index_dst] = s1[index_dst];
-		index_dst++;
-	}
-	while (s2[index_src] != '\0')
-	{
-		temp[index_dst] = s2[index_src];
-		index_dst++;
-		index_src++;
-	}
-	temp[index_dst] = '\0';
-	free((void *)s1);
+	if (s1 == NULL)
+		return (ft_strdup(s2));
+	else
+	temp = ft_strjoin(s1, s2);
+	if (s1)
+		xfree((char *)s1);
 	return (temp);
 }

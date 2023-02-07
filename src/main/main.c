@@ -1,5 +1,12 @@
 #include "../include/cub3d.h"
 
+static int	clean_exit (t_game *game)
+{
+	//check game->mlx, game->window
+	free_table(game->map);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -10,5 +17,6 @@ int	main(int argc, char **argv)
 	if (game.fd == -1)
 		error(ERR_FD);
 	//map_valid_extension(argv[1], game.fd);
-	return (0);
+	map_to_table(game.fd, &game);
+	return (clean_exit(&game));
 }
