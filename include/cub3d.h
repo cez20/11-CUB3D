@@ -72,6 +72,7 @@ int		main(int argc, char **argv);
 
 //*** ERROR.C ***
 void	error(char *str);
+void	errmsg(char *msg, int tofree, t_game *game);
 
 
 //*** VALIDATION.C ***
