@@ -10,7 +10,7 @@
 
 # define ERR_ARGS "There is NO arguments or more than 1 argument!\n"
 # define ERR_NO_MAP "Map given does not exist!\n"
-# define ERR_EXT "Map does not have extension '.ber'!\n"
+# define ERR_EXT "Map has NO extension or extension different than '.cub'!\n"
 
 
 // typedef struct s_img
@@ -42,5 +42,8 @@ int		main(int argc, char **argv);
 
 //*** ERROR.C ***
 void	error(char *str);
+
+//*** MAP_VALIDATION.C ***
+void	map_valid_extension(char *str, int fd);
 
 #endif
