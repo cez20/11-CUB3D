@@ -1,15 +1,15 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <fcntl.h> // For open() function; 
+# include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
 
-# define ERR_ARGS "There is NO arguments or more than 1 argument\n"
-# define ERR_FD "FD(map) given does not exist!\n"
+# define ERR_ARGS "There is NO arguments or more than 1 argument!\n"
+# define ERR_NO_MAP "Map given does not exist!\n"
 # define ERR_EXT "Map does not have extension '.ber'!\n"
 
 
