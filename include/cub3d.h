@@ -12,7 +12,6 @@
 # define ERR_NO_MAP "Map given does not exist!\n"
 # define ERR_EXT "Map has NO extension or extension different than '.cub'!\n"
 
-
 // typedef struct s_img
 // {
 // 	void	*img;

@@ -3,7 +3,7 @@
 void	map_valid_extension(char *str, int fd)
 {
 	str = ft_strrchr(str, '.');
-	if (str == NULL || ft_strncmp(str, ".cub", 4) != 0)
+	if (str == NULL || ft_strncmp(str, ".cub", 5) != 0)
 	{
 		close(fd);
 		error(ERR_EXT);
