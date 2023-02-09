@@ -10,5 +10,6 @@ int	main(int argc, char **argv)
 	if (game.fd == -1)
 		error(ERR_NO_MAP);
 	map_valid_extension(argv[1], game.fd);
+	map_content_validation(game.fd);
 	return (0);
 }

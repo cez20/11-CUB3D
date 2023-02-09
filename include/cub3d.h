@@ -7,10 +7,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 
 # define ERR_ARGS "There is NO arguments or more than 1 argument!\n"
 # define ERR_NO_MAP "Map given does not exist!\n"
 # define ERR_EXT "Map has NO extension or extension different than '.cub'!\n"
+# define ERR_EMPTY_MAP "Map is empty!\n"
 
 // typedef struct s_img
 // {
@@ -44,5 +46,6 @@ void	error(char *str);
 
 //*** MAP_VALIDATION.C ***
 void	map_valid_extension(char *str, int fd);
+void	map_content_validation(int map_fd);
 
 #endif
