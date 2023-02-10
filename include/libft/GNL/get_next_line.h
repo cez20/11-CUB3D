@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cemenjiv <cemenjiv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 14:58:03 by anarodri          #+#    #+#             */
-/*   Updated: 2022/12/15 11:27:19 by anarodri         ###   ########.fr       */
+/*   Created: 2021/10/24 11:49:03 by cemenjiv          #+#    #+#             */
+/*   Updated: 2023/02/10 16:09:07 by cemenjiv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+# define FD_SIZE 4096
+# define BUFFER_SIZE 1
 
 # include "../libft.h"
+# include <stddef.h>
+# include <stdio.h>
 
 char	*get_next_line(int fd);
 

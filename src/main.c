@@ -3,7 +3,7 @@
 void	init_variables(t_game *game)
 {
 	game->fd = 0;
-	game->nb_of_lines = 0;
+	game->total_length = 0;
 	game->full_map = NULL;
 	game->mlx = NULL;
 	game->window = NULL;
@@ -24,9 +24,9 @@ int	main(int argc, char **argv)
 	game.fd = open(argv[1], O_RDONLY);
 	if (game.fd == -1)
 		error(ERR_NO_MAP);
-	print_variables(&game);
-	map_valid_extension(argv[1], game.fd);
-	//map_content_validation(&game);
+	//print_variables(&game);
+	game_valid_extension(argv[1], game.fd);
+	game_copy(&game);
 	close_fds(&game);
 	return (0);
 }
