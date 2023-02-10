@@ -8,6 +8,7 @@
 # include <unistd.h>
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
+//# include <stddef.h> Apparently where the NULL macro is found.. in case problems in VsCode 
 
 # define ERR_ARGS "There is NO arguments or more than 1 argument!\n"
 # define ERR_NO_MAP "Map given does not exist!\n"
@@ -28,14 +29,10 @@
 typedef struct s_game
 {
 	int		fd;
-	char	**map;
-	int		width;
-	int		height;
-	int		players;
+	int		nb_of_lines;
+	char	**full_map;
 	void	*mlx;
 	void	*window;
-	int		player_x;
-	int		player_y;
 }				t_game;
 
 //*** MAIN.C ***
@@ -46,6 +43,9 @@ void	error(char *str);
 
 //*** MAP_VALIDATION.C ***
 void	map_valid_extension(char *str, int fd);
-void	map_content_validation(int map_fd);
+void	map_content_validation(t_game *game);
+
+//*** PRINT_UTILS.C ***
+void	print_variables(t_game *game);
 
 #endif

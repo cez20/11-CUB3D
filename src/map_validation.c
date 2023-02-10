@@ -10,6 +10,16 @@ void	map_valid_extension(char *str, int fd)
 	}
 }
 
+// void	map_content_validation(t_game *game)
+// {
+// 	char	*map_line;
+
+// 	map_line = get_next_line(map_fd);
+// 	if (!map_line)
+// 		error (ERR_EMPTY_MAP);
+// }
+
+//Ceci est la fonction originale
 // void	map_content_validation(int map_fd)
 // {
 // 	char	*map_line;
