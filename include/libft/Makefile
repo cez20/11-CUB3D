@@ -6,14 +6,14 @@
 #    By: cemenjiv <cemenjiv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 12:27:09 by anarodri          #+#    #+#              #
-#    Updated: 2023/02/10 15:47:41 by cemenjiv         ###   ########.fr        #
+#    Updated: 2023/02/13 18:16:45 by cemenjiv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft.a
 HEADER	= 	libft.h
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g
 #CFLAGS	=	-g 
 RM		=	rm -f
 

@@ -8,7 +8,6 @@
 # include <unistd.h>
 # include "../include/libft/libft.h"
 # include "../include/libft/GNL/get_next_line.h"
-//# include <stddef.h> Apparently where the NULL macro is found.. in case problems in VsCode 
 
 # define ERR_ARGS "There is NO arguments or more than 1 argument!\n"
 # define ERR_NO_MAP "Map given does not exist!\n"
