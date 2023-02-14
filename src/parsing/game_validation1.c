@@ -15,17 +15,6 @@ int	is_wall(char c)
 	return (0);
 }
 
-void	player_position(t_game *game, int x, int y)
-{
-	if (game->nb_player == 0)
-	{
-		game->player_x = x;
-		game->player_y = y;
-		game->nb_player++;
-	}
-	game->nb_player++;
-}
-
 void	game_map_content(t_game *g)
 {
 	int		nb_player;
@@ -45,13 +34,13 @@ void	game_map_content(t_game *g)
 					nb_player++;
 			}
 			else
-				error(ERR_CONTENT);
+				errmsg(ERR_CONTENT, 1, g);
 			j++;
 		}
 		i++;
 	}
 	if (nb_player < 1 || nb_player > 1)
-		error(ERR_CONTENT);
+		errmsg(ERR_CONTENT, 1, g);
 }
 
 void	game_content_validation(t_game *game)

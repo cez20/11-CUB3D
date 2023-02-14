@@ -58,8 +58,8 @@ typedef struct s_game
 	char	**elements_copy;
 	void	*mlx;
 	void	*window;
-	//int				width;
-	//int				height;
+	int				width;
+	int				height;
 	struct t_tex	*tex;
 	struct t_ray	*rc;
 }				t_game;
@@ -94,7 +94,7 @@ void	free_game(t_game *game);
 void	free_double_pointer(char **str);
 
 //*** GAME_VALIDATION.C ***
-void	game_valid_extension(char *str, int fd);
+void	game_valid_extension(char *str, int fd, t_game *game);
 void	game_full_copy(t_game *game, char *argv);
 void	game_length(t_game *game);
 void	game_map_copy(t_game *game);

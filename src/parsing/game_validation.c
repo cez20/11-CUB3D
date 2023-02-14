@@ -1,12 +1,12 @@
 #include "../include/cub3d.h"
 
-void	game_valid_extension(char *str, int fd)
+void	game_valid_extension(char *str, int fd, t_game *game)
 {
 	str = ft_strrchr(str, '.');
 	if (str == NULL || ft_strncmp(str, ".cub", 5) != 0)
 	{
 		close(fd);
-		error(ERR_EXT);
+		errmsg(ERR_EXT, 0, game);
 	}
 }
 
@@ -36,7 +36,7 @@ void	game_length(t_game *game)
 
 	str = get_next_line(game->fd);
 	if (!str)
-		error(ERR_EMPTY_MAP);
+		errmsg(ERR_EMPTY_MAP, 1, game);
 	while (1)
 	{
 		if (!str)

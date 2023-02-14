@@ -12,7 +12,7 @@ void print_map(char **map)
 	}
 }
 
-static	int count_lines(char **map)
+static	int count_lines(char **map, t_game *game)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ static	int count_lines(char **map)
 	if (!map && !map[i])
 	{
 		xfree(map);
-		error("Error: Empty map.");
+		errmsg(ERR_EMPTY_MAP, 1, game);
 	}
 	while (map[i])
 		i++;
@@ -45,8 +45,8 @@ static int	count_max_row (char **map)
 
 static void	set_dimensions(t_game *game)
 {
-	game->height = count_lines(game->map);
-	game->width = count_max_row(game->map);
+	game->height = count_lines(game->map_copy, game);
+	game->width = count_max_row(game->map_copy);
 }
 
 void	map_to_table(int fd, t_game *game)
@@ -64,7 +64,7 @@ void	map_to_table(int fd, t_game *game)
 		map = ft_strjoin_free(map, line);
 		xfree(line);
 	}
-	game->map = ft_split(map, '\n');
+	game->map_copy = ft_split(map, '\n');
 	set_dimensions(game);
 	xfree(map);
 	close(fd);

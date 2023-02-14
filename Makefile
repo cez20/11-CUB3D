@@ -18,35 +18,43 @@ SRC_DIR				=	src/
 MAIN_DIR			=	$(SRC_DIR)main/
 ENGINE_DIR			=	$(SRC_DIR)engine/
 PARSING_DIR			=	$(SRC_DIR)parsing/
+UTILS_DIR			=	$(SRC_DIR)utils/
 
 OBJ_DIR		=	obj/
 
 #----------FILES----------#
 
-MAIN_F	=		\
-main.c			\
-error.c			\
+MAIN_F	=			\
+main.c				\
+error.c				\
+print_utils.c		\
+free.c 				\
+
+ENGINE_F	=		\
+#files.c
+
+PARSING_F =			\
+floodfill.c			\
 game_validation.c	\
 game_validation1.c  \
+map_utils.c			\
+
+UTILS_F =			\
+error.c				\
+free.c				\
 print_utils.c		\
-free.c 			\
-
-ENGINE_F	=	\
-#files.c
-
-PARSING_F =		\
-#files.c
 
 
 #----------ADDPREFIX TO FILES----------#
 MAIN_SRC	=	$(addprefix $(MAIN_DIR), $(MAIN_F))
 ENGINE_SRC	=	$(addprefix $(ENGINE_DIR), $(ENGINE_F))
 PARSING_SRC	=	$(addprefix $(PARSING_DIR), $(PARSING_F))
+UTILS_SRC	=	$(addprefix $(UTILS_DIR), $(UTILS_F))
 
 OBJS		=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 OBJ_FILES	=	$(MAIN_F:.c=.o) $(ENGINE_F:.c=.o) $(PARSING_F:.c=.o)
 
-VPATH		=	$(SRC_DIR) $(MAIN_DIR) $(ENGINE_DIR) $(PARSING_DIR) $(LIBFT_H)
+VPATH		=	$(SRC_DIR) $(MAIN_DIR) $(ENGINE_DIR) $(PARSING_DIR) $(UTILS_DIR) $(LIBFT_H)
 
 $(OBJ_DIR)%.o: %.c $(SRC_DIR)
 			$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
