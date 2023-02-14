@@ -6,9 +6,11 @@ void	game_map_copy(t_game *game)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (game->game_copy[i])
 	{
+		j = 0;
+		while (ft_isset(game->game_copy[i][j], " \t"))
+			j++;
 		if (game->game_copy[i][j] == '1' || game->game_copy[i][j] == '0')
 			break ;
 		i++;

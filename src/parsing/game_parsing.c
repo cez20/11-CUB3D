@@ -10,7 +10,7 @@ int	is_news(char c)
 
 int	is_wall(char c)
 {
-	if (c == '1' | c == '0')
+	if (c == '1' || c == '0')
 		return (1);
 	return (0);
 }
@@ -38,7 +38,7 @@ void	game_map_content(t_game *g)
 		j = 0;
 		while (g->map_copy[i][j])
 		{
-			if (is_wall(g->map_copy[i][j]) || is_news(g->map_copy[i][j]) || ft_isset(g->map_copy[i][j], " "))
+			if (is_wall(g->map_copy[i][j]) || is_news(g->map_copy[i][j]) || ft_isset(g->map_copy[i][j], " \t"))
 			{
 				if (is_news(g->map_copy[i][j]))
 					player_position(g, i , j);
@@ -51,7 +51,10 @@ void	game_map_content(t_game *g)
 	}
 	if (g->nb_player < 1 || g->nb_player > 1)
 		errmsg(ERR_CONTENT, 1, g);
+	printf("player(%d, %d)\n", g->player_x, g->player_y);
 }
+
+// If we mix tab and whitespaces, the different sizes breaks validation. To be checked.
 
 void	game_parsing(t_game *game)
 {
