@@ -5,8 +5,8 @@ void	init_variables(t_game *game)
 	game->fd = 0;
 	game->total_length = 0;
 	game->map_index = 0;
-	game->player_x = 0;
-	game->player_y = 0;
+	game->player_x = 2;
+	game->player_y = 4;
 	game->game_copy = NULL;
 	game->map_copy = NULL;
 	game->elements_copy = NULL;
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	game_content_validation(&game);
 	printf("[ MAP BEFORE FLOODFILL ]\n");
 	print_map(game.map_copy);
-	flood_fill(11, 2, &game); // ints = starting player coordinates
+	flood_fill(game.player_x, game.player_y, &game); // ints = starting player coordinates
 	printf("\n[ MAP AFTER FLOODFILL ]\n");
 	print_map(game.map_copy);
 	free_game(&game);
