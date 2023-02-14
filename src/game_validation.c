@@ -58,7 +58,7 @@ void	game_map_copy(t_game *game)
 	j = 0;
 	while (game->game_copy[i])
 	{
-		if(game->game_copy[i][j] == '1' || game->game_copy[i][j] == '0')
+		if (game->game_copy[i][j] == '1' || game->game_copy[i][j] == '0')
 			break ;
 		i++;
 	}
@@ -69,7 +69,7 @@ void	game_map_copy(t_game *game)
 
 void	game_elements_copy(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	game->elements_copy = ft_calloc(game->map_index + 1, sizeof(char *));
@@ -87,7 +87,7 @@ void	game_copy(t_game *game, char *argv)
 	game_full_copy(game, argv);
 	game_map_copy(game);
 	game_elements_copy(game);
-	print_game(game->game_copy);
-	print_game(game->elements_copy);
-	print_game(game->map_copy);
+	// print_game(game->game_copy);
+	// print_game(game->elements_copy);
+	// print_game(game->map_copy);
 }

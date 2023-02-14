@@ -1,35 +1,48 @@
 #include "../include/cub3d.h"
 
-int	is_valid_character(char c)
+//This function indicates player position: North, East, West, South (NEWS)
+int	is_news(char c)
 {
-	if (c == '1' | c == '0')
-		return (1);
-	else if (c == 'N'|| c == 'S' || c == 'E' || c == 'W')
+	if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
 		return (1);
 	return (0);
 }
 
-void	game_map_content(t_game *game)
+int	is_wall(char c)
 {
-	char	**map;
-	int 	count;
+	if (c == '1' | c == '0')
+		return (1);
+	return (0);
+}
+
+void	player_position(t_game *game, int x, int y)
+{
+	if (game->nb_player == 0)
+	{
+		game->player_x = x;
+		game->player_y = y;
+		game->nb_player++;
+	}
+	game->nb_player++;
+}
+
+void	game_map_content(t_game *g)
+{
+	int		nb_player;
 	int		i;
 	int		j;
 
-	count = 0;
 	i = 0;
-	map = game->map_copy;
-	while (map[i])
+	nb_player = 0;
+	while (g->map_copy[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (g->map_copy[i][j])
 		{
-			if(is_valid_character(map[i][j]) == 1) // Use ft_strchr instead? 
+			if (is_wall(g->map_copy[i][j]) || is_news(g->map_copy[i][j]))
 			{
-				if (count > 1)
-					error(ERR_CONTENT);
-				if(map[i][j] == 'N'|| map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
-					count++;
+				if (is_news(g->map_copy[i][j]))
+					nb_player++;
 			}
 			else
 				error(ERR_CONTENT);
@@ -37,12 +50,11 @@ void	game_map_content(t_game *game)
 		}
 		i++;
 	}
-	if (count == 0)
+	if (nb_player < 1 || nb_player > 1)
 		error(ERR_CONTENT);
 }
 
 void	game_content_validation(t_game *game)
 {
 	game_map_content(game);
-
 }

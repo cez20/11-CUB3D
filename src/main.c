@@ -5,6 +5,9 @@ void	init_variables(t_game *game)
 	game->fd = 0;
 	game->total_length = 0;
 	game->map_index = 0;
+	game->nb_player = 0;
+	game->player_x = 0;
+	game->player_y = 0;
 	game->game_copy = NULL;
 	game->map_copy = NULL;
 	game->elements_copy = NULL;

@@ -13,7 +13,7 @@
 # define ERR_NO_MAP "Map given does not exist!\n"
 # define ERR_EXT "Map has NO extension or extension different than '.cub'!\n"
 # define ERR_EMPTY_MAP "Map is empty!\n"
-# define ERR_CONTENT "Map has an invalid character, no player or more than 1 player position!\n"
+# define ERR_CONTENT "Map: Invalid character, NO player or TOO MANY players\n"
 
 // typedef struct s_img
 // {
@@ -31,13 +31,13 @@ typedef struct s_game
 	int		fd;
 	int		total_length;
 	int		map_index;
+	// int		player_x;
+	// int		player_y;
 	char	**game_copy;
 	char	**map_copy;
 	char	**elements_copy;
 	void	*mlx;
 	void	*window;
-	//int		map_length;  Si on les active, mettre le contenu dans init_variables. 
-	//int		elements_length;
 }				t_game;
 
 //*** MAIN.C ***
