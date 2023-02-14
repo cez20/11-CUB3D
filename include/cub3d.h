@@ -48,16 +48,19 @@
 
 typedef struct s_game
 {
-	int		fd;
-	int		total_length;
-	int		map_index;
-	int		player_x;
-	int		player_y;
-	char	**game_copy;
-	char	**map_copy;
-	char	**elements_copy;
-	void	*mlx;
-	void	*window;
+	//int	argc;
+	//char	**argv;
+	int				fd;
+	int				total_length;
+	int				map_index;
+	int				nb_player;
+	int				player_x;
+	int				player_y;
+	char			**game_copy;
+	char			**map_copy;
+	char			**elements_copy;
+	void			*mlx;
+	void			*window;
 	int				width;
 	int				height;
 	struct t_tex	*tex;
@@ -83,7 +86,6 @@ int		main(int argc, char **argv);
 void	error(char *str);
 void	errmsg(char *msg, int tofree, t_game *game);
 
-
 //*** VALIDATION.C ***
 void	map_to_table(int fd, t_game *game);
 void	flood_fill(int x, int y, t_game *game);
@@ -92,22 +94,25 @@ void	flood_fill(int x, int y, t_game *game);
 void	free_game(t_game *game);
 void	free_double_pointer(char **str);
 
-//*** GAME_VALIDATION.C ***
-void	game_valid_extension(char *str, int fd, t_game *game);
-void	game_full_copy(t_game *game, char *argv);
-void	game_length(t_game *game);
+//*** GAME_COPY.C ***
 void	game_map_copy(t_game *game);
 void	game_elements_copy(t_game *game);
+void	game_full_copy(t_game *game, char *argv);
+void	game_length(t_game *game);
 void	game_copy(t_game *game, char *argv);
 
-//*** GAME_VALIDATION1.C ***
-int		is_valid_character(char c);
+//*** GAME_PARSING.C ***
+int		is_news(char c);
+int		is_wall(char c);
 void	game_map_content(t_game *game);
-void	game_content_validation(t_game *game);
+void	game_parsing(t_game *game);
+
+//*** GAME_VALIDATION.C ***
+void	game_valid_extension(t_game *game, char *str);
+void	game_validation(t_game *game, int argc, char *argv);
 
 //*** PRINT_UTILS.C ***
 void	print_variables(t_game *game);
-void	print_map(char **map);
-//void	print_full_game(t_game *game);
+void	print_game(char **map);
 
 #endif

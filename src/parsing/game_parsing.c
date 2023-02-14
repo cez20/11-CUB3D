@@ -15,14 +15,24 @@ int	is_wall(char c)
 	return (0);
 }
 
+void	player_position(t_game *game, int x, int y)
+{
+	if (game->nb_player == 0)
+	{
+		game->player_x = x;
+		game->player_y = y;
+		game->nb_player++;
+	}
+	else
+		game->nb_player++;
+}
+
 void	game_map_content(t_game *g)
 {
-	int		nb_player;
 	int		i;
 	int		j;
 
 	i = 0;
-	nb_player = 0;
 	while (g->map_copy[i])
 	{
 		j = 0;
@@ -31,7 +41,7 @@ void	game_map_content(t_game *g)
 			if (is_wall(g->map_copy[i][j]) || is_news(g->map_copy[i][j]))
 			{
 				if (is_news(g->map_copy[i][j]))
-					nb_player++;
+					player_position(g, i , j);
 			}
 			else
 				errmsg(ERR_CONTENT, 1, g);
@@ -39,11 +49,11 @@ void	game_map_content(t_game *g)
 		}
 		i++;
 	}
-	if (nb_player < 1 || nb_player > 1)
+	if (g->nb_player < 1 || g->nb_player > 1)
 		errmsg(ERR_CONTENT, 1, g);
 }
 
-void	game_content_validation(t_game *game)
+void	game_parsing(t_game *game)
 {
 	game_map_content(game);
 }

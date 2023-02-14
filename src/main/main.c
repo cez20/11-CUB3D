@@ -5,6 +5,7 @@ void	init_variables(t_game *game)
 	game->fd = 0;
 	game->total_length = 0;
 	game->map_index = 0;
+	game->nb_player = 0;
 	game->player_x = 0;
 	game->player_y = 0;
 	game->game_copy = NULL;
@@ -30,22 +31,17 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2)
-		errmsg(ERR_ARGS, 0, &game);
 	init_variables(&game);
-	game.fd = open(argv[1], O_RDONLY);
-	if (game.fd == -1)
-		errmsg(ERR_NO_MAP, 0, &game);
-	game_valid_extension(argv[1], game.fd, &game);
+	game_validation(&game, argc, argv[1]);
 	game_copy(&game, argv[1]);
-	game_content_validation(&game);
-	printf("[ MAP BEFORE FLOODFILL ]\n");
-	print_map(game.map_copy);
-	flood_fill(11, 2, &game); // ints = starting player coordinates
-	printf("\n[ MAP AFTER FLOODFILL ]\n");
-	print_map(game.map_copy);
-	free_game(&game);
-	close_fds(&game);
-//	return (clean_exit(&game));
-	return (0);
+	game_parsing(&game);
+	// printf("[ MAP BEFORE FLOODFILL ]\n");
+	// print_map(game.map_copy);
+	// flood_fill(11, 2, &game); // ints = starting player coordinates
+	// printf("\n[ MAP AFTER FLOODFILL ]\n");
+	// print_map(game.map_copy);
+	// free_game(&game);
+	// close_fds(&game);
+	// 	return (clean_exit(&game));
+	//return (0);
 }
