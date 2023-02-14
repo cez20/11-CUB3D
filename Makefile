@@ -27,6 +27,7 @@ MAIN_F	=		\
 main.c			\
 error.c			\
 game_validation.c	\
+game_validation1.c  \
 print_utils.c		\
 free.c 			\
 

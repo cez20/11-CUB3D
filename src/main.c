@@ -4,6 +4,7 @@ void	init_variables(t_game *game)
 {
 	game->fd = 0;
 	game->total_length = 0;
+	game->map_index = 0;
 	game->game_copy = NULL;
 	game->map_copy = NULL;
 	game->elements_copy = NULL;
@@ -26,10 +27,10 @@ int	main(int argc, char **argv)
 	game.fd = open(argv[1], O_RDONLY);
 	if (game.fd == -1)
 		error(ERR_NO_MAP);
-	//print_variables(&game);
 	game_valid_extension(argv[1], game.fd);
 	game_copy(&game, argv[1]);
-	free_double_pointer(game.game_copy);
+	game_content_validation(&game);
+	free_game(&game);
 	close_fds(&game);
 	return (0);
 }
