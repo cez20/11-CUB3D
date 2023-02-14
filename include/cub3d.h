@@ -48,8 +48,6 @@
 
 typedef struct s_game
 {
-	//int	argc;
-	//char	**argv;
 	int				fd;
 	int				total_length;
 	int				map_index;

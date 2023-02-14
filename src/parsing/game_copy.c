@@ -15,7 +15,7 @@ void	game_map_copy(t_game *game)
 	}
 	game->map_index = i;
 	game->map_copy = &game->game_copy[i];
-	//print_game(game->map_copy);
+	game->height = game->total_length - game->map_index;
 }
 
 void	game_elements_copy(t_game *game)
