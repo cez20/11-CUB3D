@@ -6,101 +6,74 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:31:04 by cemenjiv          #+#    #+#             */
-/*   Updated: 2023/02/14 14:01:19 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:02:43 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*read_to_backup(int fd, char *backup, char *buffer)
+static char	*show_line(char **s, char **line, int fd)
 {
+	int		len;
 	char	*tmp;
-	int		bytes;
-	int		start;
 
-	bytes = 1;
-	start = 0;
-	while (start == 0 && bytes != 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	len = 0;
+	while ((*s)[len] != '\n' && (*s)[len] != '\0')
+		len++;
+	if ((*s)[len] == '\n' && (*s)[len + 1] != '\0')
 	{
-		bytes = read(fd, buffer, BUFFER_SIZE);
-		if (bytes == -1)
-		{
-			xfree(buffer);
-			return (NULL);
-		}
-		buffer[bytes] = '\0';
-		if (!backup)
-			backup = ft_strdup("");
-		tmp = backup;
-		backup = ft_strjoin(backup, buffer);
-		xfree(tmp);
-		if (ft_strchr(backup, '\n'))
-			start = 1;
+		*line = ft_substr(*s, 0, len + 1);
+		tmp = ft_strdup(&((*s)[len + 1]));
+		free(*s);
+		*s = tmp;
 	}
-	free(buffer);
-	return (backup);
+	else
+	{
+		*line = ft_strdup(*s);
+		free(*s);
+		*s = NULL;
+	}
+	return (*line);
 }
 
-char	*make_line(char *backup)
+static char	*join_line(char **s, char **buf, char **tmp)
 {
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (backup[i] && backup[i] != '\n')
-		i++;
-	line = (char *)malloc(i + 2);
-	if (line == NULL)
-		return (NULL);
-	ft_strlcpy(line, backup, (i + 2));
-	if (line[0] == '\0')
+	if (*s == NULL)
+		*s = ft_strdup(*buf);
+	else
 	{
-		free(line);
-		return (NULL);
+		*tmp = ft_strjoin(*s, *buf);
+		free(*s);
+		*s = *tmp;
 	}
-	return (line);
-}
-
-char	*new_backup(char *backup)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	while (backup[i] != '\0' && backup[i] != '\n')
-		i++;
-	if (backup[i] == '\0')
-	{
-		free(backup);
-		return (NULL);
-	}
-	str = (char *)malloc(ft_strlen(backup) - i + 1);
-	if (str == NULL)
-		return (NULL);
-	ft_strlcpy(str, backup + i + 1, ft_strlen(backup) - i + 1);
-	xfree(backup);
-	return (str);
+	free (*buf);
+	return (*s);
 }
 
 char	*get_next_line(int fd)
 {
-	char			*line;
-	char			*buffer;
-	static char		*backup;
+	static char	*str[FD_SIZE];
+	char		*buf;
+	char		*tmp;
+	char		*line;
+	int			ret;
 
-	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	buffer = malloc((BUFFER_SIZE + 1) + sizeof(char));
-	if (!buffer)
+	ret = 1;
+	while (ret > 0 && fd >= 0)
 	{
-		xfree(buffer);
-		return (NULL);
+		buf = malloc(sizeof(*buf) * (BUFFER_SIZE + 1));
+		ret = read (fd, buf, BUFFER_SIZE);
+		if ((ret == 0 && str[fd] == NULL) || ret < 0)
+		{
+			free(buf);
+			return (NULL);
+		}
+		buf[ret] = '\0';
+		join_line(&str[fd], &buf, &tmp);
+		if (ft_strchr(str[fd], '\n'))
+			break ;
 	}
-	backup = read_to_backup(fd, backup, buffer);
-	if (!backup)
-		return (NULL);
-	line = make_line(backup);
-	backup = new_backup(backup);
-	return (line);
+	return (show_line(&str[fd], &line, fd));
 }
