@@ -4,7 +4,9 @@ void	init_variables(t_game *game)
 {
 	game->fd = 0;
 	game->total_length = 0;
-	game->full_map = NULL;
+	game->game_copy = NULL;
+	game->map_copy = NULL;
+	game->elements_copy = NULL;
 	game->mlx = NULL;
 	game->window = NULL;
 }
@@ -27,7 +29,7 @@ int	main(int argc, char **argv)
 	//print_variables(&game);
 	game_valid_extension(argv[1], game.fd);
 	game_copy(&game, argv[1]);
-	free_double_pointer(game.full_map);
+	free_double_pointer(game.game_copy);
 	close_fds(&game);
 	return (0);
 }

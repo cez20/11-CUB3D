@@ -29,7 +29,9 @@ typedef struct s_game
 {
 	int		fd;
 	int		total_length;
-	char	**full_map;
+	char	**game_copy;
+	char	**map_copy;
+	char	**elements_copy;
 	void	*mlx;
 	void	*window;
 	//int		map_length;  Si on les active, mettre le contenu dans init_variables. 

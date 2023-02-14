@@ -17,14 +17,14 @@ void	game_full_copy(t_game *game, char *argv)
 
 	i = 0;
 	map_line = NULL;
-	game->full_map = ft_calloc((game->total_length + 1), sizeof(map_line));
-	if (!game->full_map)
+	game->game_copy = ft_calloc((game->total_length + 1), sizeof(map_line));
+	if (!game->game_copy)
 		return ;
 	game->fd = open(argv, O_RDONLY);
 	while (i < game->total_length)
 	{
 		map_line = get_next_line(game->fd);
-		game->full_map[i] = ft_strtrim(map_line, "\n");
+		game->game_copy[i] = ft_strtrim(map_line, "\n");
 		free(map_line);
 		i++;
 	}
