@@ -8,3 +8,15 @@ void	print_variables(t_game *game)
 	printf("The value of game->mlx is %s\n", game->mlx);
 	printf("The value of game->window is %s\n", game->window);
 }
+
+void	print_full_game(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->full_map[i])
+	{
+		printf("%s\n", game->full_map[i]);
+		i++;
+	}
+}

@@ -42,12 +42,16 @@ int		main(int argc, char **argv);
 //*** ERROR.C ***
 void	error(char *str);
 
+//*** FREE.C ***
+void	free_double_pointer(char **str);
+
 //*** GAME_VALIDATION.C ***
 void	game_valid_extension(char *str, int fd);
-void	game_copy(t_game *game);
+void	game_copy(t_game *game, char *argv);
 void	game_length(t_game *game);
 
 //*** PRINT_UTILS.C ***
 void	print_variables(t_game *game);
+void	print_full_game(t_game *game);
 
 #endif

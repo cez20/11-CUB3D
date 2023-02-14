@@ -26,7 +26,8 @@ int	main(int argc, char **argv)
 		error(ERR_NO_MAP);
 	//print_variables(&game);
 	game_valid_extension(argv[1], game.fd);
-	game_copy(&game);
+	game_copy(&game, argv[1]);
+	free_double_pointer(game.full_map);
 	close_fds(&game);
 	return (0);
 }

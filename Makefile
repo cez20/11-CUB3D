@@ -28,6 +28,7 @@ main.c			\
 error.c			\
 game_validation.c	\
 print_utils.c		\
+free.c 			\
 
 ENGINE_F	=	\
 #files.c
