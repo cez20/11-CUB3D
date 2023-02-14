@@ -76,7 +76,7 @@ obj:
 			@mkdir -p $(OBJ_DIR)
 
 leak:		obj $(NAME)
-			@valgrind --leak-check=full --show-leak-kinds=all ./cub3d
+			@valgrind --leak-check=full --show-leak-kinds=all ./cub3d ./mapfiles/irregularmap.cub
 
 clean:
 			@echo "Removing object files..."

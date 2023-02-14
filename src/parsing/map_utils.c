@@ -1,17 +1,5 @@
 #include "../include/cub3d.h"
 
-void print_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-}
-
 static	int count_lines(char **map, t_game *game)
 {
 	int	i;

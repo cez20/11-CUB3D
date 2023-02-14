@@ -39,7 +39,6 @@ int	main(int argc, char **argv)
 	game_valid_extension(argv[1], game.fd, &game);
 	game_copy(&game, argv[1]);
 	game_content_validation(&game);
-	map_to_table(game.fd, &game);
 	printf("[ MAP BEFORE FLOODFILL ]\n");
 	print_map(game.map_copy);
 	flood_fill(11, 2, &game); // ints = starting player coordinates

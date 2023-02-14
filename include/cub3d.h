@@ -87,7 +87,6 @@ void	errmsg(char *msg, int tofree, t_game *game);
 //*** VALIDATION.C ***
 void	map_to_table(int fd, t_game *game);
 void	flood_fill(int x, int y, t_game *game);
-void	print_map(char **map);
 
 //*** FREE.C ***
 void	free_game(t_game *game);
@@ -108,7 +107,7 @@ void	game_content_validation(t_game *game);
 
 //*** PRINT_UTILS.C ***
 void	print_variables(t_game *game);
-void	print_game(char **game);
+void	print_map(char **map);
 //void	print_full_game(t_game *game);
 
 #endif

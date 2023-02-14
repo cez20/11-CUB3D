@@ -12,14 +12,14 @@ void	print_variables(t_game *game)
 	printf("The value of game->window is %s\n", game->window);
 }
 
-void	print_game(char **game)
+void	print_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (game[i])
+	while (map[i])
 	{
-		printf("%s\n", game[i]);
+		printf("%s\n", map[i]);
 		i++;
 	}
 	printf("--------DIVISION HERE----------\n");
