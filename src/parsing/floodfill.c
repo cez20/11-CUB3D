@@ -22,9 +22,9 @@ static int	is_out(int x, int y, t_game *game)
 		|| (y - 1 < 0)
 		|| (x + 1 >= game->height)
 		|| (size_t)y + 1 >= ft_strlen(game->map_copy[x]))
-		return (0);
-	else
 		return (1);
+	else
+		return (0);
 }
 
 void	flood_fill(int x, int y, t_game *game)
