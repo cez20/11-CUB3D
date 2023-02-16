@@ -21,6 +21,7 @@
 # define ERR_OPEN "Error: Couldn't open file. Check if it exists, it's valid\
  and you have the right permissions.\n"
 # define ERR_EMPTY_MAP "Map is empty!\n"
+# define ERR_MAP_WALLS "Map is not surrounded by walls!\n"
 # define ERR_CONTENT "Map: Invalid character, NO player or TOO MANY players\n"
 # define ERR_MAPDATA "Error: One or more arguments in the map details\
  is missing.\n"
@@ -56,6 +57,7 @@ typedef struct s_game
 	int				player_y;
 	char			**game_copy;
 	char			**map_copy;
+	char			**map_copy1;
 	char			**elements_copy;
 	void			*mlx;
 	void			*window;
@@ -98,6 +100,9 @@ void	game_elements_copy(t_game *game);
 void	game_full_copy(t_game *game, char *argv);
 void	game_length(t_game *game);
 void	game_copy(t_game *game, char *argv);
+
+//*** GAME_COPY1.C ***
+void	verify_map_extremities(t_game *game);
 
 //*** GAME_PARSING.C ***
 int		is_news(char c);

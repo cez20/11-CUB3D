@@ -36,6 +36,7 @@ ENGINE_F	=		\
 PARSING_F =			\
 floodfill.c			\
 game_copy.c         \
+game_copy1.c        \
 game_validation.c	\
 game_parsing.c		\
 map_utils.c			\

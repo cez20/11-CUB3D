@@ -38,7 +38,7 @@ void	game_map_content(t_game *g)
 		j = 0;
 		while (g->map_copy[i][j])
 		{
-			if (is_wall(g->map_copy[i][j]) || is_news(g->map_copy[i][j]) || ft_isset(g->map_copy[i][j], " \t"))
+			if (is_wall(g->map_copy[i][j]) || is_news(g->map_copy[i][j]) || ft_isset(g->map_copy[i][j], " "))
 			{
 				if (is_news(g->map_copy[i][j]))
 					player_position(g, i , j);

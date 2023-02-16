@@ -1,5 +1,67 @@
 #include "../include/cub3d.h"
 
+//1- Circuler dans la map et trouver la ligne la plus longue 
+//2- Calculer difference entre le plus long strlen et strlen de la ligne(cela va indique le nombre de tiret final a inserer)
+//2- Malloc double pointeur
+// 3- Si whitespace , remplacer par tiret
+//4-  Si i = strlen
+
+void	ft_strlcpy1(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	if (!dst || !src || size == 0)
+		return ;
+	while (src[i])
+	{
+		if (src[i] == ' ')
+			dst[i] = '-';
+		else
+			dst[i] = src[i];
+		i++;
+	}
+	while (i < (size - 1))
+		dst[i++] = '-';
+	dst[i] = '\0';
+}
+
+int	find_width(t_game *game)
+{
+	int line;
+	int width;
+	int i;
+
+	i = 0;
+	width = 0;
+	while (game->map_copy[i])
+	{
+		line = ft_strlen(game->map_copy[i]);
+		if (line > width)
+			width = line;
+		i++;
+	}
+	return (width);
+}
+
+void	game_map_copy2(t_game *game)
+{
+	int i;
+	int length;
+	
+	i = 0;
+	game->map_copy1 = ft_calloc(game->height + 1, sizeof(char *));
+	while (i < game->height)
+	{
+		length = 0;
+		game->map_copy1[i] = ft_calloc(game->width + 1, sizeof(char));
+		ft_strlcpy1(game->map_copy1[i], game->map_copy[i], game->width + 1);
+		printf("%s\n", game->map_copy1[i]);
+		i++;
+	}
+
+}
+
 void	game_map_copy(t_game *game)
 {
 	int	i;
@@ -9,7 +71,7 @@ void	game_map_copy(t_game *game)
 	while (game->game_copy[i])
 	{
 		j = 0;
-		while (ft_isset(game->game_copy[i][j], " \t"))
+		while (ft_isset(game->game_copy[i][j], " "))
 			j++;
 		if (game->game_copy[i][j] == '1' || game->game_copy[i][j] == '0')
 			break ;
@@ -18,6 +80,8 @@ void	game_map_copy(t_game *game)
 	game->map_index = i;
 	game->map_copy = &game->game_copy[i];
 	game->height = game->total_length - game->map_index;
+	game->width = find_width(game);
+	printf("The largest width is %d\n", game->width);
 }
 
 void	game_elements_copy(t_game *game)
@@ -79,7 +143,6 @@ void	game_copy(t_game *game, char *argv)
 	game_full_copy(game, argv);
 	game_map_copy(game);
 	game_elements_copy(game);
-	// print_game(game->game_copy);
-	// print_game(game->elements_copy);
-	// print_game(game->map_copy);
+	game_map_copy2(game); //Permet de faire une copie de la 2
+	verify_map_extremities(game);
 }

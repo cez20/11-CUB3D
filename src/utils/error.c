@@ -6,6 +6,7 @@ void	errmsg(char *msg, int tofree, t_game *game)
 	{
 		free_table(game->game_copy);
 		free_table(game->elements_copy);
+		free_table(game->map_copy1);
 	}
 	write(2, msg, ft_strlen(msg));
 	exit(EXIT_FAILURE);
