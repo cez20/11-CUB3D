@@ -42,4 +42,3 @@ void	verify_map_extremities(t_game *game)
 		i++;
 	}
 }
-
