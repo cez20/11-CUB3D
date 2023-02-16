@@ -1,5 +1,37 @@
 #include "../include/cub3d.h"
 
+// void	verify_first_wall(t_game *game, int i)
+// {
+// 	int j;
+
+// 	j = 0;
+// 	while (game->map_copy1[i][j])
+// 	{
+// 		if (i == 0 && j == 0 && game->map_copy1[i][j] == '-')
+// 			verify_3corners(game, i , j);
+// 		else if (i = 0 && j == game->width - 1 && game->map_copy1[i][j] == '-')
+// 			verify_3corners(game , i , j);
+// 		else if (game->map_copy1[i][j] == '-')
+// 			verify_5_corners(game, i , j);
+// 		else if (game->map_copy1[i][j] != '1')
+// 			errmsg(ERR_MAP_WALLS, 1, game);
+// 		j++;
+// 	}
+// }
+
+// void	verify_last_wall(t_game *game, int i)
+// {
+// 	int j;
+
+// 	j = 0;
+// 	while (game->map_copy1[i][j])
+// 	{
+// 		if (game->map_copy1[i][j] != '1' && game->map_copy1[i][j] != '-')
+// 			errmsg(ERR_MAP_WALLS, 1, game);
+// 		j++;
+// 	}
+// }
+
 void	verify_first_last_wall(t_game *game, int i)
 {
 	int j;
@@ -37,6 +69,8 @@ void	verify_map_extremities(t_game *game)
 	{
 		if (i == 0 && i == (game->height - 1))
 			verify_first_last_wall(game, i);
+		// else if (i == (game->height - 1))
+		// 	verify_last_wall(game, i);
 		else
 			verify_vertical_walls(game, i);
 		i++;

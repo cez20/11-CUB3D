@@ -144,5 +144,5 @@ void	game_copy(t_game *game, char *argv)
 	game_map_copy(game);
 	game_elements_copy(game);
 	game_map_copy2(game); //Permet de faire une copie de la 2
-	verify_map_extremities(game);
+	verify_map_extremities(game);\
 }
