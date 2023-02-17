@@ -39,7 +39,7 @@ void	verify_corner_walls(t_game *game)
 		}
 		i++;
 	}
-	print_game(game->map_copy);
+	//print_game(game->map_copy);
 	//if (game->error == 1) // Je crois que si on suit avec une variable, nous allons free notre programme sans LEAKS. 
 		//errmsg(ERR_MAP_WALLS, 1 , game);
 }

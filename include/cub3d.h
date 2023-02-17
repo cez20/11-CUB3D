@@ -99,7 +99,7 @@ void	free_double_pointer(char **str);
 int		is_news(char c);
 int		is_wall(char c);
 void	player_position(t_game *game, int x, int y);
-void	game_map_content(t_game *game);
+void	verify_map_characters(t_game *g);
 void	game_parsing(t_game *game);
 
 //*** GAME_PARSING1.C ***

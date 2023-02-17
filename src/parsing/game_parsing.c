@@ -27,7 +27,51 @@ void	player_position(t_game *game, int x, int y)
 		game->nb_player++;
 }
 
-void	game_map_content(t_game *g)
+// int	is_valid_character(char *game)
+// {
+// 	if (ft_strnstr(game, "NO ", 3))
+// 		return (1);
+// 	else if (ft_strnstr(game, "SO ", 3))
+// 		return 1;
+// 	else if (ft_strnstr(game, "WE ", 3))
+// 		return 1;
+// 	else if (ft_strnstr(game, "EA ", 3))
+// 		return 1;
+// 	else if (ft_strnstr(game, "C  ", 3))
+// 		return 1;
+// 	else if (ft_strnstr(game, "F  ", 3))
+// 		return 1;
+// 	else if (ft_strnstr(game, "  ", 3))
+// 		return 1;
+// 	else
+// 		return 0;
+// }
+
+// void	verify_game_elements(t_game *game)
+// {
+// 	int i;
+// 	int j;
+
+// 	i = 0;
+// 	while (game->elements_copy[i])
+// 	{
+// 		j = 0;
+// 		while(game->elements_copy[i][j])
+// 		{
+// 			if (is_valid_character(game->elements_copy[i]))
+// 			{
+// 				printf("Okay\n");
+// 				j++;
+// 			}
+// 			else
+// 				printf("Error\n");
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
+void	verify_map_characters(t_game *g)
 {
 	int		i;
 	int		j;
@@ -58,6 +102,7 @@ void	game_map_content(t_game *g)
 
 void	game_parsing(t_game *game)
 {
-	game_map_content(game);
+	//verify_game_elements(game);
+	verify_map_characters(game);
 	verify_map_walls(game);
 }

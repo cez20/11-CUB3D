@@ -29,7 +29,6 @@ void	game_elements_copy(t_game *game)
 		game->elements_copy[i] = ft_strdup(game->game_copy[i]);
 		i++;
 	}
-	//print_game(game->elements_copy);
 }
 
 void	game_map_dimensions(t_game *game)
@@ -64,6 +63,4 @@ void	game_sections_copy(t_game *game, char *argv)
 	game_map_dimensions(game);
 	game_elements_copy(game);
 	game_map_copy(game); // J'ai malloc une map finalement au lieu d'un pointeur vers game_map_copy.  
-	//verify_map_extremities(game);
-	//verify_corners(game);
 }
