@@ -4,7 +4,7 @@ void	free_game(t_game *game)
 {
 	free_double_pointer(game->game_copy);
 	free_double_pointer(game->elements_copy);
-	game->map_copy = NULL; // Avoid a dangling pointer
+	free_double_pointer(game->map_copy);
 }
 
 void	free_double_pointer(char **str)

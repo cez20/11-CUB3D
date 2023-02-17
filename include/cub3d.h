@@ -52,18 +52,18 @@ typedef struct s_game
 	int				fd;
 	int				total_length;
 	int				map_index;
+	int				map_width;
+	int				map_height;
 	int				nb_player;
 	int				player_x;
 	int				player_y;
-	int				error;
+	//int				error; // voir si encore necessaire 
 	char			**game_copy;
 	char			**map_copy;
 	char			**map_copy1;
 	char			**elements_copy;
 	void			*mlx;
 	void			*window;
-	int				width;
-	int				height;
 	struct t_tex	*tex;
 	struct t_ray	*rc;
 }				t_game;
@@ -87,7 +87,7 @@ int		main(int argc, char **argv);
 void	error(char *str);
 void	errmsg(char *msg, int tofree, t_game *game);
 
-//*** VALIDATION.C ***
+//*** MAP_UTILS.C ***
 void	map_to_table(int fd, t_game *game);
 void	flood_fill(int x, int y, t_game *game);
 
@@ -95,22 +95,32 @@ void	flood_fill(int x, int y, t_game *game);
 void	free_game(t_game *game);
 void	free_double_pointer(char **str);
 
-//*** GAME_COPY.C ***
-void	game_map_copy(t_game *game);
-void	game_elements_copy(t_game *game);
-void	game_full_copy(t_game *game, char *argv);
-void	game_length(t_game *game);
-void	game_copy(t_game *game, char *argv);
-
-//*** GAME_COPY1.C ***
-void	verify_corners(t_game *game);
-void	verify_map_extremities(t_game *game);
-
 //*** GAME_PARSING.C ***
 int		is_news(char c);
 int		is_wall(char c);
+void	player_position(t_game *game, int x, int y);
 void	game_map_content(t_game *game);
 void	game_parsing(t_game *game);
+
+//*** GAME_PARSING1.C ***
+void	flood_fill(int x, int y, t_game *game);
+void	verify_corner_walls(t_game *game);
+void	verify_first_last_wall(t_game *game, int i);
+void	verify_vertical_walls(t_game *game, int i);
+void	verify_map_walls(t_game *game);
+
+//*** GAME_SECTIONS_COPY.C ***
+void	game_map_copy(t_game *game);
+void	game_elements_copy(t_game *game);
+void	game_map_dimensions(t_game *game);
+void	game_full_copy(t_game *game, char *argv);
+void	game_sections_copy(t_game *game, char *argv);
+
+//*** GAME_SECTIONS_COPY1.C ***
+void	game_length(t_game *game);
+int		map_first_index(char **game);
+int		map_longest_width(t_game *game);
+void	ft_strlcpy1(char *dst, const char *src, size_t size);
 
 //*** GAME_VALIDATION.C ***
 void	game_valid_extension(t_game *game, char *str);

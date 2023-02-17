@@ -33,8 +33,8 @@ static int	count_max_row (char **map)
 
 static void	set_dimensions(t_game *game)
 {
-	game->height = count_lines(game->map_copy, game);
-	game->width = count_max_row(game->map_copy);
+	game->map_height = count_lines(game->map_copy, game);
+	game->map_width = count_max_row(game->map_copy);
 }
 
 void	map_to_table(int fd, t_game *game)

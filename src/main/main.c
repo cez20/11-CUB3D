@@ -5,6 +5,8 @@ void	init_variables(t_game *game)
 	game->fd = 0;
 	game->total_length = 0;
 	game->map_index = 0;
+	game->map_width = 0;
+	game->map_height = 0;
 	game->nb_player = 0;
 	game->player_x = 0;
 	game->player_y = 0;
@@ -14,8 +16,6 @@ void	init_variables(t_game *game)
 	game->elements_copy = NULL;
 	game->mlx = NULL;
 	game->window = NULL;
-	game->width = 0;
-	game->height = 0;
 }
 
 void	close_fds(t_game *game)
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 
 	init_variables(&game);
 	game_validation(&game, argc, argv[1]);
-	game_copy(&game, argv[1]);
+	game_sections_copy(&game, argv[1]);
 	game_parsing(&game);
 	//printf("[ MAP BEFORE FLOODFILL ]\n");
 	//print_game(game.map_copy);
