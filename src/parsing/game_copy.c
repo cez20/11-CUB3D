@@ -47,13 +47,13 @@ int	find_width(t_game *game)
 void	game_map_copy2(t_game *game)
 {
 	int i;
-	int length;
+	//int length;
 	
 	i = 0;
 	game->map_copy1 = ft_calloc(game->height + 1, sizeof(char *));
 	while (i < game->height)
 	{
-		length = 0;
+		//length = 0;
 		game->map_copy1[i] = ft_calloc(game->width + 1, sizeof(char));
 		ft_strlcpy1(game->map_copy1[i], game->map_copy[i], game->width + 1);
 		printf("%s\n", game->map_copy1[i]);
@@ -144,5 +144,6 @@ void	game_copy(t_game *game, char *argv)
 	game_map_copy(game);
 	game_elements_copy(game);
 	game_map_copy2(game); //Permet de faire une copie de la 2
-	verify_map_extremities(game);\
+	verify_map_extremities(game);
+	verify_corners(game);
 }

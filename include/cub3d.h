@@ -55,6 +55,7 @@ typedef struct s_game
 	int				nb_player;
 	int				player_x;
 	int				player_y;
+	int				error;
 	char			**game_copy;
 	char			**map_copy;
 	char			**map_copy1;
@@ -102,6 +103,7 @@ void	game_length(t_game *game);
 void	game_copy(t_game *game, char *argv);
 
 //*** GAME_COPY1.C ***
+void	verify_corners(t_game *game);
 void	verify_map_extremities(t_game *game);
 
 //*** GAME_PARSING.C ***

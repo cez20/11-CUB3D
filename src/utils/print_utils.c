@@ -8,8 +8,8 @@ void	print_variables(t_game *game)
 	printf("The value of game->game_copy is %p\n", game->game_copy);
 	printf("The value of game->game_copy is %p\n", game->map_copy);
 	printf("The value of game->game_copy is %p\n", game->elements_copy);
-	printf("The value of game->mlx is %s\n", game->mlx);
-	printf("The value of game->window is %s\n", game->window);
+	printf("The value of game->mlx is %p\n", game->mlx);
+	printf("The value of game->window is %p\n", game->window);
 }
 
 void	print_game(char **str)
