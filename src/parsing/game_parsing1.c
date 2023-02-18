@@ -22,68 +22,84 @@ void	flood_fill(int x, int y, t_game *game)
 	flood_fill(x - 1, y - 1, game);
 }
 
-void	verify_corner_walls(t_game *game)
-{
-	int i;
-	int j;
+// void	verify_corner_walls(t_game *game)
+// {
+// 	int i;
+// 	int j;
 
-	i = 0;
-	while (game->map_copy[i])
-	{
-		j = 0;
-		while(game->map_copy[i][j])
-		{
-			if(game->map_copy[i][j] == '-')
-				flood_fill(i, j, game);
-			j++;
-		}
-		i++;
-	}
-	//print_game(game->map_copy);
-	//if (game->error == 1) // Je crois que si on suit avec une variable, nous allons free notre programme sans LEAKS. 
-		//errmsg(ERR_MAP_WALLS, 1 , game);
-}
+// 	i = 0;
+// 	while (game->map_copy[i])
+// 	{
+// 		j = 0;
+// 		while(game->map_copy[i][j])
+// 		{
+// 			if(game->map_copy[i][j] == '-')
+// 				flood_fill(i, j, game);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	//print_game(game->map_copy);
+// 	//if (game->error == 1) // Je crois que si on suit avec une variable, nous allons free notre programme sans LEAKS. 
+// 		//errmsg(ERR_MAP_WALLS, 1 , game);
+// }
 
-void	verify_first_last_wall(t_game *game, int i)
-{
-	int j;
+// void	verify_first_last_wall(t_game *game, int i)
+// {
+// 	int j;
 
-	j = 0;
-	while (game->map_copy[i][j])
-	{
-		if (game->map_copy[i][j] != '1' && game->map_copy[i][j] != '-')
-			errmsg(ERR_MAP_WALLS, 1, game);
-		j++;
-	}
-}
+// 	j = 0;
+// 	while (game->map_copy[i][j])
+// 	{
+// 		if (game->map_copy[i][j] != '1' && game->map_copy[i][j] != '-')
+// 			errmsg(ERR_MAP_WALLS, 1, game);
+// 		j++;
+// 	}
+// }
 
-void	verify_vertical_walls(t_game *game, int i)
-{
-	int j;
+// void	verify_vertical_walls(t_game *game, int i)
+// {
+// 	int j;
 
-	j = 0;
-	while (game->map_copy[i][j] == '-')
-		j++;
-	if (game->map_copy[i][j] != '1')
-		errmsg(ERR_MAP_WALLS, 1, game);
-	while (game->map_copy[i][j] != '-' && game->map_copy[i][j] != '\0')
-		j++;
-	if (game->map_copy[i][j - 1] != '1')
-		errmsg(ERR_MAP_WALLS, 1, game);
-}
+// 	j = 0;
+// 	while (game->map_copy[i][j] == '-')
+// 		j++;
+// 	if (game->map_copy[i][j] != '1')
+// 		errmsg(ERR_MAP_WALLS, 1, game);
+// 	while (game->map_copy[i][j] != '-' && game->map_copy[i][j] != '\0')
+// 		j++;
+// 	if (game->map_copy[i][j - 1] != '1')
+// 		errmsg(ERR_MAP_WALLS, 1, game);
+// }
 
+//My take on wall verification:
+//I read the map left to right, top to bottom.
+//First: If there are any 0 on the extremities: error;
+//Else: If there are any spaces not surrounded by walls inside the map (holes filled with '-'): error;
+//This doesn't check for diagonals because empty spaces would be filled with walls after map validation, so that would prevent any bugs later on.
+// Floodfill becomes useless at this point since we don't have to check for valid pathways, etc. (unless we decide later to add collectibles, etc)
 void	verify_map_walls(t_game *game)
 {
 	int i;
+	int j;
 
-	i = 0;
-	while (game->map_copy[i])
+	i = -1;
+	while (game->map_copy[++i])
 	{
-		if (i == 0 || i == (game->map_height - 1))
-			verify_first_last_wall(game, i);
-		else // Might not be necessary, because flood fill takes care of it. 
-			verify_vertical_walls(game, i);
-		i++;
+		j = -1;
+		while (game->map_copy[i][++j])
+		{
+			if (game->map_copy[i][j] == '0')
+			{
+				if ((i == 0 || i == game->map_height)
+					|| (j == 0 || j == game->map_width - 1))
+					errmsg(ERR_MAP_WALLS, 1, game);
+				else if (game->map_copy[i - 1][j] == '-'
+						|| game->map_copy[i + 1][j] == '-'
+						|| game->map_copy[i][j + 1] == '-'
+						|| game->map_copy[i][j - 1] == '-')
+					errmsg(ERR_MAP_WALLS, 1, game);
+			}
+		}
 	}
-	verify_corner_walls(game);
 }
