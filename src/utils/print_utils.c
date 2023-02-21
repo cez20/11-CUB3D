@@ -20,5 +20,4 @@ void	print_game(char **str)
 	printf("--------DIVISION HERE----------\n");
 	while (str[i])
 		printf("%s\n", str[i++]);
-	
 }

@@ -57,10 +57,8 @@ typedef struct s_game
 	int				nb_player;
 	int				player_x;
 	int				player_y;
-	//int				error; // voir si encore necessaire 
 	char			**game_copy;
 	char			**map_copy;
-	char			**map_copy1;
 	char			**elements_copy;
 	void			*mlx;
 	void			*window;
@@ -103,10 +101,7 @@ void	verify_map_characters(t_game *g);
 void	game_parsing(t_game *game);
 
 //*** GAME_PARSING1.C ***
-void	flood_fill(int x, int y, t_game *game);
-void	verify_corner_walls(t_game *game);
-void	verify_first_last_wall(t_game *game, int i);
-void	verify_vertical_walls(t_game *game, int i);
+void	replace_map_spaces(t_game *game);
 void	verify_map_walls(t_game *game);
 
 //*** GAME_SECTIONS_COPY.C ***
