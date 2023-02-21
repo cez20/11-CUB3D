@@ -14,15 +14,15 @@
 # include "../include/libft/libft.h"
 
 
-# define ERR_ARGS "There is NO arguments or more than 1 argument!\n"
+# define ERR_ARGS "Error: There is NO arguments or more than 1 argument!\n"
 # define ERR_FD "Error: FD (map) given does not exist!\n"
-# define ERR_NO_MAP "Map given does not exist!\n"
+# define ERR_NO_MAP "Error: Map given does not exist!\n"
 # define ERR_EXT "Error: Map does not have the right extension (.cub).\n"
 # define ERR_OPEN "Error: Couldn't open file. Check if it exists, it's valid\
  and you have the right permissions.\n"
-# define ERR_EMPTY_MAP "Map is empty!\n"
-# define ERR_MAP_WALLS "Map is not surrounded by walls!\n"
-# define ERR_CONTENT "Map: Invalid character, NO player or TOO MANY players\n"
+# define ERR_EMPTY_MAP "Error: Map is empty!\n"
+# define ERR_MAP_WALLS "Error: Map is not surrounded by walls!\n"
+# define ERR_CONTENT "Error: Map: Invalid character, NO player or TOO MANY players\n"
 # define ERR_MAPDATA "Error: One or more arguments in the map details\
  is missing.\n"
 # define ERR_RGB "Error: Invalid RGB value. You must have only three integers\
@@ -32,6 +32,8 @@
 # define ERR_INTEGRITY "Error: Map must be surrounded by walls and have no spaces\
  inside its limits.\n"
 # define ERR_START "Error: The map must have exactly one starting point.\n"
+# define ERR_ELEMENTS "Error: An invalid game element is present\n"
+# define ERR_TEXTURE "Error, there is an error with path leading to texture\n"
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -110,6 +112,10 @@ void	verify_map_characters(t_game *g);
 void	game_parsing(t_game *game);
 
 //*** GAME_PARSING1.C ***
+int		nb_of_strings(char **str);
+void	check_direction(t_game *game, char *str);
+int		is_cardinal_direction(char *str);
+int		is_floor_or_ceiling(char *str);
 void	replace_map_spaces(t_game *game);
 void	verify_map_walls(t_game *game);
 

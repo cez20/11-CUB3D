@@ -27,21 +27,6 @@ void	player_position(t_game *game, int x, int y)
 		game->nb_player++;
 }
 
-// Ft_strncmp gives a result of 0 when the str and the elements are identical
-//When not identical gives a number higher than 0. If ALL comparisons, gives a
-// number higher than 0, it means that is an invalid element.  
-int is_valid_element(char *str)
-{
-	if ((ft_strncmp(str, "NO ", 3) != 0) 
-		&& (ft_strncmp(str, "SO ", 3) != 0)
-		&& (ft_strncmp(str, "EA ", 3) != 0)
-		&& (ft_strncmp(str, "WE ", 3) != 0)
-		&& (ft_strncmp(str, "F ", 2) != 0)
-		&& (ft_strncmp(str, "C ", 2)) != 0)
-		return (1);
-	return (0);
-
-
 static void	check_colors(t_game *game)
 {
 	int		i;
@@ -79,12 +64,12 @@ void	verify_elements(t_game *game)
 	print_game(game->elements_copy);
 	while (game->elements_copy[i])
 	{
-		if (is_direction(game->elements_copy[i]))
-			check_direction(game->elements_copy[i])
-		else if (floor_or_ceiling(game->elements_copy[i]))
-			check_colors
+		if (is_cardinal_direction(game->elements_copy[i]))
+			check_direction(game, game->elements_copy[i]);
+		else if (is_floor_or_ceiling(game->elements_copy[i]))
+		 	printf("This the floor or ceiling\n");
 		else
-			errmsg(ERR_CONTENT, 1, game);
+			errmsg(ERR_ELEMENTS, 1, game);
 		i++;
 	}
 	check_colors(game);

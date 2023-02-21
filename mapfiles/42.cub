@@ -1,4 +1,4 @@
-NO ../img/path_to_the_north_texture
+NO ./sprites/test.txt
 SO ../img/path_to_the_south_texture
 WE ../img/path_to_the_west_texture
 EA ../img/path_to_the_east_texture
