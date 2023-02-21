@@ -25,8 +25,8 @@
 # define ERR_CONTENT "Map: Invalid character, NO player or TOO MANY players\n"
 # define ERR_MAPDATA "Error: One or more arguments in the map details\
  is missing.\n"
-# define ERR_RGB "Error: Invalid RGB value. All values should stay\
- between 0 and 255.\n"
+# define ERR_RGB "Error: Invalid RGB value. You must have only three integers\
+ and all its values should be between 0 and 255.\n"
 # define ERR_CHAR "Error: Undefined (invalid) character on map.\
  Valid characters: N, S, E, W, 0 and 1.\n"
 # define ERR_INTEGRITY "Error: Map must be surrounded by walls and have no spaces\
@@ -35,6 +35,8 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+
+# define WHITESPACE " \n\t\v\r\f"
 
 // typedef struct s_img
 // {
@@ -47,6 +49,9 @@
 // 	int		height;
 // }			t_img;
 
+typedef struct s_tex t_tex;
+typedef struct s_ray t_ray;
+
 typedef struct s_game
 {
 	int				fd;
@@ -55,15 +60,15 @@ typedef struct s_game
 	int				map_width;
 	int				map_height;
 	int				nb_player;
-	double			player_x; 
+	double			player_x;
 	double			player_y; 
 	char			**game_copy;
 	char			**map_copy;
 	char			**elements_copy;
 	void			*mlx;
 	void			*window;
-	struct t_tex	*tex;
-	struct t_ray	*rc;
+	t_tex			*tex;
+	t_ray			*rc;
 }				t_game;
 
 typedef struct s_tex
@@ -72,8 +77,8 @@ typedef struct s_tex
 	char			*south;
 	char			*east;
 	char			*west;
-	char			*floor;
-	char			*ceiling;
+	int				floor[3];
+	int				ceiling[3];
 }				t_tex;
 
 typedef struct s_ray
@@ -81,7 +86,6 @@ typedef struct s_ray
 // values for raycasting math
 // some must be variables of type double for precision!
 }				t_ray;
-
 
 //*** MAIN.C ***
 int		main(int argc, char **argv);
