@@ -15,6 +15,7 @@ void	init_variables(t_game *game)
 	game->elements_copy = NULL;
 	game->mlx = NULL;
 	game->window = NULL;
+	game->tex = ft_calloc(1, sizeof(t_tex));
 }
 
 void	close_fds(t_game *game)

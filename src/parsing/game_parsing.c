@@ -27,6 +27,35 @@ void	player_position(t_game *game, int x, int y)
 		game->nb_player++;
 }
 
+static void	check_colors(t_game *game)
+{
+	int		i;
+	char	**rgb;
+	int		n;
+
+	i = -1;
+	rgb = NULL;
+	n = 0;
+	while (game->elements_copy[++i])
+	{
+		if (!ft_strncmp(game->elements_copy[i], "F ", 2))
+			rgb = ft_split(game->elements_copy[i] + 2, ',');
+		else if (!ft_strncmp(game->elements_copy[i], "C ", 2))
+			rgb = ft_split(game->elements_copy[i] + 2, ',');
+	}
+	i = -1;
+	while (rgb[++i])
+	{
+		if (i >= 3)
+			errmsg(ERR_RGB, 1, game);
+		n = ft_atoi(rgb[i]);
+		if ((n < 0 || n > 255) || !ft_strcmp(rgb[i], "-0"))
+			errmsg(ERR_RGB, 1, game);
+		else
+			game->tex->floor[i] = n;
+	}
+}
+
 void	verify_elements(t_game *game)
 {
 	int	i;
@@ -35,14 +64,15 @@ void	verify_elements(t_game *game)
 	while (game->elements_copy[i])
 	{
 		if ((ft_strncmp(game->elements_copy[i], "NO ", 3)) 
-		&& (ft_strncmp(game->elements_copy[i], "SO ", 3))
-		&& (ft_strncmp(game->elements_copy[i], "EA ", 3))
-		&& (ft_strncmp(game->elements_copy[i], "WE ", 3))
-		&& (ft_strncmp(game->elements_copy[i], "F ", 2))
-		&& (ft_strncmp(game->elements_copy[i], "C ", 2)))
+			&& (ft_strncmp(game->elements_copy[i], "SO ", 3))
+			&& (ft_strncmp(game->elements_copy[i], "EA ", 3))
+			&& (ft_strncmp(game->elements_copy[i], "WE ", 3))
+			&& (ft_strncmp(game->elements_copy[i], "F ", 2))
+			&& (ft_strncmp(game->elements_copy[i], "C ", 2)))
 			printf("Le contenu est different de NO, SO, EA, WE, F et C\n");
 		i++;
 	}
+	check_colors(game);
 }
 
 void	verify_map_characters(t_game *g)
