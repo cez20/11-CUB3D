@@ -2,9 +2,9 @@
 
 int	map_longest_width(t_game *game)
 {
-	int line;
-	int width;
-	int i;
+	int	i;
+	int	line;
+	int	width;
 
 	width = 0;
 	i = game->map_index;

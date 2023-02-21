@@ -12,7 +12,6 @@ void	init_variables(t_game *game)
 	game->player_y = 0;
 	game->game_copy = NULL;
 	game->map_copy = NULL;
-	game->map_copy1 =  NULL;
 	game->elements_copy = NULL;
 	game->mlx = NULL;
 	game->window = NULL;

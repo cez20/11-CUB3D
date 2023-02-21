@@ -2,9 +2,9 @@
 
 void	game_map_copy(t_game *game)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	j = game->map_index;
 	game->map_copy = ft_calloc((game->map_height + 1), sizeof(char *));
@@ -62,5 +62,5 @@ void	game_sections_copy(t_game *game, char *argv)
 	game_full_copy(game, argv);
 	game_map_dimensions(game);
 	game_elements_copy(game);
-	game_map_copy(game); // J'ai malloc une map finalement au lieu d'un pointeur vers game_map_copy.  
+	game_map_copy(game);
 }
