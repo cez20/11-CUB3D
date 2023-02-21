@@ -27,6 +27,24 @@ void	player_position(t_game *game, int x, int y)
 		game->nb_player++;
 }
 
+void	verify_elements(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->elements_copy[i])
+	{
+		if ((ft_strncmp(game->elements_copy[i], "NO ", 3)) 
+		&& (ft_strncmp(game->elements_copy[i], "SO ", 3))
+		&& (ft_strncmp(game->elements_copy[i], "EA ", 3))
+		&& (ft_strncmp(game->elements_copy[i], "WE ", 3))
+		&& (ft_strncmp(game->elements_copy[i], "F ", 2))
+		&& (ft_strncmp(game->elements_copy[i], "C ", 2)))
+			printf("Le contenu est different de NO, SO, EA, WE, F et C\n");
+		i++;
+	}
+}
+
 void	verify_map_characters(t_game *g)
 {
 	int		i;
@@ -59,7 +77,7 @@ void	verify_map_characters(t_game *g)
 
 void	game_parsing(t_game *game)
 {
-	//verify_game_elements(game);
+	verify_elements(game);
 	verify_map_characters(game);
 	verify_map_walls(game);
 	replace_map_spaces(game);
