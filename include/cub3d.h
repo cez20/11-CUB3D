@@ -55,8 +55,8 @@ typedef struct s_game
 	int				map_width;
 	int				map_height;
 	int				nb_player;
-	int				player_x;
-	int				player_y;
+	double			player_x; 
+	double			player_y; 
 	char			**game_copy;
 	char			**map_copy;
 	char			**elements_copy;
@@ -68,7 +68,12 @@ typedef struct s_game
 
 typedef struct s_tex
 {
-// textures data
+	char			*north;
+	char			*south;
+	char			*east;
+	char			*west;
+	char			*floor;
+	char			*ceiling;
 }				t_tex;
 
 typedef struct s_ray

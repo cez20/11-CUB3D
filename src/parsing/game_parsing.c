@@ -52,7 +52,7 @@ void	verify_map_characters(t_game *g)
 	}
 	if (g->nb_player < 1 || g->nb_player > 1)
 		errmsg(ERR_CONTENT, 1, g);
-	printf("player(%d, %d)\n", g->player_x, g->player_y);
+	printf("player(%f, %f)\n", g->player_x, g->player_y);
 }
 
 // If we mix tab and whitespaces, the different sizes breaks validation. To be checked.
