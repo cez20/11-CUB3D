@@ -32,6 +32,7 @@ void	verify_elements(t_game *game)
 	int	i;
 
 	i = 0;
+	print_game(game->elements_copy);
 	while (game->elements_copy[i])
 	{
 		if ((ft_strncmp(game->elements_copy[i], "NO ", 3)) 

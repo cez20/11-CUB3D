@@ -21,13 +21,17 @@ void	game_map_copy(t_game *game)
 void	game_elements_copy(t_game *game)
 {
 	int	i;
+	int j;
 
 	i = 0;
+	j = 0;
 	game->elements_copy = ft_calloc(game->map_index + 1, sizeof(char *));
 	while (i < game->map_index)
 	{
-		game->elements_copy[i] = ft_strdup(game->game_copy[i]);
-		i++;
+		if (ft_isspace(game->game_copy[i]) == 0)
+			i++;
+		else
+			game->elements_copy[j++] = ft_strdup(game->game_copy[i++]);
 	}
 }
 
