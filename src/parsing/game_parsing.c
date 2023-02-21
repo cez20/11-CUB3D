@@ -27,6 +27,21 @@ void	player_position(t_game *game, int x, int y)
 		game->nb_player++;
 }
 
+// Ft_strncmp gives a result of 0 when the str and the elements are identical
+//When not identical gives a number higher than 0. If ALL comparisons, gives a
+// number higher than 0, it means that is an invalid element.  
+int is_valid_element(char *str)
+{
+	if ((ft_strncmp(str, "NO ", 3) != 0) 
+		&& (ft_strncmp(str, "SO ", 3) != 0)
+		&& (ft_strncmp(str, "EA ", 3) != 0)
+		&& (ft_strncmp(str, "WE ", 3) != 0)
+		&& (ft_strncmp(str, "F ", 2) != 0)
+		&& (ft_strncmp(str, "C ", 2)) != 0)
+		return (1);
+	return (0);
+}
+
 void	verify_elements(t_game *game)
 {
 	int	i;
@@ -35,13 +50,12 @@ void	verify_elements(t_game *game)
 	print_game(game->elements_copy);
 	while (game->elements_copy[i])
 	{
-		if ((ft_strncmp(game->elements_copy[i], "NO ", 3)) 
-		&& (ft_strncmp(game->elements_copy[i], "SO ", 3))
-		&& (ft_strncmp(game->elements_copy[i], "EA ", 3))
-		&& (ft_strncmp(game->elements_copy[i], "WE ", 3))
-		&& (ft_strncmp(game->elements_copy[i], "F ", 2))
-		&& (ft_strncmp(game->elements_copy[i], "C ", 2)))
-			printf("Le contenu est different de NO, SO, EA, WE, F et C\n");
+		if (is_direction(game->elements_copy[i]))
+			check_direction(game->elements_copy[i])
+		else if (floor_or_ceiling(game->elements_copy[i]))
+			check_colors
+		else
+			errmsg(ERR_CONTENT, 1, game);
 		i++;
 	}
 }
