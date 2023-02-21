@@ -3,14 +3,7 @@
 void	errmsg(char *msg, int tofree, t_game *game)
 {
 	if (tofree == 1)
-	{
-		free_table(game->game_copy);
-		free_table(game->elements_copy);
-		free_table(game->map_copy);
-		//destroy mlx instances, images and window
-		xfree(game->tex);
-		xfree(game->rc);
-	}
+		free_game(game);
 	write(2, msg, ft_strlen(msg));
 	exit(EXIT_FAILURE);
 }

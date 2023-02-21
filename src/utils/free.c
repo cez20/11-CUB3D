@@ -5,6 +5,9 @@ void	free_game(t_game *game)
 	free_double_pointer(game->game_copy);
 	free_double_pointer(game->elements_copy);
 	free_double_pointer(game->map_copy);
+	//destroy mlx instances, images and window
+	xfree(game->tex);
+	xfree(game->rc);
 }
 
 void	free_double_pointer(char **str)
@@ -13,6 +16,6 @@ void	free_double_pointer(char **str)
 
 	i = 0;
 	while (str[i])
-		free(str[i++]);
-	free(str);
+		xfree(str[i++]);
+	xfree(str);
 }
