@@ -45,11 +45,6 @@ int	main(int argc, char **argv)
 	game_validation(&game, argc, argv[1]);
 	game_sections_copy(&game, argv[1]);
 	game_parsing(&game);
-	//printf("[ MAP BEFORE FLOODFILL ]\n");
-	//print_game(game.map_copy);
-	//flood_fill(game.player_x, game.player_y, &game); // ints = starting player coordinates
-	//printf("\n[ MAP AFTER FLOODFILL ]\n");
-	//print_game(game.map_copy);
 	free_game(&game);
 	close_fds(&game);
 //	return (clean_exit(&game));
