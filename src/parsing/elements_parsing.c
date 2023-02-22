@@ -5,19 +5,23 @@ void	check_colors(t_game *game, char *element)
 	int		i;
 	int		n;
 	char	**rgb;
+	char	*tmp;
 	char	mode;
 
 	i = -1;
 	n = 0;
-	rgb = ft_split(&element[i + 3], ',');
+	rgb = NULL;
+	tmp = NULL;
+	rgb = ft_split(&element[2], ',');
 	mode = element[0];
 	while (rgb[++i])
 	{
 		if (i >= 3)
 			errmsg(ERR_RGB, 1, game);
 		n = ft_atoi(rgb[i]);
-		skip_whitespaces(&rgb[i]);
-		if ((n < 0 || n > 255) || !ft_strcmp(rgb[i], "-0"))
+		tmp = rgb[i];
+		skip_whitespaces(&tmp);
+		if ((n < 0 || n > 255) || !ft_strcmp(tmp, "-0"))
 			errmsg(ERR_RGB, 1, game);
 		else
 		{
@@ -27,7 +31,7 @@ void	check_colors(t_game *game, char *element)
 				game->tex->ceiling[i] = n;
 		}
 	}
-	free_double_pointer(rgb);
+	free_table(rgb);
 }
 
 char	*create_texture_path(t_game *game, char *path)
@@ -71,7 +75,6 @@ void	verify_elements(t_game *game)
 	int	i;
 
 	i = 0;
-	print_game(game->elements_copy);
 	while (game->elements_copy[i])
 	{
 		if (ft_strncmp(game->elements_copy[i], "NO", 2) == 0)
@@ -82,14 +85,14 @@ void	verify_elements(t_game *game)
 			check_direction(game, game->elements_copy[i], &game->tex->west);
 		else if (ft_strncmp(game->elements_copy[i], "EA", 2) == 0)
 			check_direction(game, game->elements_copy[i], &game->tex->east);
-		else if (!ft_strncmp(game->elements_copy[i], "F ", 2) \
-			|| !ft_strncmp(game->elements_copy[i], "C ", 2))
+		else if (ft_strncmp(game->elements_copy[i], "F ", 2) == 0 \
+			|| ft_strncmp(game->elements_copy[i], "C ", 2) == 0)
 			check_colors(game, game->elements_copy[i]);
 		else
 			errmsg(ERR_ELEMENTS, 1, game);
 		i++;
 	}
-	if (!game->tex->north || !game->tex->south || !game->tex->west \
+	if (!game->tex->north || !game->tex->south || !game->tex->east \
 	|| !game->tex->west || game->tex->floor[0] == -1 \
 	|| game->tex->ceiling[0] == -1)
 		errmsg(ERR_ELEMENTS, 1, game); //Not all elements are present. 

@@ -15,7 +15,6 @@ void	replace_map_spaces(t_game *game)
 				game->map_copy[i][j] = '1';
 		}
 	}
-	print_game(game->map_copy);
 }
 
 //My take on wall verification:
@@ -29,7 +28,6 @@ void	verify_map_walls(t_game *game)
 	int	i;
 	int	j;
 
-	print_game(game->map_copy);
 	i = -1;
 	while (game->map_copy[++i])
 	{

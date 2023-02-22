@@ -1,10 +1,10 @@
-NO ../img/north.png
-SO ../img/south.png
-WE ../img/west.png
-EA ../img/east.png
+NO ./img/north.png
+SO ./img/south.png
+WE ./img/west.png
+EA ./img/east.png
 
-F 220,100,0
-C -0, 30, 0
+F 220, 100,1
+C 0,30,1
 
         1111111111111111111111111
         1000000000110000000000001

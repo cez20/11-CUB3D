@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 11:42:36 by anarodri          #+#    #+#             */
-/*   Updated: 2022/12/15 12:51:09 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:01:46 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@ void	free_table(char **table)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (table)
 	{
-		while (table[i])
-		{
+		while (table[++i])
 			xfree(table[i]);
-			i++;
-		}
-		xfree(table[i]);
 		xfree(table);
 	}
 }
