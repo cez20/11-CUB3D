@@ -64,7 +64,6 @@ char	*create_texture_path(t_game *game, char *path)
 	char	*tmp;
 	int		i;
 	int		fd;
-	(void)game;
 
 	i = 0;
 	while (ft_is_whitespace(path[i])) // Determiner si le fait qu'il y ait des tab avant ma texture est une erreur 

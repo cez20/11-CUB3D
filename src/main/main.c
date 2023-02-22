@@ -21,6 +21,8 @@ void	init_variables(t_game *game)
 	game->tex->south = NULL;
 	game->tex->west = NULL;
 	game->tex->east = NULL;
+	game->tex->floor[0] = -1;
+	game->tex->ceiling[0] = -1;
 }
 
 void	close_fds(t_game *game)
@@ -43,6 +45,7 @@ int	main(int argc, char **argv)
 	game_validation(&game, argc, argv[1]);
 	game_sections_copy(&game, argv[1]);
 	game_parsing(&game);
+	print
 	//printf("[ MAP BEFORE FLOODFILL ]\n");
 	//print_game(game.map_copy);
 	//flood_fill(game.player_x, game.player_y, &game); // ints = starting player coordinates
