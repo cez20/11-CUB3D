@@ -90,39 +90,34 @@ typedef struct s_ray
 // some must be variables of type double for precision!
 }				t_ray;
 
+//********************************************************
+//* 				MAIN FOLDER 						 *
+//********************************************************
+
 //*** MAIN.C ***
+void	init_variables(t_game *game);
+void	close_fds(t_game *game);
 int		main(int argc, char **argv);
 
-//*** ERROR.C ***
-void	error(char *str);
-void	errmsg(char *msg, int tofree, t_game *game);
+//********************************************************
+//* 				PARSING FOLDER						 *
+//********************************************************
 
-//*** MAP_UTILS.C ***
-void	map_to_table(int fd, t_game *game);
-void	flood_fill(int x, int y, t_game *game);
+//*** ELEMENTS_PARSING.C ***
+void	check_colors(t_game *game, char *element);
+char	*create_texture_path(t_game *game, char *path);
+void	check_direction(t_game *game, char *str, char **texture_path);
+void	verify_elements(t_game *game);
 
-//*** FREE.C ***
-void	free_game(t_game *game);
-void	free_double_pointer(char **str);
+//*** ELEMENTS_UTILS.C ***
+int		is_floor_or_ceiling(char *str);
+int		nb_of_strings(char **str);
+int		ft_is_whitespace(char c);
 
 //*** GAME_PARSING.C ***
-void	verify_elements(t_game *game);
-int 	ft_is_whitespace(char c);
-int		is_news(char c);
-int		is_wall(char c);
-void	player_position(t_game *game, int x, int y);
-void	verify_map_characters(t_game *g);
 void	game_parsing(t_game *game);
-
-//*** GAME_PARSING1.C ***
-void	skip_whitespaces(char **str);
-int		nb_of_strings(char **str);
-//void	check_direction(t_game *game, char *str);
-void	check_direction(t_game *game, char *str, char **path);
-int		is_cardinal_direction(char *str);
-int		is_floor_or_ceiling(char *str);
-void	replace_map_spaces(t_game *game);
-void	verify_map_walls(t_game *game);
+void	game_valid_extension(t_game *game, char *str);
+void	game_validation(t_game *game, int argc, char *argv);
 
 //*** GAME_SECTIONS_COPY.C ***
 void	game_map_copy(t_game *game);
@@ -131,15 +126,34 @@ void	game_map_dimensions(t_game *game);
 void	game_full_copy(t_game *game, char *argv);
 void	game_sections_copy(t_game *game, char *argv);
 
-//*** GAME_SECTIONS_COPY1.C ***
-void	game_length(t_game *game);
-int		map_first_index(char **game);
+//*** GAME_SECTIONS_UTILS.C ***
 int		map_longest_width(t_game *game);
+int		map_first_index(char **game);
+void	game_length(t_game *game);
 void	ft_strlcpy1(char *dst, const char *src, size_t size);
 
-//*** GAME_VALIDATION.C ***
-void	game_valid_extension(t_game *game, char *str);
-void	game_validation(t_game *game, int argc, char *argv);
+//*** MAP_PARSING.C ***
+void	replace_map_spaces(t_game *game);
+void	verify_map_walls(t_game *game);
+void	verify_map_characters(t_game *g);
+
+//*** MAP_UTILS.C ***
+int		is_news(char c);
+int		is_wall(char c);
+void	player_position(t_game *game, int x, int y);
+void	skip_whitespaces(char **str);
+
+//********************************************************
+//* 				UTILS FOLDER						 *
+//********************************************************
+
+//*** ERROR.C ***
+void	error(char *str);
+void	errmsg(char *msg, int tofree, t_game *game);
+
+//*** FREE.C ***
+void	free_game(t_game *game);
+void	free_double_pointer(char **str);
 
 //*** PRINT_UTILS.C ***
 void	print_variables(t_game *game);

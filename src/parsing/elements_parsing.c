@@ -1,6 +1,6 @@
 #include "../include/cub3d.h"
 
-static void	check_colors(t_game *game, char *element)
+void	check_colors(t_game *game, char *element)
 {
 	int		i;
 	int		n;
