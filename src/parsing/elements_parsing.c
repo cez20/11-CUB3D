@@ -89,8 +89,8 @@ void	verify_elements(t_game *game)
 			errmsg(ERR_ELEMENTS, 1, game);
 		i++;
 	}
-	if (!game->tex->north || !game->tex->south || game->tex->west \
-	|| game->tex->west || game->tex->floor[0] == -1 \
+	if (!game->tex->north || !game->tex->south || !game->tex->west \
+	|| !game->tex->west || game->tex->floor[0] == -1 \
 	|| game->tex->ceiling[0] == -1)
 		errmsg(ERR_ELEMENTS, 1, game); //Not all elements are present. 
 }
