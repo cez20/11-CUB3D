@@ -113,7 +113,8 @@ void	game_parsing(t_game *game);
 
 //*** GAME_PARSING1.C ***
 int		nb_of_strings(char **str);
-void	check_direction(t_game *game, char *str);
+//void	check_direction(t_game *game, char *str);
+void	check_direction(t_game *game, char *str, char **path);
 int		is_cardinal_direction(char *str);
 int		is_floor_or_ceiling(char *str);
 void	replace_map_spaces(t_game *game);

@@ -17,6 +17,10 @@ void	init_variables(t_game *game)
 	game->window = NULL;
 	game->tex = ft_calloc(1, sizeof(t_tex));
 	game->rc = ft_calloc (1, sizeof(t_ray));
+	game->tex->north = NULL;
+	game->tex->south = NULL;
+	game->tex->west = NULL;
+	game->tex->east = NULL;
 }
 
 void	close_fds(t_game *game)

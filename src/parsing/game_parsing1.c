@@ -41,7 +41,7 @@ int ft_is_whitespace(char c)
 }
 
 
-void	check_direction(t_game *game, char *str)
+void	check_direction(t_game *game, char *str, char **str1)
 {
 	char	**tab;
 	char	*new;
@@ -54,12 +54,14 @@ void	check_direction(t_game *game, char *str)
 		errmsg(ERR_ELEMENTS, 1, game);
 	while (ft_is_whitespace(tab[1][i])) // Determiner si le fait qu'il y ait des tab avant ma texture est une erreur 
 		i++;
-	new = &tab[1][i];
-	printf("The value of new is :%s\n", new);
+	new = ft_strdup(&tab[1][i]);
 	fd = open(new, O_RDONLY);
 	if (fd == -1)
 		errmsg(ERR_TEXTURE, 1, game);
-
+	close (fd);
+	*str1 = new;
+	new = NULL;
+	free_double_pointer(tab);
 }
 
 int	is_cardinal_direction(char *str)
