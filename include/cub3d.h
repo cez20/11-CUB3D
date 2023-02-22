@@ -33,7 +33,8 @@
  inside its limits.\n"
 # define ERR_START "Error: The map must have exactly one starting point.\n"
 # define ERR_ELEMENTS "Error: An invalid game element is present\n"
-# define ERR_TEXTURE "Error, there is an error with path leading to texture\n"
+# define ERR_TEXTURE "Error: there is an error with path leading to texture\n"
+# define ERR_EXTRA_PATH "Error: There is an extra direction (NO,SO,EA,WE) in game elements\n"
 
 # define WIDTH 1920
 # define HEIGHT 1080

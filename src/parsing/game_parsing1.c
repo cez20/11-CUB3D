@@ -15,6 +15,24 @@
 // 	return (0);
 // }
 
+// int	is_cardinal_direction(char *str)
+// {
+// 	if ((ft_strncmp(str, "NO", 2) == 0)
+// 		|| (ft_strncmp(str, "SO", 2) == 0)
+// 		|| (ft_strncmp(str, "EA", 2) == 0)
+// 		|| (ft_strncmp(str, "WE", 2)) == 0)
+// 		return (1);
+// 	return (0);
+// }
+
+int	is_floor_or_ceiling(char *str)
+{
+	if ((ft_strncmp(str, "F ", 2) == 0)
+		|| (ft_strncmp(str, "C ", 2) == 0))
+		return (1);
+	return (0);
+}
+
 int		nb_of_strings(char **str)
 {
 	int i;
@@ -40,48 +58,42 @@ int ft_is_whitespace(char c)
 	return (0);
 }
 
-
-void	check_direction(t_game *game, char *str, char **str1)
+char	*create_texture_path(t_game *game, char *path)
 {
-	char	**tab;
-	char	*new;
+	char	*texture_path;
+	char	*tmp;
 	int		i;
 	int		fd;
+	(void)game;
 
 	i = 0;
-	tab = ft_split(str, ' ');
-	if (nb_of_strings(tab) != 2)
-		errmsg(ERR_ELEMENTS, 1, game);
-	while (ft_is_whitespace(tab[1][i])) // Determiner si le fait qu'il y ait des tab avant ma texture est une erreur 
+	while (ft_is_whitespace(path[i])) // Determiner si le fait qu'il y ait des tab avant ma texture est une erreur 
 		i++;
-	new = ft_strdup(&tab[1][i]);
-	fd = open(new, O_RDONLY);
+	tmp = ft_strdup(&path[i]); // Creer un nouveau string dans heap a partir du string trouve 
+	fd = open(tmp, O_RDONLY); // Ouvre la texture pour valider que c'est correct 
 	if (fd == -1)
 		errmsg(ERR_TEXTURE, 1, game);
+	texture_path = tmp;
+	tmp = NULL; // evite dangling_pointer 
 	close (fd);
-	*str1 = new;
-	new = NULL;
-	free_double_pointer(tab);
+	return (texture_path);
 }
 
-int	is_cardinal_direction(char *str)
+void	check_direction(t_game *game, char *str, char **texture_path)
 {
-	if ((ft_strncmp(str, "NO", 2) == 0)
-		|| (ft_strncmp(str, "SO", 2) == 0)
-		|| (ft_strncmp(str, "EA", 2) == 0)
-		|| (ft_strncmp(str, "WE", 2)) == 0)
-		return (1);
-	return (0);
-}
+	char	**tab;
 
-int	is_floor_or_ceiling(char *str)
-{
-	if ((ft_strncmp(str, "F ", 2) == 0)
-		|| (ft_strncmp(str, "C ", 2) == 0))
-		return (1);
-	return (0);
+	if (!(*texture_path))
+	{
+		tab = ft_split(str, ' ');
+		if (nb_of_strings(tab) != 2)
+			errmsg(ERR_ELEMENTS, 1, game);
+		*texture_path = create_texture_path(game, tab[1]);
+		free_double_pointer(tab); // Free le double pointer qui a ete split.
+	}
+	else
+		errmsg(ERR_EXTRA_PATH, 1, game);
 }
-
 
 void	replace_map_spaces(t_game *game)
 {

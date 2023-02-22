@@ -64,8 +64,6 @@ void	verify_elements(t_game *game)
 	print_game(game->elements_copy);
 	while (game->elements_copy[i])
 	{
-		// if (is_cardinal_direction(game->elements_copy[i]))
-		// 	check_direction(game, game->elements_copy[i]);
 		if (ft_strncmp(game->elements_copy[i], "NO", 2) == 0)
 			check_direction(game, game->elements_copy[i], &game->tex->north);
 		else if (ft_strncmp(game->elements_copy[i], "SO", 2) == 0)
@@ -80,9 +78,9 @@ void	verify_elements(t_game *game)
 			errmsg(ERR_ELEMENTS, 1, game);
 		i++;
 	}
-	if (!game->tex->north || !game->tex->south || game->tex->west || game->tex->west ||
-		game->tex->floor[0] == -1 || game->tex->ceiling[0] == -1) // Je dois initialiser les variables a -1 pour les int
-		errmsg(ERR_ELEMENTS, 1, game) //Not all elements are present. 
+	//if (!game->tex->north || !game->tex->south || game->tex->west || game->tex->west ||
+		//game->tex->floor[0] == -1 || game->tex->ceiling[0] == -1) // Je dois initialiser les variables a -1 pour les int
+		//errmsg(ERR_ELEMENTS, 1, game); //Not all elements are present. 
 }
 
 void	verify_map_characters(t_game *g)
