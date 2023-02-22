@@ -106,6 +106,8 @@ void	free_game(t_game *game);
 void	free_double_pointer(char **str);
 
 //*** GAME_PARSING.C ***
+void	verify_elements(t_game *game);
+int 	ft_is_whitespace(char c);
 int		is_news(char c);
 int		is_wall(char c);
 void	player_position(t_game *game, int x, int y);
@@ -113,6 +115,7 @@ void	verify_map_characters(t_game *g);
 void	game_parsing(t_game *game);
 
 //*** GAME_PARSING1.C ***
+void	skip_whitespaces(char **str);
 int		nb_of_strings(char **str);
 //void	check_direction(t_game *game, char *str);
 void	check_direction(t_game *game, char *str, char **path);

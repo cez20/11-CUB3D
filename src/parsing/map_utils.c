@@ -27,7 +27,7 @@ void	player_position(t_game *game, int x, int y)
 		game->nb_player++;
 }
 
-static void	skip_whitespaces(char **str)
+void	skip_whitespaces(char **str)
 {
 	if (!*str || !**str)
 		return ;
