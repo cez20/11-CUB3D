@@ -38,7 +38,7 @@ void	verify_map_walls(t_game *game)
 			{
 				if ((i == 0 || i == game->map_height - 1)
 					|| (j == 0 || j == game->map_width - 1))
-					errmsg(ERR_MAP_WALLS, 1, game);
+					errmsg(ERR_INTEGRITY, 1, game);
 				else if (game->map_copy[i - 1][j] == '-'
 						|| game->map_copy[i + 1][j] == '-'
 						|| game->map_copy[i][j + 1] == '-'
@@ -46,7 +46,7 @@ void	verify_map_walls(t_game *game)
 						|| game->map_copy[i - 1][j - 1] == '-'
 						|| game->map_copy[i - 1][j + 1] == '-'
 						|| game->map_copy[i + 1][j + 1] == '-')
-					errmsg(ERR_MAP_WALLS, 1, game);
+					errmsg(ERR_INTEGRITY, 1, game);
 			}
 		}
 	}
@@ -77,5 +77,4 @@ void	verify_map_characters(t_game *g)
 	}
 	if (g->nb_player < 1 || g->nb_player > 1)
 		errmsg(ERR_CONTENT, 1, g);
-	printf("player(%f, %f)\n", g->player_x, g->player_y);
 }

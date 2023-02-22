@@ -22,10 +22,10 @@
 # define ERR_OPEN "Error: Couldn't open file. Check if it exists, it's valid\
  and you have the right permissions.\n"
 # define ERR_EMPTY_MAP "Error: Map is empty!\n"
-# define ERR_MAP_WALLS "Error: Map is not surrounded by walls!\n"
-# define ERR_CONTENT "Error: Map: Invalid character, NO player or TOO MANY players\n"
+# define ERR_CONTENT "Error: Invalid character, there are NO player or\
+ TOO MANY players.\n"
 # define ERR_MAPDATA "Error: One or more arguments in the map details\
- is missing.\n"
+ is missing. Check texture's paths and floor/ceiling colors.\n"
 # define ERR_RGB "Error: Invalid RGB value. You must have only three integers\
  and all its values should be between 0 and 255.\n"
 # define ERR_CHAR "Error: Undefined (invalid) character on map.\
@@ -33,9 +33,10 @@
 # define ERR_INTEGRITY "Error: Map must be surrounded by walls and have no spaces\
  inside its limits.\n"
 # define ERR_START "Error: The map must have exactly one starting point.\n"
-# define ERR_ELEMENTS "Error: An invalid game element is present\n"
-# define ERR_TEXTURE "Error: there is an error with path leading to texture\n"
-# define ERR_EXTRA_PATH "Error: There is an extra direction (NO,SO,EA,WE) in game elements\n"
+# define ERR_ELEMENTS "Error: An invalid game element is present.\n"
+# define ERR_TEXTURE "Error: There is an error with path leading to texture.\n"
+# define ERR_EXTRA_PATH "Error: One of more arguments in the map details is duplicated.\
+ Check texture's paths and floor/ceiling colors.\n"
 
 # define WIDTH 640
 # define HEIGHT 480
@@ -96,6 +97,13 @@ typedef struct s_ray
 	double			dir_x;
 	double			dir_y;
 }				t_ray;
+
+//********************************************************
+//* 				ENGINE FOLDER 						 *
+//********************************************************
+
+//*** CUB3D.C ***
+int		cub3d(t_game *g);
 
 //********************************************************
 //* 				MAIN FOLDER 						 *

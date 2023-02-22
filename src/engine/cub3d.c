@@ -7,5 +7,7 @@ int	cub3d(t_game *g)
 	if (!g->mlx)
 		return (-1);
 	printf("Coucou\n");
+	mlx_terminate(g->mlx);
+	free_game(g);
 	return (0);
 }

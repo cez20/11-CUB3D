@@ -82,8 +82,8 @@ obj:
 			@mkdir -p $(OBJ_DIR)
 
 leak:		obj $(NAME)
-			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./cub3d ./mapfiles/pdf_minimal.cub
-
+#			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./cub3d ./mapfiles/pdf_minimal.cub
+			@leaks --atExit -- ./cub3d mapfiles/pdf_minimal.cub
 clean:
 			@echo "Removing object files..."
 			@$(RM) $(OBJ_DIR)

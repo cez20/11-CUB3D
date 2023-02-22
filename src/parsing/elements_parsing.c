@@ -95,5 +95,5 @@ void	verify_elements(t_game *game)
 	if (!game->tex->north || !game->tex->south || !game->tex->east \
 	|| !game->tex->west || game->tex->floor[0] == -1 \
 	|| game->tex->ceiling[0] == -1)
-		errmsg(ERR_ELEMENTS, 1, game); //Not all elements are present. 
+		errmsg(ERR_MAPDATA, 1, game); //Not all elements are present. 
 }

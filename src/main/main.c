@@ -45,8 +45,8 @@ int	main(int argc, char **argv)
 	game_validation(&game, argc, argv[1]);
 	game_sections_copy(&game, argv[1]);
 	game_parsing(&game);
-	print_variables(&game);
-	free_game(&game);
+	if (cub3d(&game) == -1)
+		errmsg("Error: MLX fail!\n", 1, &game);
 	close_fds(&game);
 //	return (clean_exit(&game));
 	return (0);
