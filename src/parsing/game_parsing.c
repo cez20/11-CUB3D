@@ -27,7 +27,7 @@ void	player_position(t_game *game, int x, int y)
 		game->nb_player++;
 }
 
-static void	skip_whitespaces(char **str)
+void	skip_whitespaces(char **str)
 {
 	if (!*str || !**str)
 		return ;
@@ -125,7 +125,7 @@ void	verify_map_characters(t_game *g)
 	printf("player(%f, %f)\n", g->player_x, g->player_y);
 }
 
-// If we mix tab and whitespaces, the different sizes breaks validation. To be checked.
+
 
 void	game_parsing(t_game *game)
 {

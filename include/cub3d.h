@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <math.h>
 # include "./libft/libft.h"
 # include "./libft/GNL/get_next_line.h"
 # include "./MLX42/include/MLX42/MLX42.h"
@@ -35,8 +36,8 @@
 # define ERR_ELEMENTS "Error: An invalid game element is present\n"
 # define ERR_TEXTURE "Error, there is an error with path leading to texture\n"
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 640
+# define HEIGHT 480
 
 # define WHITESPACE " \n\t\v\r\f"
 
@@ -51,8 +52,8 @@
 // 	int		height;
 // }			t_img;
 
-typedef struct s_tex t_tex;
-typedef struct s_ray t_ray;
+typedef struct s_tex	t_tex;
+typedef struct s_ray	t_ray;
 
 typedef struct s_game
 {
@@ -63,10 +64,10 @@ typedef struct s_game
 	int				map_height;
 	int				nb_player;
 	double			player_x;
-	double			player_y; 
+	double			player_y;
 	char			**game_copy;
 	char			**map_copy;
-	char			**elements_copy;
+	char			**elements_copy;	
 	void			*mlx;
 	void			*window;
 	t_tex			*tex;
@@ -79,15 +80,23 @@ typedef struct s_tex
 	char			*south;
 	char			*east;
 	char			*west;
+	xpm_t			*no;
+	xpm_t			*so;
+	xpm_t			*ea;
+	xpm_t			*we;
 	int				floor[3];
 	int				ceiling[3];
 }				t_tex;
 
 typedef struct s_ray
 {
-// values for raycasting math
-// some must be variables of type double for precision!
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
 }				t_ray;
+
+int		cub3d(t_game *g);
 
 //*** MAIN.C ***
 int		main(int argc, char **argv);

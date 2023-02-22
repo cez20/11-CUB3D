@@ -1,12 +1,15 @@
 NAME	=	cub3d
 
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -g
-
-#INCLUDE	= ./libft/libft.a
-INCLUDE	=	-framework OpenGL -framework AppKit ./include/libft/libft.a ./include/MLX42/libmlx42.a
 
 RM		=	@rm -rf
+
+#----------FLAGS----------#
+#INCLUDE	= ./libft/libft.a
+CFLAGS	=	-Wall -Werror -Wextra -g
+INCLUDE	=	-framework OpenGL -framework AppKit ./include/libft/libft.a ./include/MLX42/libmlx42.a
+LIB_FLAG= 	-L./include/libft -lft
+MLX_FLAG=	-lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
 
 #----------FOLDER PATHS----------#
 INC_DIR		=	include/
@@ -31,7 +34,7 @@ print_utils.c		\
 free.c 				\
 
 ENGINE_F	=		\
-#files.c
+cub3d.c				\
 
 PARSING_F =			\
 floodfill.c			\
@@ -71,14 +74,14 @@ $(NAME):	$(OBJ_DIR) $(OBJS)
 			@echo "\033[1;32mCompiling MLX42...\033[0m"
 			@make --silent -C $(MLX_DIR)
 			@echo "\033[1;32m\nCompiling $(NAME)...\033[0m"
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)libft.a $(MLX_DIR)libmlx42.a -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) -Iinclude/ -o $(NAME) $(INCLUDE) $(LIB_FLAG) $(MLX_FLAG)
 			@echo "\033[1;32mDone\033[0m"
 
 obj:
 			@mkdir -p $(OBJ_DIR)
 
 leak:		obj $(NAME)
-			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./cub3d ./mapfiles/maponly.cub
+			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./cub3d ./mapfiles/pdf_minimal.cub
 
 clean:
 			@echo "Removing object files..."
