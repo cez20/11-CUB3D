@@ -53,3 +53,31 @@ void	verify_map_walls(t_game *game)
 		}
 	}
 }
+
+void	verify_map_characters(t_game *g)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (g->map_copy[i])
+	{
+		j = 0;
+		while (g->map_copy[i][j])
+		{
+			if (is_wall(g->map_copy[i][j]) || is_news(g->map_copy[i][j]) ||
+			ft_isset(g->map_copy[i][j], "-"))
+			{
+				if (is_news(g->map_copy[i][j]))
+					player_position(g, i, j);
+			}
+			else
+				errmsg(ERR_CONTENT, 1, g);
+			j++;
+		}
+		i++;
+	}
+	if (g->nb_player < 1 || g->nb_player > 1)
+		errmsg(ERR_CONTENT, 1, g);
+	printf("player(%f, %f)\n", g->player_x, g->player_y);
+}
