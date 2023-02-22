@@ -37,12 +37,13 @@ ENGINE_F	=		\
 cub3d.c				\
 
 PARSING_F =			\
-floodfill.c			\
+elements_parsing.c	\
+elements_utils.c	\
 game_parsing.c		\
-game_parsing1.c		\
 game_sections_copy.c\
-game_sections_copy1.c\
-game_validation.c	\
+game_sections_utils.c\
+map_parsing.c 		\
+map_utils.c			\
 
 UTILS_F =			\
 error.c				\
