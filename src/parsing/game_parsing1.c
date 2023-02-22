@@ -56,8 +56,8 @@ void	check_direction(t_game *game, char *str, char **str1)
 		i++;
 	new = ft_strdup(&tab[1][i]);
 	fd = open(new, O_RDONLY);
-	if (fd == -1)
-		errmsg(ERR_TEXTURE, 1, game);
+//	if (fd == -1)
+//		errmsg(ERR_TEXTURE, 1, game);
 	close (fd);
 	*str1 = new;
 	new = NULL;

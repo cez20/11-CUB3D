@@ -27,33 +27,43 @@ void	player_position(t_game *game, int x, int y)
 		game->nb_player++;
 }
 
-static void	check_colors(t_game *game)
+static void	skip_whitespaces(char **str)
+{
+	if (!*str || !**str)
+		return ;
+	while (**str && ft_isset(**str, WHITESPACE))
+		*str += 1;
+	return ;
+}
+
+static void	check_colors(t_game *game, char *element)
 {
 	int		i;
-	char	**rgb;
 	int		n;
+	char	**rgb;
+	char	mode;
 
 	i = -1;
-	rgb = NULL;
 	n = 0;
-	while (game->elements_copy[++i])
-	{
-		if (!ft_strncmp(game->elements_copy[i], "F ", 2))
-			rgb = ft_split(game->elements_copy[i] + 2, ',');
-		else if (!ft_strncmp(game->elements_copy[i], "C ", 2))
-			rgb = ft_split(game->elements_copy[i] + 2, ',');
-	}
-	i = -1;
+	rgb = ft_split(&element[i + 3], ',');
+	mode = element[0];
 	while (rgb[++i])
 	{
 		if (i >= 3)
 			errmsg(ERR_RGB, 1, game);
 		n = ft_atoi(rgb[i]);
+		skip_whitespaces(&rgb[i]);
 		if ((n < 0 || n > 255) || !ft_strcmp(rgb[i], "-0"))
 			errmsg(ERR_RGB, 1, game);
 		else
-			game->tex->floor[i] = n;
+		{
+			if (mode == 'F')
+				game->tex->floor[i] = n;
+			if (mode == 'C')
+				game->tex->ceiling[i] = n;
+		}
 	}
+	free_double_pointer(rgb);
 }
 
 void	verify_elements(t_game *game)
@@ -74,15 +84,17 @@ void	verify_elements(t_game *game)
 			check_direction(game, game->elements_copy[i], &game->tex->west);
 		else if (ft_strncmp(game->elements_copy[i], "EA", 2) == 0)
 			check_direction(game, game->elements_copy[i], &game->tex->east);
-		else if (is_floor_or_ceiling(game->elements_copy[i]))
-			check_colors(game);
+		else if (!ft_strncmp(game->elements_copy[i], "F ", 2) \
+			|| !ft_strncmp(game->elements_copy[i], "C ", 2))
+			check_colors(game, game->elements_copy[i]);
 		else
 			errmsg(ERR_ELEMENTS, 1, game);
 		i++;
 	}
-	if (!game->tex->north || !game->tex->south || game->tex->west || game->tex->west ||
-		game->tex->floor[0] == -1 || game->tex->ceiling[0] == -1) // Je dois initialiser les variables a -1 pour les int
-		errmsg(ERR_ELEMENTS, 1, game) //Not all elements are present. 
+	if (!game->tex->north || !game->tex->south || game->tex->west \
+	|| game->tex->west || game->tex->floor[0] == -1 \
+	|| game->tex->ceiling[0] == -1)
+		errmsg(ERR_ELEMENTS, 1, game); //Not all elements are present. 
 }
 
 void	verify_map_characters(t_game *g)
