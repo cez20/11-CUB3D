@@ -19,6 +19,8 @@ void	free_double_pointer(char **str)
 	int i;
 	
 	i = 0;
+	if (!str)
+		return ;
 	while (str[i])
 		xfree(str[i++]);
 	xfree(str);
