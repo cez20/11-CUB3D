@@ -1,6 +1,5 @@
 NO ./img/north.png
 SO ./img/south.png
-WE ./img/west.png
 EA ./img/east.png
 
 F 220,100,0

@@ -1,7 +1,7 @@
 NO ./img/north.png
 SO ./img/south.png
 WE ./img/west.png
-EA ./img/east.png
+RC ./img/east.png
 
 F 220,100,0
 C 225,30,0

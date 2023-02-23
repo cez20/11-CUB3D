@@ -24,6 +24,6 @@ void	game_validation(t_game *game, int argc, char *argv)
 		errmsg(ERR_ARGS, 0, game);
 	game->fd = open(argv, O_RDONLY);
 	if (game->fd == -1)
-		errmsg(ERR_NO_MAP, 0, game);
+		errmsg(ERR_FD, 0, game);
 	game_valid_extension(game, argv);
 }

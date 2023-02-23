@@ -47,7 +47,7 @@ char	*create_texture_path(t_game *game, char *path)
 	tmp = ft_strdup(&path[i]); // Creer un nouveau string dans heap a partir du string trouve 
 	fd = open(tmp, O_RDONLY); // Ouvre la texture pour valider que c'est correct 
 	if (fd == -1)
-		errmsg(ERR_TEXTURE, 1, game);
+		errmsg(ERR_TEXTURE_PATH, 1, game);
 	texture_path = tmp;
 	tmp = NULL; // evite dangling_pointer 
 	close (fd);
@@ -62,12 +62,12 @@ void	check_direction(t_game *game, char *str, char **texture_path)
 	{
 		tab = ft_split(str, ' ');
 		if (nb_of_strings(tab) != 2)
-			errmsg(ERR_ELEMENTS, 1, game);
+			errmsg(ERR_TOOMUCH_TEXT, 1, game);
 		*texture_path = create_texture_path(game, tab[1]);
 		free_double_pointer(tab); // Free le double pointer qui a ete split.
 	}
 	else
-		errmsg(ERR_EXTRA_PATH, 1, game);
+		errmsg(ERR_EXTRA_ELEMENT, 1, game);
 }
 
 void	verify_elements(t_game *game)
@@ -89,11 +89,11 @@ void	verify_elements(t_game *game)
 			|| ft_strncmp(game->elements_copy[i], "C ", 2) == 0)
 			check_colors(game, game->elements_copy[i]);
 		else
-			errmsg(ERR_ELEMENTS, 1, game);
+			errmsg(ERR_WRONG_ELEMENT, 1, game);
 		i++;
 	}
 	if (!game->tex->north || !game->tex->south || !game->tex->east \
 	|| !game->tex->west || game->tex->floor[0] == -1 \
 	|| game->tex->ceiling[0] == -1)
-		errmsg(ERR_MAPDATA, 1, game); //Not all elements are present. 
+		errmsg(ERR_MISSING_ELEMENT, 1, game); //Not all elements are present. 
 }
