@@ -9,7 +9,8 @@ RM		=	@rm -rf
 CFLAGS	=	-Wall -Werror -Wextra -g
 INCLUDE	=	-framework OpenGL -framework AppKit ./include/libft/libft.a ./include/MLX42/libmlx42.a
 LIB_FLAG= 	-L./include/libft -lft
-MLX_FLAG=	-lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
+#MLX_FLAG=	-lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
+MLX_FLAG=	-lglfw -L /Users/$(USER)/sgoinfre/Perso/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
 
 #----------FOLDER PATHS----------#
 INC_DIR		=	include/
