@@ -1,6 +1,6 @@
-NO ./img/north.png
-SO ./img/south.png
-WE ./img/west.png
+NO ./img/north.xpm42
+SO ./img/south.xpm42
+WE ./img/west.xpm42
 
 F 220,100,0
 C 225,30,0

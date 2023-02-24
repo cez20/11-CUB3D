@@ -82,10 +82,10 @@ typedef struct s_tex
 	char			*south;
 	char			*east;
 	char			*west;
-//	xpm_t			*no;
-//	xpm_t			*so;
-//	xpm_t			*ea;
-//	xpm_t			*we;
+	xpm_t			*no;
+	xpm_t			*so;
+	xpm_t			*ea;
+	xpm_t			*we;
 	int				floor[3];
 	int				ceiling[3];
 }				t_tex;
