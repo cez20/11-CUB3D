@@ -70,11 +70,11 @@ void	verify_map_characters(t_game *g)
 					player_position(g, i, j);
 			}
 			else
-				errmsg(ERR_CONTENT, 1, g);
+				errmsg(ERR_CHAR, 1, g);
 			j++;
 		}
 		i++;
 	}
 	if (g->nb_player < 1 || g->nb_player > 1)
-		errmsg(ERR_CONTENT, 1, g);
+		errmsg(ERR_PLAYER, 1, g);
 }

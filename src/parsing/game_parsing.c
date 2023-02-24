@@ -22,6 +22,12 @@ void	game_validation(t_game *game, int argc, char *argv)
 {
 	if (argc != 2)
 		errmsg(ERR_ARGS, 0, game);
+	game->fd = open(argv, O_DIRECTORY);
+	if (game->fd > 0)
+	{
+		close(game->fd);
+		errmsg(ERR_DIR, 0, game);
+	}
 	game->fd = open(argv, O_RDONLY);
 	if (game->fd == -1)
 		errmsg(ERR_FD, 0, game);
