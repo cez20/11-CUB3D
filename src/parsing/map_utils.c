@@ -74,6 +74,7 @@ void	player_position(t_game *game, int x, int y)
 	{
 		game->player_x = x;
 		game->player_y = y;
+		game->direction = game->map_copy[x][y];
 		game->nb_player++;
 	}
 	else

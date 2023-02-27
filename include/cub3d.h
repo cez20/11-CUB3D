@@ -65,13 +65,14 @@ typedef struct s_game
 	int				map_width;
 	int				map_height;
 	int				nb_player;
-	double			player_x;
-	double			player_y;
+	int				player_x;
+	int				player_y;
+	char			direction;
 	char			**game_copy;
 	char			**map_copy;
 	char			**elements_copy;	
-	void			*mlx;
-	void			*window;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
 	t_tex			*tex;
 	t_ray			*rc;
 }				t_game;
@@ -96,6 +97,8 @@ typedef struct s_ray
 	double			pos_y;
 	double			dir_x;
 	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 }				t_ray;
 
 //********************************************************
