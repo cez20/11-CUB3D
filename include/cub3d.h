@@ -40,6 +40,7 @@ You should.\n"
 
 # define WIDTH 640
 # define HEIGHT 480
+# define BPP sizeof(int32_t)
 
 # define WHITESPACE " \n\t\v\r\f"
 
@@ -93,24 +94,32 @@ typedef struct s_tex
 
 typedef struct s_ray
 {
+	bool			hit;
+	int				line_height;
+	int				draw_start;
 	double			pos_x;
 	double			pos_y;
 	double			dir_x;
 	double			dir_y;
 	double			plane_x;
 	double			plane_y;
+	int				ceiling;
+	int				floor;
 }				t_ray;
 
 //********************************************************
 //* 				ENGINE FOLDER 						 *
 //********************************************************
-
-//*** CUB3D.C ***
-int		cub3d(t_game *g);
+//*** UTILS.C ***
+void	init_img_variables(t_game *g);
 
 //********************************************************
 //* 				MAIN FOLDER 						 *
 //********************************************************
+
+//*** CUB3D.C ***
+int		cub3d(t_game *g);
+void	keybinding(mlx_key_data_t input, void *tmp);
 
 //*** MAIN.C ***
 void	init_variables(t_game *game);
@@ -172,6 +181,9 @@ void	errmsg(char *msg, int tofree, t_game *game);
 //*** FREE.C ***
 void	free_game(t_game *game);
 void	free_double_pointer(char **str);
+
+//*** GRAPH_UTILS.C ***
+u_int32_t	get_color(int r, int g, int b, int a);
 
 //*** PRINT_UTILS.C ***
 void	print_variables(t_game *game);

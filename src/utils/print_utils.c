@@ -7,9 +7,9 @@ void	print_variables(t_game *game)
 	printf("The value of game->map_index is %d\n", game->map_index);
 	printf("The value of game->game_copy is %p\n", game->game_copy);
 	printf("The value of game->map_copy is %p\n", game->map_copy);
+	printf("The value of map_width and map_hegiht are: map[%d][%d]\n", game->map_width, game->map_height);
 	printf("The value of game->elements_copy is %p\n", game->elements_copy);
 	printf("The value of game->mlx is %p\n", game->mlx);
-	printf("The value of game->window is %p\n", game->window);
 	printf("TEXTURE'S PATHS\n");
 	printf("NO [ %s ]\n", game->tex->north);
 	printf("SO [ %s ]\n", game->tex->south);
@@ -26,6 +26,8 @@ void	print_variables(t_game *game)
 	printf("dir_y [ %f ]\n", game->rc->dir_y);
 	printf("plane_x [ %f ]\n", game->rc->plane_x);
 	printf("plane_y [ %f ]\n", game->rc->plane_y);
+	printf("Floor [ %i ]\n", game->rc->floor);
+	printf("Ceiling [ %i ]\n", game->rc->ceiling);
 }
 
 void	print_game(char **str)
