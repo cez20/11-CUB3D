@@ -131,7 +131,7 @@ void	keybinding(mlx_key_data_t input, void *tmp)
 void	rendering(t_game *g)
 {
 	draw_map(g);
-	dda(g);
+	//dda(g);
 	mlx_image_to_window(g->mlx, g->img, 0, 0);
 }
 
