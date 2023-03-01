@@ -16,16 +16,6 @@
 // to the left, to the right, up or down.To make sure that map is updated in real time,
 // we call back the function draw _background, draw_map, and draw_player. If these functions,
 // were not called, there would'nt be any change between first map and other maps. 
-
-void	rendering(t_game *g)
-{
-	draw_background(g); // This is the background color
-	draw_map(g);
-	draw_player(g, g->rc->pos_y * 64, g->rc->pos_x * 64, get_color(255, 0, 0, 255));
-	raycaster(g);
-	mlx_image_to_window(g->mlx, g->minimap, 0, 0);
-}
-
 void	keybinding(mlx_key_data_t input, void *tmp)
 {
 	t_game	*g;
@@ -47,6 +37,15 @@ void	keybinding(mlx_key_data_t input, void *tmp)
 	if (input.key == MLX_KEY_DOWN)
 		g->rc->pos_x += 0.2;
 	rendering(g);
+}
+
+void	rendering(t_game *g)
+{
+	draw_background(g); // This is the background color
+	draw_map(g);
+	draw_player(g, g->rc->pos_y * 64, g->rc->pos_x * 64, get_color(255, 0, 0, 255));
+	raycaster(g);
+	mlx_image_to_window(g->mlx, g->minimap, 0, 0);
 }
 
 int	cub3d(t_game *g)

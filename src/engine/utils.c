@@ -54,7 +54,7 @@ static void	set_plane(char direction, t_ray *rc)
 
 int	init_mlx_variables(t_game *g)
 {
-	g->mlx = mlx_init(g->map_width * 64, g->map_height * 64, "Cub3d", true); // Le true authorize le resize le map, mettre la map full screen.  
+	g->mlx = mlx_init(g->map_width * 64, g->map_height * 64, "Cub3d", true);
 	if (!g->mlx)
 		return (-1);
 	g->minimap = mlx_new_image(g->mlx, g->map_width * 64, g->map_height * 64);
@@ -83,9 +83,9 @@ void	init_dda_variables(t_game *g)
 	g->rc->ray_diry = 0;
 	g->rc->camera_x = 0;
 	g->rc->old_x = 0;
-	g->rc->floor = get_color(g->tex->floor[0],\
+	g->rc->floor = get_color(g->tex->floor[0], \
 		g->tex->floor[1], g->tex->floor[2], 255);
-	g->rc->ceiling = get_color(g->tex->ceiling[0],\
+	g->rc->ceiling = get_color(g->tex->ceiling[0], \
 		g->tex->ceiling[1], g->tex->ceiling[2], 255);
 	//time? fps counter, etc
 }

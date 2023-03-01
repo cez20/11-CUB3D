@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cemenjiv <cemenjiv@student.42.fr>          +#+  +:+       +#+         #
+#    By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 12:27:09 by anarodri          #+#    #+#              #
-#    Updated: 2023/02/13 18:16:45 by cemenjiv         ###   ########.fr        #
+#    Updated: 2023/03/01 16:22:37 by anarodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ STRINGS_F	=	ft_atoi.c ft_atol.c ft_bzero.c ft_itoa.c ft_memchr.c ft_memcmp.c \
 				ft_memcpy.c ft_memmove.c ft_memset.c ft_split.c ft_strchr.c ft_strcmp.c \
 				ft_strdup.c ft_striteri.c ft_strjoin_free.c ft_strjoin.c ft_strlcat.c \
 				ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
-				ft_strtrim.c ft_substr.c
+				ft_strtrim.c ft_substr.c skip_whitespace.c
 
 TYPES_F		=	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
 				ft_tolower.c ft_toupper.c ft_isset.c ft_isspace.c

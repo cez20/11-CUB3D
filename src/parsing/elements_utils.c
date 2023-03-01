@@ -8,13 +8,12 @@ int	is_floor_or_ceiling(char *str)
 	return (0);
 }
 
-int		nb_of_strings(char **str)
+int	nb_of_strings(char **str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-
 	while (str[i])
 	{
 		j = 0;
@@ -25,10 +24,10 @@ int		nb_of_strings(char **str)
 	return (i);
 }
 
-int ft_is_whitespace(char c)
+int	ft_is_whitespace(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\v'
-	|| c == '\f' || c == '\r')
+		|| c == '\f' || c == '\r')
 		return (1);
 	return (0);
 }

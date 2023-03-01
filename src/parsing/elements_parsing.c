@@ -10,8 +10,6 @@ void	check_colors(t_game *game, char *element)
 
 	i = -1;
 	n = 0;
-	rgb = NULL;
-	tmp = NULL;
 	rgb = ft_split(&element[2], ',');
 	mode = element[0];
 	while (rgb[++i])

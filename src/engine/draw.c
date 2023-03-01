@@ -3,7 +3,7 @@
 //This function puts a colour in all the background of the image. When
 // you move your player, it avoid that the colour of the player stays in
 // the division. 
-void draw_background(t_game *g)
+void	draw_background(t_game *g)
 {
 	int	x;
 	int	y;
@@ -15,7 +15,7 @@ void draw_background(t_game *g)
 		x = 0;
 		while (x < (g->map_height * 64))
 		{
-			mlx_put_pixel(g->minimap, y, x , get_color(115, 147, 179, 155));
+			mlx_put_pixel(g->minimap, y, x, get_color(115, 147, 179, 155));
 			x++;
 		}
 		y++;
@@ -28,9 +28,9 @@ void draw_background(t_game *g)
 // each box.  
 void	draw_player(t_game *g, int x, int y, uint32_t color)
 {
-	int i;
-	int j;
-	int mod_x;
+	int	i;
+	int	j;
+	int	mod_x;
 	int	mod_y;
 
 	i = 25;
@@ -56,16 +56,16 @@ void	draw_player(t_game *g, int x, int y, uint32_t color)
 // a wall, is painted in black and all empty area is in white.
 void	draw_square(t_game *g, int x, int y, uint32_t color)
 {
-	int i;
-	int j;
-	int mod_x;
+	int	i;
+	int	j;
+	int	mod_x;
 	int	mod_y;
 
-	i = 1; // We start in one, so that the edge of each square in of a different colours
+	i = 1; // Offset so that the edge of each square in of a different colours
 	j = 1;
 	mod_x = x;
 	mod_y = y;
-	while (i < (64 - 1)) // We do minus 1 to make use that edge is of a different colour
+	while (i < (64 - 1)) // Offset so that edge is of a different colour
 	{
 		while (j < (64 - 1))
 		{
@@ -83,7 +83,7 @@ void	draw_square(t_game *g, int x, int y, uint32_t color)
 // This functions calls up the draw square function along with the color needed
 // for each square. We inverted the x and y because when we want to circulate
 // horizontally on the x_axis, we are in fact moving on the y-axis 
-void draw_map(t_game *g)
+void	draw_map(t_game *g)
 {
 	int	x;
 	int	y;

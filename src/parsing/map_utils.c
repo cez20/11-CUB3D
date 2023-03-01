@@ -80,12 +80,3 @@ void	player_position(t_game *game, int x, int y)
 	else
 		game->nb_player++;
 }
-
-void	skip_whitespaces(char **str)
-{
-	if (!*str || !**str)
-		return ;
-	while (**str && ft_isset(**str, WHITESPACE))
-		*str += 1;
-	return ;
-}

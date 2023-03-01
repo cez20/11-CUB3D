@@ -16,8 +16,8 @@ void	free_game(t_game *game)
 
 void	free_double_pointer(char **str)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (!str)
 		return ;
