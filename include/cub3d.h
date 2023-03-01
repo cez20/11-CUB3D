@@ -39,7 +39,7 @@ You should.\n"
  spaces inside its limits.\n"
 
 # define WIDTH 640
-# define HEIGHT 480
+# define HEIGHT 512 //480 before
 # define BPP sizeof(int32_t)
 
 # define WHITESPACE " \n\t\v\r\f"
