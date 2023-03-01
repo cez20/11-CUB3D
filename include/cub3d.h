@@ -73,7 +73,8 @@ typedef struct s_game
 	char			**map_copy;
 	char			**elements_copy;	
 	mlx_t			*mlx;
-	mlx_image_t		*img;
+	mlx_image_t		*game;
+	mlx_image_t		*minimap;
 	t_tex			*tex;
 	t_ray			*rc;
 }				t_game;
@@ -94,15 +95,25 @@ typedef struct s_tex
 
 typedef struct s_ray
 {
-	bool			hit;
+	int				hit;
+	char			side;
 	int				line_height;
 	int				draw_start;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
 	double			pos_x;
 	double			pos_y;
 	double			dir_x;
 	double			dir_y;
 	double			plane_x;
 	double			plane_y;
+	double			ray_dirx;
+	double			ray_diry;
+	double			camera_x;
+	double			angle;
+	int				old_x;
 	int				ceiling;
 	int				floor;
 }				t_ray;
@@ -110,83 +121,100 @@ typedef struct s_ray
 //********************************************************
 //* 				ENGINE FOLDER 						 *
 //********************************************************
+//*** DRAW.C ***
+void		draw_background(t_game *g);
+void		draw_player(t_game *g, int x, int y, uint32_t color);
+void		draw_square(t_game *g, int x, int y, uint32_t color);
+void		draw_map(t_game *g);
+u_int32_t	get_color(int r, int g, int b, int a);
+
+//*** MOVE.C ***
+void		look_right(t_ray *rc);
+void		look_left(t_ray *rc);
+void		forward(t_ray *rc);
+void		backward(t_ray *rc);
+
+//*** RAYCASTER.C ***
+void		raycaster(t_game *g);
+
 //*** UTILS.C ***
-void	init_img_variables(t_game *g);
+int			init_mlx_variables(t_game *g);
+void		init_dda_variables(t_game *g);
 
 //********************************************************
 //* 				MAIN FOLDER 						 *
 //********************************************************
 
 //*** CUB3D.C ***
-int		cub3d(t_game *g);
-void	keybinding(mlx_key_data_t input, void *tmp);
+int			cub3d(t_game *g);
+void		rendering(t_game *g);
+void		keybinding(mlx_key_data_t input, void *tmp);
 
 //*** MAIN.C ***
-void	init_variables(t_game *game);
-void	close_fds(t_game *game);
-int		main(int argc, char **argv);
+void		init_variables(t_game *game);
+void		close_fds(t_game *game);
+int			main(int argc, char **argv);
 
 //********************************************************
 //* 				PARSING FOLDER						 *
 //********************************************************
 
 //*** ELEMENTS_PARSING.C ***
-void	check_colors(t_game *game, char *element);
-char	*create_texture_path(t_game *game, char *path);
-void	check_direction(t_game *game, char *str, char **texture_path);
-void	verify_elements(t_game *game);
+void		check_colors(t_game *game, char *element);
+char		*create_texture_path(t_game *game, char *path);
+void		check_direction(t_game *game, char *str, char **texture_path);
+void		verify_elements(t_game *game);
 
 //*** ELEMENTS_UTILS.C ***
-int		is_floor_or_ceiling(char *str);
-int		nb_of_strings(char **str);
-int		ft_is_whitespace(char c);
+int			is_floor_or_ceiling(char *str);
+int			nb_of_strings(char **str);
+int			ft_is_whitespace(char c);
 
 //*** GAME_PARSING.C ***
-void	game_parsing(t_game *game);
-void	game_valid_extension(t_game *game, char *str);
-void	game_validation(t_game *game, int argc, char *argv);
+void		game_parsing(t_game *game);
+void		game_valid_extension(t_game *game, char *str);
+void		game_validation(t_game *game, int argc, char *argv);
 
 //*** GAME_SECTIONS_COPY.C ***
-void	game_map_copy(t_game *game);
-void	game_elements_copy(t_game *game);
-void	game_map_dimensions(t_game *game);
-void	game_full_copy(t_game *game, char *argv);
-void	game_sections_copy(t_game *game, char *argv);
+void		game_map_copy(t_game *game);
+void		game_elements_copy(t_game *game);
+void		game_map_dimensions(t_game *game);
+void		game_full_copy(t_game *game, char *argv);
+void		game_sections_copy(t_game *game, char *argv);
 
 //*** GAME_SECTIONS_UTILS.C ***
-int		map_longest_width(t_game *game);
-int		map_first_index(char **game);
-void	game_length(t_game *game);
-void	ft_strlcpy1(char *dst, const char *src, size_t size);
+int			map_longest_width(t_game *game);
+int			map_first_index(char **game);
+void		game_length(t_game *game);
+void		ft_strlcpy1(char *dst, const char *src, size_t size);
 
 //*** MAP_PARSING.C ***
-void	replace_map_spaces(t_game *game);
-void	verify_map_walls(t_game *game);
-void	verify_map_characters(t_game *g);
+void		replace_map_spaces(t_game *game);
+void		verify_map_walls(t_game *game);
+void		verify_map_characters(t_game *g);
 
 //*** MAP_UTILS.C ***
-int		is_news(char c);
-int		is_wall(char c);
-void	player_position(t_game *game, int x, int y);
-void	skip_whitespaces(char **str);
+int			is_news(char c);
+int			is_wall(char c);
+void		player_position(t_game *game, int x, int y);
+void		skip_whitespaces(char **str);
 
 //********************************************************
 //* 				UTILS FOLDER						 *
 //********************************************************
 
 //*** ERROR.C ***
-void	error(char *str);
-void	errmsg(char *msg, int tofree, t_game *game);
+void		error(char *str);
+void		errmsg(char *msg, int tofree, t_game *game);
 
 //*** FREE.C ***
-void	free_game(t_game *game);
-void	free_double_pointer(char **str);
+void		free_game(t_game *game);
+void		free_double_pointer(char **str);
 
 //*** GRAPH_UTILS.C ***
-u_int32_t	get_color(int r, int g, int b, int a);
 
 //*** PRINT_UTILS.C ***
-void	print_variables(t_game *game);
-void	print_game(char **map);
+void		print_variables(t_game *game);
+void		print_game(char **map);
 
 #endif

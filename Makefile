@@ -33,6 +33,9 @@ main.c				\
 cub3d.c				\
 
 ENGINE_F	=		\
+draw.c				\
+move.c				\
+raycaster.c			\
 utils.c				\
 
 PARSING_F =			\
@@ -47,7 +50,6 @@ map_utils.c			\
 UTILS_F =			\
 error.c				\
 free.c				\
-graph_utils.c		\
 print_utils.c		\
 
 
