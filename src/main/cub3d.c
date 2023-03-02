@@ -11,6 +11,8 @@
 	// draw image
 	// put image to window
 	// rinse repeat
+// MY INPUT ARE WRONG, THE DIRECTION VECTOR IS NOT WELL SET! OR IS IT MY MOVEMENT?
+// FINISH RAYCASTER AND SEE.
 
 // This function is for events, everytime a key is pressed, we move the player position of 0.2
 // to the left, to the right, up or down.To make sure that map is updated in real time,
@@ -29,13 +31,13 @@ void	keybinding(mlx_key_data_t input, void *tmp)
 	// if (input.key == MLX_KEY_RIGHT && g->map_copy[(int)g->rc->pos_x][(int)g->rc->pos_y] != '1')
 	// 	g->rc->pos_y += 0.2;
 	if (input.key == MLX_KEY_RIGHT)
-		g->rc->pos_y += 0.2;
+		look_right(g->rc);
 	if (input.key == MLX_KEY_LEFT)
-		g->rc->pos_y -= 0.2;
+		look_left(g->rc);
 	if (input.key == MLX_KEY_UP)
-		g->rc->pos_x -= 0.2;
+		forward(g->rc);
 	if (input.key == MLX_KEY_DOWN)
-		g->rc->pos_x += 0.2;
+		backward(g->rc);
 	rendering(g);
 }
 
