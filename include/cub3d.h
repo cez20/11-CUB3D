@@ -99,6 +99,7 @@ typedef struct s_ray
 	char			side;
 	int				line_height;
 	int				draw_start;
+	char			**map;
 	int				map_x;
 	int				map_y;
 	int				step_x;
@@ -109,10 +110,16 @@ typedef struct s_ray
 	double			dir_y;
 	double			plane_x;
 	double			plane_y;
-	double			ray_dirx;
-	double			ray_diry;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			delta_dis_x;
+	double			delta_dis_y;
+	double			side_dis_x;
+	double			side_dis_y;
 	double			camera_x;
 	double			angle;
+	double			move_speed;
+	double			rot_speed;
 	int				old_x;
 	int				ceiling;
 	int				floor;
@@ -131,6 +138,7 @@ u_int32_t	get_color(int r, int g, int b, int a);
 //*** MOVE.C ***
 void		look_right(t_ray *rc);
 void		look_left(t_ray *rc);
+void		strafe(t_ray *rc, char dir);
 void		forward(t_ray *rc);
 void		backward(t_ray *rc);
 

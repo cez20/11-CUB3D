@@ -18,16 +18,6 @@ void	print_variables(t_game *game)
 	printf("COLORS\n");
 	printf("Floor [ %d, %d, %d ]\n", game->tex->floor[0], game->tex->floor[1], game->tex->floor[2]);
 	printf("Ceiling [ %d, %d, %d ]\n", game->tex->ceiling[0], game->tex->ceiling[1], game->tex->ceiling[2]);
-	printf("RAYCASTING STRUCTURE\n");
-	printf("Direction [ %c ]\n", game->direction);
-	printf("pos_x [ %f ]\n", game->rc->pos_x);
-	printf("pos_y [ %f ]\n", game->rc->pos_y);
-	printf("dir_x [ %f ]\n", game->rc->dir_x);
-	printf("dir_y [ %f ]\n", game->rc->dir_y);
-	printf("plane_x [ %f ]\n", game->rc->plane_x);
-	printf("plane_y [ %f ]\n", game->rc->plane_y);
-	printf("Floor [ %i ]\n", game->rc->floor);
-	printf("Ceiling [ %i ]\n", game->rc->ceiling);
 }
 
 void	print_game(char **str)
