@@ -47,8 +47,8 @@ void	keybinding(mlx_key_data_t input, void *tmp)
 		forward(g->rc);
 	if (input.key == MLX_KEY_S)
 		backward(g->rc);
-//	g->player_x = g->rc->pos_x;
-//	g->player_y = g->rc->pos_y;
+	g->player_x = g->rc->pos_x;
+	g->player_y = g->rc->pos_y;
 	rendering(g);
 }
 
@@ -57,7 +57,7 @@ void	rendering(t_game *g)
 	print_ddavariables(g);
 	draw_background(g); // This is the background color
 	draw_map(g);
-	draw_player(g, (g->rc->pos_y - 0.5) * 64, (g->rc->pos_x - 0.5) * 64, get_color(255, 0, 0, 255));
+	draw_player(g, (g->rc->pos_y) * 64, (g->rc->pos_x) * 64, get_color(255, 0, 0, 255));
 	raycaster(g);
 	mlx_image_to_window(g->mlx, g->minimap, 0, 0);
 }
