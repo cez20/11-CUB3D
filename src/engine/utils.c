@@ -81,8 +81,8 @@ void	init_dda_variables(t_game *g)
 	g->rc->ray_dir_x = 0;
 	g->rc->ray_dir_y = 0;
 	g->rc->camera_x = 0;
-	g->rc->move_speed = 1;
-	g->rc->rot_speed = 0.2;
+	g->rc->move_speed = 0.15;
+	g->rc->rot_speed = 0.15;
 	g->rc->old_x = 0;
 	g->rc->floor = get_color(g->tex->floor[0], \
 		g->tex->floor[1], g->tex->floor[2], 255);
