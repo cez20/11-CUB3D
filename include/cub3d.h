@@ -224,5 +224,6 @@ void		free_double_pointer(char **str);
 //*** PRINT_UTILS.C ***
 void		print_variables(t_game *game);
 void		print_game(char **map);
+void		print_ddavariables (t_game *game);
 
 #endif

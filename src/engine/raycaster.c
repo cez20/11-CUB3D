@@ -82,7 +82,7 @@ void	raycaster(t_game *g)
 	{
 		set_ray_posdir(g, i);
 		set_step(g->rc);
-//		dda_time(g->rc);
+		dda_time(g->rc);
 //		get_draw_len(g, i);
 //		bob_ross(g, i);
 //		i++;

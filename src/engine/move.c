@@ -23,6 +23,7 @@ void	look_left(t_ray *rc)
 
 void	look_right(t_ray *rc)
 {
+	printf("(look_right)\n");
 	double old_dir_x;
 	double old_plane_x;
 
@@ -44,6 +45,7 @@ void	look_right(t_ray *rc)
 
 void	strafe(t_ray *rc, char dir)
 {
+	printf("(strafe %c)\n", dir);
 	if (dir == 'R')
 	{
 		if (rc->map[(int)(rc->pos_y)][(int)(rc->pos_x + rc->plane_x * rc->move_speed)] == '0')
@@ -62,9 +64,10 @@ void	strafe(t_ray *rc, char dir)
 
 void	forward(t_ray *rc)
 {
-	if (rc->map[(int)(rc->pos_x + rc->dir_x * rc->move_speed)][(int)rc->pos_y] == '0')
+	printf("(forward)\n");
+	if (rc->map[(int)rc->pos_y][(int)(rc->pos_x + rc->dir_x * rc->move_speed)] == '0')
 		rc->pos_x += rc->dir_x * rc->move_speed;
-	if (rc->map[(int)rc->pos_x][(int)(rc->pos_y + rc->dir_y * rc->move_speed)] == '0')
+	if (rc->map[(int)(rc->pos_y + rc->dir_y * rc->move_speed)][(int)rc->pos_x] == '0')
 		rc->pos_y += rc->dir_y * rc->move_speed;
 }
 // {
@@ -96,9 +99,10 @@ void	forward(t_ray *rc)
 
 void	backward(t_ray *rc)
 {
-	if (rc->map[(int)(rc->pos_x - rc->dir_x * rc->move_speed)][(int)rc->pos_y] == '0')
+	printf("(backward)\n");
+	if (rc->map[(int)rc->pos_y][(int)(rc->pos_x - rc->dir_x * rc->move_speed)] == '0')
 		rc->pos_x -= rc->dir_x * rc->move_speed;
-	if (rc->map[(int)rc->pos_x][(int)(rc->pos_y - rc->dir_y * rc->move_speed)] == '0')
+	if (rc->map[(int)(rc->pos_y - rc->dir_y * rc->move_speed)][(int)rc->pos_x] == '0')
 		rc->pos_y -= rc->dir_y * rc->move_speed;
 }
 // {

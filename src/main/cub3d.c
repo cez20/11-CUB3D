@@ -1,6 +1,6 @@
 #include "../include/cub3d.h"
 
-static void print_ddavariables (t_game *game)
+void print_ddavariables (t_game *game)
 {
 	printf("hit [ %d ] side [ %c ]\n", game->rc->hit, game->rc->side);
 	printf("pos_x [ %f ] pos_y [ %f ]\n", game->rc->pos_x, game->rc->pos_y);
@@ -57,7 +57,7 @@ void	rendering(t_game *g)
 	print_ddavariables(g);
 	draw_background(g); // This is the background color
 	draw_map(g);
-	draw_player(g, (g->rc->pos_y) * 64, (g->rc->pos_x) * 64, get_color(255, 0, 0, 255));
+	draw_player(g, (g->rc->pos_x) * 64, (g->rc->pos_y) * 64, get_color(255, 0, 0, 255));
 	raycaster(g);
 	mlx_image_to_window(g->mlx, g->minimap, 0, 0);
 }
