@@ -1,72 +1,102 @@
 #include "../include/cub3d.h"
 
-//This function puts a colour in all the background of the image. When
-// you move your player, it avoid that the colour of the player stays in
-// the division. 
+//This function essentially draws one "x-axis at a time"
+// Ex: draws position (0,0) , (1, 0), (2, 0)
+// Then draws 0,1 , (1, 1), (2, 1)
 void	draw_background(t_game *g)
 {
 	int	x;
 	int	y;
 
-	x = 0;
-	y = 0;
-	while (y < (g->map_width * 64))
+	y = 0; // Moves vertically
+	while (y < g->map_height * 64)
 	{
-		x = 0;
-		while (x < (g->map_height * 64))
+		x = 0; // Moves horizontally
+		while (x < g->map_width * 64) 
 		{
-			mlx_put_pixel(g->minimap, y, x, get_color(115, 147, 179, 255));
+			mlx_put_pixel(g->minimap, x, y, get_color(115, 147, 179, 255));
 			x++;
 		}
 		y++;
 	}
 }
 
-static void	p_ray(t_game *g, int posx, int posy)
-{
-	int		len;
-	double	x;
-	double	y;
+// static void	p_ray(t_game *g, int posx, int posy)
+// {
+// 	int		len;
+// 	double	x;
+// 	double	y;
 
-	x = posx;
-	y = posy;
-	len = 55;
-	while (len > 0)
-	{
-		mlx_put_pixel(g->minimap, x, y, 0x00FF0000);
-		x += g->rc->dir_x;
-		y += g->rc->dir_y;
-		len--;
-	}
-}
+// 	x = posx;
+// 	y = posy;
+// 	len = 55;
+// 	while (len > 0)
+// 	{
+// 		mlx_put_pixel(g->minimap, x, y, 0x00FF0000);
+// 		x += g->rc->dir_x;
+// 		y += g->rc->dir_y;
+// 		len--;
+// 	}
+// }
 // This function draws a red square to represent the player. Given
 // that X and Y represent here the position at the top left corner
 // I advanced bpth the x and y of 25 to get close to the middle of
 // each box.  
-void	draw_player(t_game *g,  int x, int y, uint32_t color)
-{
-	int	i;
-	int	j;
-	int	mod_x;
-	int	mod_y;
+// void	draw_player(t_game *g,  int x, int y, uint32_t color)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	mod_x;
+// 	int	mod_y;
 
-	i = 25;
-	j = 25;
-	mod_x = x + 25;
-	mod_y = y + 25;
-	p_ray(g, x + 32, y + 32);
-	while (i < 40)
+// 	i = 25;
+// 	j = 25;
+// 	mod_x = x + 25;
+// 	mod_y = y + 25;
+// 	p_ray(g, x + 32, y + 32);
+// 	while (i < 40)
+// 	{
+// 		while (j < 40)
+// 		{
+// 			mlx_put_pixel(g->minimap, mod_x, mod_y, color);
+// 			j++;
+// 			mod_x++;
+// 		}
+// 		mod_x = x + 25;
+// 		j = 25;
+// 		mod_y++;
+// 		i++;
+// 	}
+// }
+
+// This function draws a red square to represent the player. Given
+// that X and Y represent here the position at the top left corner
+// I advanced bpth the x and y of 25 to get close to the middle of
+// each box.  
+void	draw_player(t_game *g, int x, int y, uint32_t color)
+{
+	int x_offset;
+	int y_offset;
+	int scaled_x;
+	int scaled_y;
+
+	x_offset = 1;
+	y_offset = 1;
+	scaled_x = x;
+	scaled_y = y;
+	//p_ray(g, x + 32, y + 32);
+	while (y_offset < 10)
 	{
-		while (j < 40)
+		x_offset = 1;
+		while (x_offset < 10)
 		{
-			mlx_put_pixel(g->minimap, mod_x, mod_y, color);
-			j++;
-			mod_x++;
+			mlx_put_pixel(g->minimap, scaled_x, scaled_y, color);
+			x_offset++;
+			scaled_x++;
 		}
-		mod_x = x + 25;
-		j = 25;
-		mod_y++;
-		i++;
+		scaled_x = x;
+		scaled_y++;
+		y_offset++;
 	}
 }
 
@@ -74,27 +104,27 @@ void	draw_player(t_game *g,  int x, int y, uint32_t color)
 // a wall, is painted in black and all empty area is in white.
 void	draw_square(t_game *g, int x, int y, uint32_t color)
 {
-	int	i;
-	int	j;
-	int	mod_x;
-	int	mod_y;
+	int x_offset;
+	int y_offset;
+	int scaled_x;
+	int scaled_y;
 
-	i = 1; // Offset so that the edge of each square in of a different colours
-	j = 1;
-	mod_x = x;
-	mod_y = y;
-	while (i < (64 - 1)) // Offset so that edge is of a different colour
+	x_offset = 1;
+	y_offset = 1;
+	scaled_x = x + 1;
+	scaled_y = y + 1;
+	while (y_offset < (64 - 1))
 	{
-		while (j < (64 - 1))
+		x_offset = 1;
+		while (x_offset < (64 - 1))
 		{
-			mlx_put_pixel(g->minimap, mod_x, mod_y, color);
-			j++;
-			mod_x++;
+			mlx_put_pixel(g->minimap, scaled_x, scaled_y, color);
+			x_offset++;
+			scaled_x++;
 		}
-		mod_x = x;
-		j = 1;
-		mod_y++;
-		i++;
+		scaled_x = x + 1;
+		scaled_y++;
+		y_offset++;
 	}
 }
 

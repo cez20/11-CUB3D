@@ -57,8 +57,9 @@ void	rendering(t_game *g)
 	print_ddavariables(g);
 	draw_background(g); // This is the background color
 	draw_map(g);
+
 	draw_player(g, (g->rc->pos_x) * 64, (g->rc->pos_y) * 64, get_color(255, 0, 0, 255));
-	raycaster(g);
+	//raycaster(g);
 	mlx_image_to_window(g->mlx, g->minimap, 0, 0);
 }
 

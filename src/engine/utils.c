@@ -74,8 +74,8 @@ void	init_dda_variables(t_game *g)
 	g->rc->map = g->map_copy;
 	g->rc->step_x = 0;
 	g->rc->step_y = 0;
-	g->rc->pos_x = g->player_x; // position vector of the player
-	g->rc->pos_y = g->player_y; // position vector of the player
+	g->rc->pos_x = g->player_y; // position vector of the player
+	g->rc->pos_y = g->player_x; // position vector of the player
 	set_direction(g->direction, g->rc); // direction modifier
 	set_plane(g->direction, g->rc);  // plane modifier
 	g->rc->ray_dir_x = 0;
