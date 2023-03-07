@@ -52,12 +52,34 @@ void	keybinding(mlx_key_data_t input, void *tmp)
 	rendering(g);
 }
 
+void draw_floor_ceiling(t_game *g)
+{
+	int	x;
+	int	y;
+
+	y = 0; // Moves vertically
+	while (y < g->map_height * 64)
+	{
+		x = 0; // Moves horizontally
+		while (x < g->map_width * 64) 
+		{
+			if (y < ((g->map_height * 64) / 2))
+				mlx_put_pixel(g->minimap, x, y, get_color(g->tex->ceiling[0],g->tex->ceiling[1], g->tex->ceiling[2], 255));
+			else
+				mlx_put_pixel(g->minimap, x, y, get_color(g->tex->floor[0],g->tex->floor[1], g->tex->floor[2], 255));
+			x++;
+		}
+		y++;
+	}
+}
+
 void	rendering(t_game *g)
 {
 	print_ddavariables(g);
-	draw_background(g); // This is the background color
-	draw_map(g);
-	draw_player(g, (g->rc->pos_x) * 64, (g->rc->pos_y) * 64, get_color(255, 0, 0, 255));
+	draw_floor_ceiling(g);
+	//draw_background(g); // This is the background color
+	//draw_map(g);
+	//draw_player(g, (g->rc->pos_x) * 64, (g->rc->pos_y) * 64, get_color(255, 0, 0, 255));
 	raycaster(g);
 	mlx_image_to_window(g->mlx, g->minimap, 0, 0);
 }
