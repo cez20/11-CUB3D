@@ -16,13 +16,13 @@ static void	set_direction(char direction, t_ray *rc)
 	}
 	if (direction == 'E')
 	{
-		rc->dir_x = 1;
+		rc->dir_x = -1;
 		rc->dir_y = 0;
 		rc->angle = 2 * M_PI;
 	}
 	if (direction == 'W')
 	{
-		rc->dir_x = -1;
+		rc->dir_x = 1;
 		rc->dir_y = 0;
 		rc->angle = M_PI;
 	}
@@ -43,12 +43,12 @@ static void	set_plane(char direction, t_ray *rc)
 	if (direction == 'E')
 	{
 		rc->plane_x = 0;
-		rc->plane_y = 0.66;
+		rc->plane_y = -0.66;
 	}
 	if (direction == 'W')
 	{
 		rc->plane_x = 0;
-		rc->plane_y = -0.66;
+		rc->plane_y = 0.66;
 	}
 }
 

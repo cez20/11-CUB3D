@@ -57,7 +57,7 @@ void	strafe(t_ray *rc, char dir)
 	{
 		if (rc->map[(int)(rc->pos_y)][(int)(rc->pos_x - rc->plane_x * rc->move_speed)] == '0')
 			rc->pos_x -= rc->plane_x * rc->move_speed;
-		if (rc->map[(int)(rc->pos_y - rc->plane_y * rc->move_speed)][(int)(rc->pos_x)] == '0')
+		if (rc->map[(int)(rc->pos_y + rc->plane_y * rc->move_speed)][(int)(rc->pos_x)] == '0')
 			rc->pos_y -= rc->plane_y * rc->move_speed;
 	}
 }

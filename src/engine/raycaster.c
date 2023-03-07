@@ -8,8 +8,8 @@ interpreted as infinity */
 static void set_ray_posdir(t_game *g, double i)
 {
 	g->rc->camera_x = 2 * i / (double) WIDTH - 1;
-	g->rc->ray_dir_x = g->rc->ray_dir_x + g->rc->plane_x * g->rc->camera_x;
-	g->rc->ray_dir_y = g->rc->ray_dir_y + g->rc->plane_y * g->rc->camera_x;
+	g->rc->ray_dir_x = g->rc->dir_x + g->rc->plane_x * g->rc->camera_x;
+	g->rc->ray_dir_y = g->rc->dir_y + g->rc->plane_y * g->rc->camera_x;
 	g->rc->map_x = g->rc->pos_x;
 	g->rc->map_y = g->rc->pos_y;
 	if (g->rc->ray_dir_x == 0)
@@ -27,7 +27,7 @@ or a square in the y-direction. If it has to go in the negative or positive x-di
 and the negative or positive y-direction will depend on the direction of the ray, 
 and this fact will be stored in stepX and stepY. Those variables are always either -1 or +1." 
 (Ref.: Lodev.org)*/
-void	set_step(t_ray *rc)
+void	set_step(t_ray *rc, int i)
 {
 	if (rc->ray_dir_x < 0)
 	{
@@ -49,6 +49,8 @@ void	set_step(t_ray *rc)
 		rc->step_y = 1;
 		rc->side_dis_y = (rc->map_y - rc->pos_y + 1) * rc->delta_dis_y;
 	}
+	if ((int)i % 64 == 0 || i == 639)
+		printf("\t[%d]\tcameraX = %f / raydirX = %f / raydirY = %f / deltadistX = %f / deltadisY = %f / sidedisX = %f / sidedisY = %f\n", (int)i, rc->camera_x, rc->ray_dir_x, rc->ray_dir_y, rc->delta_dis_x, rc->delta_dis_y, rc->side_dis_x, rc->side_dis_y);
 }
 
 void	dda_time(t_ray *rc)
@@ -72,6 +74,7 @@ void	dda_time(t_ray *rc)
 	}
 }
 
+
 void	raycaster(t_game *g)
 {
 	int	i;
@@ -81,7 +84,7 @@ void	raycaster(t_game *g)
 	while (++i < WIDTH)
 	{
 		set_ray_posdir(g, i);
-		set_step(g->rc);
+		set_step(g->rc, i);
 		dda_time(g->rc);
 //		get_draw_len(g, i);
 //		bob_ross(g, i);
