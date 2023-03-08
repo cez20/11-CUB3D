@@ -29,13 +29,6 @@ void	close_fds(t_game *game)
 	close(game->fd);
 }
 
-/*static int	clean_exit (t_game *game)
-{
-	//check game->mlx, game->window
-	free_table(game->map_copy);
-	return (0);
-}*/
-
 int	main(int argc, char **argv)
 {
 	t_game	game;

@@ -73,57 +73,57 @@ typedef struct s_game
 	char			**map_copy;
 	char			**elements_copy;	
 	mlx_t			*mlx;
-	mlx_image_t		*game;
+	mlx_image_t		*game; // game screen
 	mlx_image_t		*minimap;
-	t_tex			*tex;
-	t_ray			*rc;
+	t_tex			*tex; // texture's data
+	t_ray			*rc; // raycaster's data
 }				t_game;
 
 typedef struct s_tex
 {
-	char			*north;
+	char			*north; //texture's path
 	char			*south;
 	char			*east;
 	char			*west;
-	xpm_t			*no;
+	xpm_t			*no; // texture's data
 	xpm_t			*so;
 	xpm_t			*ea;
 	xpm_t			*we;
-	int				floor[3];
 	int				ceiling[3];
+	int				floor[3];
 }				t_tex;
 
 typedef struct s_ray
 {
-	int				hit;
-	int				side;
-	int				line_height;
-	int				draw_start;
-	int				draw_end;
-	char			**map;
-	int				map_x;
+	int				hit; // signals when collision happens
+	int				side; // which side (NO, SO, EA, WE) are the ray hitting
+	int				line_height; // data for vertical slices projection (deprecated?)
+	int				draw_start; // data for vertical slices projection
+	int				draw_end; // data for vertical slices projection
+	char			**map; 
+	int				map_x; //the current square of the map the ray is in
 	int				map_y;
-	int				step_x;
+	int				step_x; // what direction to step in each direction
 	int				step_y;
-	double			pos_x;
+	double			pos_x; // player's position vector
 	double			pos_y;
-	double			dir_x;
+	double			dir_x; // player's direction vector
 	double			dir_y;
-	double			plane_x;
+	double			plane_x; // player's camera plane
 	double			plane_y;
-	double			ray_dir_x;
+	double			ray_dir_x; // ray's direction vector
 	double			ray_dir_y;
-	double			delta_dis_x;
+	double			delta_dis_x; // distance the ray has to travel to go from one side to the next
 	double			delta_dis_y;
-	double			side_dis_x;
+	double			side_dis_x; // distance the ray has to travel from its start position
 	double			side_dis_y;
-	double			camera_x;
-	double			angle;
-	double			move_speed;
-	double			rot_speed;
-	int				old_x;
-	int				ceiling;
-	int				floor;
+	double			camera_x; // x-coordinate in camera space
+	double			angle; // deprecated
+	double			move_speed; // movement modifier
+	double			rot_speed; // rotation modifier
+	int				old_x; // i don't remember why I created this...
+	uint32_t		ceiling; // converted colors ready to be used with mlx
+	uint32_t		floor;
 }				t_ray;
 
 //********************************************************
