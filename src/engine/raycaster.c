@@ -72,21 +72,49 @@ void	dda_time(t_ray *rc)
 		if (rc->map[rc->map_x][rc->map_y] == '1')
 			rc->hit = 1;
 	}
+	//Below calculated distance between camera_plane and hitpoint to avoid
+	// fish eye effect 
+	if (rc->side == 0)
+		rc->perp_wall_distance = rc->side_dis_x - rc->delta_dis_x;
+	else
+		rc->perp_wall_distance = rc->side_dis_y - rc->delta_dis_y;
 }
 
+void	get_draw_len(t_game *g,  int i)
+{
+	(void)i;
+	g->rc->line_height = HEIGHT/ g->rc->perp_wall_distance;
+	g->rc->draw_start = -g->rc->line_height / 2 + HEIGHT / 2;
+	if (g->rc->draw_start < 0)
+		g->rc->draw_start  = 0;
+	g->rc->draw_end = g->rc->line_height / 2 +  HEIGHT / 2;
+	if (g->rc->draw_end >= HEIGHT)
+		g->rc->draw_end = HEIGHT;
+}
+
+void	draw_wall(t_game *g, int i)
+{
+	int j = 0;
+	while (i < 64)
+	{
+		mlx_put_pixel(g->minimap, i, j, get_color(0, 0, 255, 255));
+		i++;
+	}
+}
 
 void	raycaster(t_game *g)
 {
 	int	i;
 
 	i = -1;
-	//something to clear ?
+	//Mettre la fonction draw_ceiling_floor ici? 
 	while (++i < WIDTH)
 	{
 		set_ray_posdir(g, i);
 		set_step(g->rc, i);
-		dda_time(g->rc);
-//		get_draw_len(g, i);
+		//dda_time(g->rc);
+		//get_draw_len(g, i);
+		//draw_wall(g, i);
 //		bob_ross(g, i);
 //		i++;
 	}

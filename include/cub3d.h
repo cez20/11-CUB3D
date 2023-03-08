@@ -99,6 +99,7 @@ typedef struct s_ray
 	char			side;
 	int				line_height;
 	int				draw_start;
+	int				draw_end; //Ajoute
 	char			**map;
 	int				map_x;
 	int				map_y;
@@ -120,6 +121,7 @@ typedef struct s_ray
 	double			angle;
 	double			move_speed;
 	double			rot_speed;
+	double			perp_wall_distance; //Ajoute
 	int				old_x;
 	int				ceiling;
 	int				floor;
