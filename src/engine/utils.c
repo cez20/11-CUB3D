@@ -54,13 +54,13 @@ static void	set_plane(char direction, t_ray *rc)
 
 int	init_mlx_variables(t_game *g)
 {
-	g->mlx = mlx_init(g->map_width * 64, g->map_height * 64, "Cub3d", true);
+	g->mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	if (!g->mlx)
 		return (-1);
-	g->minimap = mlx_new_image(g->mlx, g->map_width * 64, g->map_height * 64);
+	g->minimap = mlx_new_image(g->mlx, g->map_width * 16, g->map_height * 16);
 	if (!g->minimap)
 		return (-1);
-	g->game = mlx_new_image(g->mlx, g->map_width * 64, g->map_height * 64);
+	g->game = mlx_new_image(g->mlx, WIDTH, HEIGHT);
 	if (!g->game)
 		return (-1);
 	return (0);
@@ -74,8 +74,8 @@ void	init_dda_variables(t_game *g)
 	g->rc->map = g->map_copy;
 	g->rc->step_x = 0;
 	g->rc->step_y = 0;
-	g->rc->pos_x = g->player_y; // position vector of the player
-	g->rc->pos_y = g->player_x; // position vector of the player
+	g->rc->pos_x = g->player_y + 0.5; // position vector of the player
+	g->rc->pos_y = g->player_x + 0.5; // position vector of the player
 	set_direction(g->direction, g->rc); // direction modifier
 	set_plane(g->direction, g->rc);  // plane modifier
 	g->rc->ray_dir_x = 0;
