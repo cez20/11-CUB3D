@@ -94,4 +94,5 @@ void	verify_elements(t_game *game)
 	|| !game->tex->west || game->tex->floor[0] == -1 \
 	|| game->tex->ceiling[0] == -1)
 		errmsg(ERR_MISSING_ELEMENT, 1, game); //Not all elements are present. 
+	printf("Ceiling: %d,%d,%d\n", game->tex->ceiling[0], game->tex->ceiling[1], game->tex->ceiling[2]);
 }

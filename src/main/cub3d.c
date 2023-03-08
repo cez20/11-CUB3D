@@ -52,28 +52,28 @@ void	keybinding(mlx_key_data_t input, void *tmp)
 	rendering(g);
 }
 
-void	rendering(t_game *g)
+void	rendering(void *tmp)
 {
+	t_game	*g;
+
+	g = tmp;
+	mlx_key_hook(g->mlx, &keybinding, g); 
 	print_ddavariables(g);
-	draw_background(g); // This is the background color
-	draw_map(g);
-	draw_player(g, (g->rc->pos_x) * 64, (g->rc->pos_y) * 64, get_color(255, 0, 0, 255));
+	// draw_background(g); // This is the background color
+	// draw_map(g);
+	// draw_player(g, (g->rc->pos_x) * 64, (g->rc->pos_y) * 64, get_color(255, 0, 0, 255));
 	raycaster(g);
-	mlx_image_to_window(g->mlx, g->minimap, 0, 0);
+	mlx_image_to_window(g->mlx, g->game, 0, 0);
 }
 
 int	cub3d(t_game *g)
 {
 	if (init_mlx_variables(g) != 0)
-	{	
-		//do i need to mlxterminate?
 		errmsg("Error: MLX failed.\n", 1, g);
-	}
 	init_dda_variables(g);
 	rendering(g);
-	mlx_key_hook(g->mlx, &keybinding, g); //duplicating?
+	mlx_loop_hook(g->mlx, &rendering, g);
 //	mlx_cursor_hook(); // optional (bonus)
 	mlx_loop(g->mlx);
-	mlx_terminate(g->mlx);
 	return (0);
 }

@@ -38,8 +38,8 @@ You should.\n"
 # define ERR_INTEGRITY "Error: Map must be surrounded by walls and have no uncontained\
  spaces inside its limits.\n"
 
-# define WIDTH 640
-# define HEIGHT 512 //480 before
+# define WIDTH 960
+# define HEIGHT 600 //480 before
 # define BPP sizeof(int32_t)
 
 # define WHITESPACE " \n\t\v\r\f"
@@ -96,9 +96,10 @@ typedef struct s_tex
 typedef struct s_ray
 {
 	int				hit;
-	char			side;
+	int				side;
 	int				line_height;
 	int				draw_start;
+	int				draw_end;
 	char			**map;
 	int				map_x;
 	int				map_y;
@@ -155,7 +156,7 @@ void		init_dda_variables(t_game *g);
 
 //*** CUB3D.C ***
 int			cub3d(t_game *g);
-void		rendering(t_game *g);
+void		rendering(void *tmp);
 void		keybinding(mlx_key_data_t input, void *tmp);
 
 //*** MAIN.C ***
@@ -218,6 +219,7 @@ void		errmsg(char *msg, int tofree, t_game *game);
 //*** FREE.C ***
 void		free_game(t_game *game);
 void		free_double_pointer(char **str);
+void		mlx_end(t_game *g);
 
 //*** GRAPH_UTILS.C ***
 
