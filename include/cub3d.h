@@ -131,7 +131,7 @@ typedef struct s_ray
 //********************************************************
 //*** DRAW_GAME.C ***
 void		floor_n_ceiling(t_game *g);
-void		bob_ross_line(t_game *g, double i, int side);
+void		bob_ross_line(t_game *g, int i, int side);
 
 //*** DRAW_MINIMAP.C ***
 void		draw_background(t_game *g);
