@@ -2,6 +2,26 @@
 
 #include "../include/cub3d.h"
 
+// void	texture_calculation(t_game *g)
+// {
+//       int		tex_num;
+// 	  double	wall_x_hit;
+	  
+// 	  tex_num = g->rc->map[g->rc->map_y][g->rc->map_x] - 1; // -1 is only if each side of wall are represented by different texture 
+
+//       if (g->rc->side == 0)
+// 		wall_x_hit = g->rc->pos_y + posY + perpWallDist * rayDirY;
+//       else
+// 	  {          
+// 		wallX = posX + perpWallDist * rayDirX;
+//       	wallX -= floor((wallX)); // Floor() function rounds off to the bottom.  
+
+//       //x coordinate on the texture
+//       int texX = int(wallX * double(texWidth));
+//       if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
+//       if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
+// }
+
 /*	while i don't hit anything, i keep walking around the grid
 	adding the distance for later reference
 	rc->side:  this will later indicate which texture to be used 
@@ -40,6 +60,7 @@ void	raycaster(t_game *g)
 		set_step(g->rc);
 		dda_time(g->rc); // calculates the distance to a wall (where collision happens) and identify which way the wall is facing
 		set_line_len(g); // calculates the size of the line to be drawn
+		//texture_calculation(g);
 		bob_ross_line(g, i, g->rc->side); // draws each vertical slice
 	}
 }

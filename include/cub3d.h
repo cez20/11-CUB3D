@@ -125,6 +125,7 @@ typedef struct s_ray
 	double			angle; // deprecated
 	double			move_speed; // movement modifier
 	double			rot_speed; // rotation modifier
+	double			intersect_dist;
 	int				old_x; // i don't remember why I created this...
 	uint32_t		ceiling; // converted colors ready to be used with mlx
 	uint32_t		floor;
