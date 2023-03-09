@@ -21,15 +21,16 @@ void	floor_n_ceiling(t_game *g)
 	}
 }
 
-void	bob_ross_line(t_game *g, double i, int side)
+void	bob_ross_line(t_game *g, int i, int side)
 {
 	int	color;
+	int line;
 
+	line = g->rc->draw_start - 1;
 	if (side == 0)
 		color = get_color(255, 0, 0, 255);
 	else
 		color = get_color(255, 255, 0, 255);
-	g->rc->draw_start -= 1;
-	while (++g->rc->draw_start < g->rc->draw_end)
-		mlx_put_pixel(g->game, (int)i, g->rc->draw_start, color);
+	while (++line <= g->rc->draw_end)
+		mlx_put_pixel(g->game, i, line, color);
 }
