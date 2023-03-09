@@ -1,4 +1,4 @@
-/*There are no mistakes, just happy accidents... And segfaults.*/
+/**There are no mistakes, just happy accidents... And segfaults.*/
 
 #include "../include/cub3d.h"
 
