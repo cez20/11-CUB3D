@@ -64,6 +64,7 @@ int	cub3d(t_game *g)
 	if (init_mlx_variables(g) != 0)
 		errmsg("Error: MLX failed.\n", 1, g);
 	init_dda_variables(g);
+	load_xpm42_textures(g);
 	rendering(g);
 	mlx_loop_hook(g->mlx, &rendering, g);
 //	mlx_cursor_hook(); // optional (bonus)

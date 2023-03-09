@@ -38,6 +38,7 @@ draw_minimap.c		\
 move.c				\
 raycaster_utils.c	\
 raycaster.c			\
+texture.c 			\
 utils.c				\
 
 PARSING_F =			\

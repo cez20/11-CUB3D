@@ -155,6 +155,9 @@ void		set_line_len(t_game *g);
 //*** RAYCASTER.C ***
 void		raycaster(t_game *g);
 
+//*** TEXTURE.C ***
+void 		load_xpm42_textures(t_game *g);
+
 //*** UTILS.C ***
 int			init_mlx_variables(t_game *g);
 void		init_dda_variables(t_game *g);
