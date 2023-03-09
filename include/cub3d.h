@@ -81,10 +81,10 @@ typedef struct s_game
 
 typedef struct s_tex
 {
-	char			*north; //texture's path
+	char			*north; //
 	char			*south;
 	char			*east;
-	char			*west;
+	char			*west;ll			
 	xpm_t			*no; // texture's data
 	xpm_t			*so;
 	xpm_t			*ea;
