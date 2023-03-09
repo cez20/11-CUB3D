@@ -33,10 +33,9 @@ void	raycaster(t_game *g)
 
 	i = -1;
 	floor_n_ceiling(g); //starts by projection ceiling and floor all over
-	while (++i <= WIDTH) // every 'i' is a slice in the screen
+	while (++i < WIDTH) // every 'i' is a slice in the screen
 	{
 		g->rc->hit = 0;
-		g->rc->side = 0;
 		set_ray_posdir(g, i); // calculates the ray position and direction on that 'i'
 		set_step(g->rc);
 		dda_time(g->rc); // calculates the distance to a wall (where collision happens) and identify which way the wall is facing
