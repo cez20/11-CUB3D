@@ -84,7 +84,11 @@ typedef struct s_tex
 	char			*north; //
 	char			*south;
 	char			*east;
-	char			*west;ll			
+	char			*west;
+	int**			n; // Need to be initialise 
+	int**			s; //
+	int**			e; // 
+	int**			w; //
 	xpm_t			*no; // texture's data
 	xpm_t			*so;
 	xpm_t			*ea;
