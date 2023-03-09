@@ -14,7 +14,6 @@ void	init_variables(t_game *game)
 	game->map_copy = NULL;
 	game->elements_copy = NULL;
 	game->mlx = NULL;
-	game->window = NULL;
 	game->tex = ft_calloc(1, sizeof(t_tex));
 	game->rc = ft_calloc (1, sizeof(t_ray));
 	game->tex->north = NULL;
@@ -30,13 +29,6 @@ void	close_fds(t_game *game)
 	close(game->fd);
 }
 
-/*static int	clean_exit (t_game *game)
-{
-	//check game->mlx, game->window
-	free_table(game->map_copy);
-	return (0);
-}*/
-
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -46,9 +38,8 @@ int	main(int argc, char **argv)
 	game_sections_copy(&game, argv[1]);
 	game_parsing(&game);
 	if (cub3d(&game) == -1)
-		errmsg("Error: MLX fail!\n", 1, &game);
-	free_game(&game);
+		errmsg("Error: Execution error!\n", 1, &game);
 	close_fds(&game);
-//	return (clean_exit(&game));
+	free_game(&game);
 	return (0);
 }

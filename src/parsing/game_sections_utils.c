@@ -51,7 +51,7 @@ void	game_length(t_game *game)
 		free(str);
 		str = get_next_line(game->fd);
 	}
-	close(game->fd); //When I finish reading a fd, does it close automatically?
+	close(game->fd);
 	game->fd = 0;
 }
 

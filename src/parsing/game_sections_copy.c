@@ -12,7 +12,6 @@ void	game_map_copy(t_game *game)
 	{
 		game->map_copy[i] = ft_calloc(game->map_width + 1, sizeof(char));
 		ft_strlcpy1(game->map_copy[i], game->game_copy[j], game->map_width + 1);
-		//printf("%s\n", game->map_copy[i]);
 		i++;
 		j++;
 	}
@@ -21,7 +20,7 @@ void	game_map_copy(t_game *game)
 void	game_elements_copy(t_game *game)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;

@@ -30,12 +30,15 @@ OBJ_DIR		=	obj/
 
 MAIN_F	=			\
 main.c				\
-error.c				\
-print_utils.c		\
-free.c 				\
+cub3d.c				\
 
 ENGINE_F	=		\
-cub3d.c				\
+draw_game.c			\
+draw_minimap.c		\
+move.c				\
+raycaster_utils.c	\
+raycaster.c			\
+utils.c				\
 
 PARSING_F =			\
 elements_parsing.c	\
@@ -59,7 +62,7 @@ PARSING_SRC	=	$(addprefix $(PARSING_DIR), $(PARSING_F))
 UTILS_SRC	=	$(addprefix $(UTILS_DIR), $(UTILS_F))
 
 OBJS		=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-OBJ_FILES	=	$(MAIN_F:.c=.o) $(ENGINE_F:.c=.o) $(PARSING_F:.c=.o)
+OBJ_FILES	=	$(MAIN_F:.c=.o) $(ENGINE_F:.c=.o) $(PARSING_F:.c=.o) $(UTILS_F:.c=.o)
 
 VPATH		=	$(SRC_DIR) $(MAIN_DIR) $(ENGINE_DIR) $(PARSING_DIR) $(UTILS_DIR) $(LIBFT_H)
 

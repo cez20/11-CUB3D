@@ -6,14 +6,10 @@ void	check_colors(t_game *game, char *element)
 	int		n;
 	char	**rgb;
 	char	*tmp;
-	char	mode;
 
 	i = -1;
 	n = 0;
-	rgb = NULL;
-	tmp = NULL;
 	rgb = ft_split(&element[2], ',');
-	mode = element[0];
 	while (rgb[++i])
 	{
 		if (i >= 3)
@@ -25,9 +21,9 @@ void	check_colors(t_game *game, char *element)
 			errmsg(ERR_RGB, 1, game);
 		else
 		{
-			if (mode == 'F')
+			if (element[0] == 'F')
 				game->tex->floor[i] = n;
-			if (mode == 'C')
+			if (element[0] == 'C')
 				game->tex->ceiling[i] = n;
 		}
 	}
@@ -64,7 +60,7 @@ void	check_direction(t_game *game, char *str, char **texture_path)
 		if (nb_of_strings(tab) != 2)
 			errmsg(ERR_TOOMUCH_TEXT, 1, game);
 		*texture_path = create_texture_path(game, tab[1]);
-		free_double_pointer(tab); // Free le double pointer qui a ete split.
+		free_double_pointer(tab);
 	}
 	else
 		errmsg(ERR_EXTRA_ELEMENT, 1, game);
@@ -95,5 +91,5 @@ void	verify_elements(t_game *game)
 	if (!game->tex->north || !game->tex->south || !game->tex->east \
 	|| !game->tex->west || game->tex->floor[0] == -1 \
 	|| game->tex->ceiling[0] == -1)
-		errmsg(ERR_MISSING_ELEMENT, 1, game); //Not all elements are present. 
+		errmsg(ERR_MISSING_ELEMENT, 1, game);
 }
