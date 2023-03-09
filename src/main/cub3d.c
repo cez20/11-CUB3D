@@ -1,35 +1,29 @@
 #include "../include/cub3d.h"
 
-void print_ddavariables (t_game *game)
+/*TODO:
+	load xpm
+		g->tex->no = mlx_load_xpm42(g->tex->north);
+	if (!g->tex->no)
+		errmsg("Load XPM fail.\n", 1, g);
+	
+	draw image
+	put image to window
+	rinse repeat*/
+
+void	print_ddavariables(t_game *game)
 {
-	printf("hit [ %d ] side [ %c ]\n", game->rc->hit, game->rc->side);
-	printf("pos_x [ %f ] pos_y [ %f ]\n", game->rc->pos_x, game->rc->pos_y);
-	printf("dir_x [ %f ] dir_y [ %f ]\n", game->rc->dir_x, game->rc->dir_y);
-	printf("plane_x [ %f ] plane_y [ %f ]\n\n", game->rc->plane_x, game->rc->plane_y);
+	printf("posX   [ %f ]\t\tposY   [ %f ]\n", game->rc->pos_x, game->rc->pos_y);
+	printf("dirX   [ %f ]\t\tdirY   [ %f ]\n", game->rc->dir_x, game->rc->dir_y);
+	printf("planeX [ %f ]\t\tplaneY [ %f ]\n\n", \
+		game->rc->plane_x, game->rc->plane_y);
 }
-// TODO:
-	// load xpm
-	//	g->tex->no = mlx_load_xpm42(g->tex->north);
-	// if (!g->tex->no)
-	// 	errmsg("Load XPM fail.\n", 1, g);
 
-	// code dda/raycaster
-	// code keyhooks modifiers
-	// draw image
-	// put image to window
-	// rinse repeat
-// MY INPUT ARE WRONG, THE DIRECTION VECTOR IS NOT WELL SET! OR IS IT MY MOVEMENT?
-// FINISH RAYCASTER AND SEE.
-
-// This function is for events, everytime a key is pressed, we move the player position of 0.2
-// to the left, to the right, up or down.To make sure that map is updated in real time,
-// we call back the function draw _background, draw_map, and draw_player. If these functions,
-// were not called, there would'nt be any change between first map and other maps. 
 void	keybinding(mlx_key_data_t input, void *tmp)
 {
 	t_game	*g;
 
 	g = tmp;
+	print_ddavariables(g);
 	if (input.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(g->mlx);
@@ -57,8 +51,7 @@ void	rendering(void *tmp)
 	t_game	*g;
 
 	g = tmp;
-	mlx_key_hook(g->mlx, &keybinding, g); 
-	print_ddavariables(g);
+	mlx_key_hook(g->mlx, &keybinding, g);
 	// draw_background(g); // This is the background color
 	// draw_map(g);
 	// draw_player(g, (g->rc->pos_x) * 64, (g->rc->pos_y) * 64, get_color(255, 0, 0, 255));

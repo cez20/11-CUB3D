@@ -129,7 +129,11 @@ typedef struct s_ray
 //********************************************************
 //* 				ENGINE FOLDER 						 *
 //********************************************************
-//*** DRAW.C ***
+//*** DRAW_GAME.C ***
+void		floor_n_ceiling(t_game *g);
+void		bob_ross_line(t_game *g, double i, int side);
+
+//*** DRAW_MINIMAP.C ***
 void		draw_background(t_game *g);
 void		draw_player(t_game *g, int x, int y, uint32_t color);
 void		draw_square(t_game *g, int x, int y, uint32_t color);
@@ -142,6 +146,11 @@ void		look_left(t_ray *rc);
 void		strafe(t_ray *rc, char dir);
 void		forward(t_ray *rc);
 void		backward(t_ray *rc);
+
+//*** RAYCASTER_UTILS.C ***
+void		set_ray_posdir(t_game *g, double i);
+void		set_step(t_ray *rc);
+void		set_line_len(t_game *g);
 
 //*** RAYCASTER.C ***
 void		raycaster(t_game *g);

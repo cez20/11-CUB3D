@@ -12,7 +12,7 @@ void	draw_background(t_game *g)
 	while (y < g->map_height * 64)
 	{
 		x = 0; // Moves horizontally
-		while (x < g->map_width * 64) 
+		while (x < g->map_width * 64)
 		{
 			mlx_put_pixel(g->minimap, x, y, get_color(115, 147, 179, 255));
 			x++;
@@ -75,10 +75,10 @@ void	draw_background(t_game *g)
 // each box.  
 void	draw_player(t_game *g, int x, int y, uint32_t color)
 {
-	int x_offset;
-	int y_offset;
-	int scaled_x;
-	int scaled_y;
+	int	x_offset;
+	int	y_offset;
+	int	scaled_x;
+	int	scaled_y;
 
 	x_offset = 1;
 	y_offset = 1;
@@ -104,10 +104,10 @@ void	draw_player(t_game *g, int x, int y, uint32_t color)
 // a wall, is painted in black and all empty area is in white.
 void	draw_square(t_game *g, int x, int y, uint32_t color)
 {
-	int x_offset;
-	int y_offset;
-	int scaled_x;
-	int scaled_y;
+	int	x_offset;
+	int	y_offset;
+	int	scaled_x;
+	int	scaled_y;
 
 	x_offset = 1;
 	y_offset = 1;

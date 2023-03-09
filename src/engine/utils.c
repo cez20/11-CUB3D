@@ -69,17 +69,18 @@ int	init_mlx_variables(t_game *g)
 void	init_dda_variables(t_game *g)
 {
 	g->rc->map = g->map_copy;
-	g->rc->pos_x = g->player_y + 0.5; // position vector of the player
-	g->rc->pos_y = g->player_x + 0.5; // position vector of the player
+	g->rc->pos_x = g->player_y + 0.5;
+	g->rc->pos_y = g->player_x + 0.5;
 	g->rc->map_x = (int)g->rc->pos_x;
 	g->rc->map_y = (int)g->rc->pos_y;
-	set_direction(g->direction, g->rc); // direction modifier
-	set_plane(g->direction, g->rc);  // plane modifier
+	set_direction(g->direction, g->rc);
+	set_plane(g->direction, g->rc);
 	g->rc->move_speed = 0.15;
 	g->rc->rot_speed = 0.15;
 	g->rc->floor = get_color(g->tex->floor[0], \
 		g->tex->floor[1], g->tex->floor[2], 255);
 	g->rc->ceiling = get_color(g->tex->ceiling[0], \
 		g->tex->ceiling[1], g->tex->ceiling[2], 255);
-	//time? fps counter, etc
 }
+
+	//time? fps counter, etc

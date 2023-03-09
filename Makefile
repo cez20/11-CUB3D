@@ -33,8 +33,10 @@ main.c				\
 cub3d.c				\
 
 ENGINE_F	=		\
-draw.c				\
+draw_game.c			\
+draw_minimap.c		\
 move.c				\
+raycaster_utils.c	\
 raycaster.c			\
 utils.c				\
 
