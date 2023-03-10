@@ -1,15 +1,5 @@
 #include "../include/cub3d.h"
 
-/*TODO:
-	load xpm
-		g->tex->no = mlx_load_xpm42(g->tex->north);
-	if (!g->tex->no)
-		errmsg("Load XPM fail.\n", 1, g);
-	
-	draw image
-	put image to window
-	rinse repeat*/
-
 void	print_ddavariables(t_game *game)
 {
 	printf("posX   [ %f ]\t\tposY   [ %f ]\n", game->rc->pos_x, game->rc->pos_y);
@@ -52,9 +42,6 @@ void	rendering(void *tmp)
 
 	g = tmp;
 	mlx_key_hook(g->mlx, &keybinding, g);
-	// draw_background(g); // This is the background color
-	// draw_map(g);
-	// draw_player(g, (g->rc->pos_x) * 64, (g->rc->pos_y) * 64, get_color(255, 0, 0, 255));
 	raycaster(g);
 	mlx_image_to_window(g->mlx, g->game, 0, 0);
 }

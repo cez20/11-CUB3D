@@ -30,6 +30,8 @@ void	check_colors(t_game *game, char *element)
 	free_table(rgb);
 }
 
+//This function validates that the textures has a valid path 
+//and skip any unecessary elements that can be found before (whitespaces). 
 char	*create_texture_path(t_game *game, char *path)
 {
 	char	*texture_path;
@@ -38,14 +40,14 @@ char	*create_texture_path(t_game *game, char *path)
 	int		fd;
 
 	i = 0;
-	while (ft_is_whitespace(path[i])) // Determiner si le fait qu'il y ait des tab avant ma texture est une erreur 
+	while (ft_is_whitespace(path[i]))
 		i++;
-	tmp = ft_strdup(&path[i]); // Creer un nouveau string dans heap a partir du string trouve 
-	fd = open(tmp, O_RDONLY); // Ouvre la texture pour valider que c'est correct 
+	tmp = ft_strdup(&path[i]);
+	fd = open(tmp, O_RDONLY);
 	if (fd == -1)
 		errmsg(ERR_TEXTURE_PATH, 1, game);
 	texture_path = tmp;
-	tmp = NULL; // evite dangling_pointer 
+	tmp = NULL;
 	close (fd);
 	return (texture_path);
 }

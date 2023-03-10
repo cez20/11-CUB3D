@@ -24,7 +24,7 @@ void	floor_n_ceiling(t_game *g)
 void	bob_ross_line(t_game *g, int i, int side)
 {
 	int	color;
-	int line;
+	int	line;
 
 	line = g->rc->draw_start - 1;
 	if (side == 0)

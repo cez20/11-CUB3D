@@ -76,12 +76,12 @@ void	set_line_len(t_game *g)
 {
 	int		line_height;
 	//double	intersect_dist; // distance to the wall
-	
+
 	if (g->rc->side == 0)
 		g->rc->intersect_dist = g->rc->side_dis_x - g->rc->delta_dis_x;
 	else
 		g->rc->intersect_dist = g->rc->side_dis_y - g->rc->delta_dis_y;
-	line_height = HEIGHT / g->rc->intersect_dist; //ratio to adapt the line height to the screen height
+	line_height = HEIGHT / g->rc->intersect_dist;
 	g->rc->draw_start = (-line_height / 2) + (HEIGHT / 2);
 	if (g->rc->draw_start < 0)
 		g->rc->draw_start = 0;

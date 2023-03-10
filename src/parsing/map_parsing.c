@@ -18,11 +18,10 @@ void	replace_map_spaces(t_game *game)
 }
 
 //My take on wall verification:
-//I read the map left to right, top to bottom, checking certain conditions on zeroes only.
+//I read the map left to right, top to bottom, 
+//checking certain conditions on zeroes only.
 //First: If there are any 0's at the extremities: error;
-//Else: If there are any spaces NOT surrounded by walls inside the map (holes filled with '-' character): error;
-//This doesn't check for diagonals (though it could) because valid empty spaces would be filled with walls AFTER map validation, so that would prevent any bugs later on.
-// Floodfill becomes useless at this point since we don't have to check for valid pathways, etc. (unless we decide later to add collectibles, etc)
+//Else: If there are any spaces NOT surrounded by walls inside 
 void	verify_map_walls(t_game *game)
 {
 	int	i;

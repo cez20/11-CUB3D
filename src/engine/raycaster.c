@@ -47,21 +47,26 @@ void	dda_time(t_ray *rc)
 	}
 }
 
+//This function starts by projecting ceiling and floor all over
+// Then, while loop goes thrugh every 'i' is a slice in the screen
+// We calculateray position and direction and determines which
+//axis is first hit and we calculate the distance to a wall (collision)
+// We calculate size of line to be drawn and draw it on scree.
 void	raycaster(t_game *g)
 {
 	int	i;
 
 	i = -1;
-	floor_n_ceiling(g); //starts by projection ceiling and floor all over
-	while (++i < WIDTH) // every 'i' is a slice in the screen
+	floor_n_ceiling(g);
+	while (++i < WIDTH)
 	{
 		g->rc->hit = 0;
-		set_ray_posdir(g, i); // calculates the ray position and direction on that 'i'
+		set_ray_posdir(g, i);
 		set_step(g->rc);
-		dda_time(g->rc); // calculates the distance to a wall (where collision happens) and identify which way the wall is facing
-		set_line_len(g); // calculates the size of the line to be drawn
+		dda_time(g->rc);
+		set_line_len(g);
 		//texture_calculation(g);
-		bob_ross_line(g, i, g->rc->side); // draws each vertical slice
+		bob_ross_line(g, i, g->rc->side);
 	}
 }
 
