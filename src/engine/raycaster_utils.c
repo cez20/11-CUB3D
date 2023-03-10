@@ -74,18 +74,18 @@ void	set_step(t_ray *rc)
 
 void	set_line_len(t_game *g)
 {
-	int		line_height;
+	//int		line_height;
 	//double	intersect_dist; // distance to the wall
 
 	if (g->rc->side == 0)
 		g->rc->intersect_dist = g->rc->side_dis_x - g->rc->delta_dis_x;
 	else
 		g->rc->intersect_dist = g->rc->side_dis_y - g->rc->delta_dis_y;
-	line_height = HEIGHT / g->rc->intersect_dist;
-	g->rc->draw_start = (-line_height / 2) + (HEIGHT / 2);
+	g->rc->line_height = HEIGHT / g->rc->intersect_dist;
+	g->rc->draw_start = (-g->rc->line_height / 2) + (HEIGHT / 2);
 	if (g->rc->draw_start < 0)
 		g->rc->draw_start = 0;
-	g->rc->draw_end = (line_height / 2) + (HEIGHT / 2);
+	g->rc->draw_end = (g->rc->line_height / 2) + (HEIGHT / 2);
 	if (g->rc->draw_end >= HEIGHT)
 		g->rc->draw_end = HEIGHT - 1;
 }

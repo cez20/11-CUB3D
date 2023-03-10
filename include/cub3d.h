@@ -140,7 +140,7 @@ typedef struct s_ray
 //*** DRAW_GAME.C ***
 void		floor_n_ceiling(t_game *g);
 //void		bob_ross_line(t_game *g, int i, int side);
-void		bob_ross_line2(t_game *g, int i, int side);
+void		bob_ross_line2(t_game *g, xpm_t *tex, int **tab, int i);
 
 //*** DRAW_MINIMAP.C ***
 void		draw_background(t_game *g);
