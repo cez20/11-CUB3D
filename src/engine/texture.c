@@ -7,7 +7,7 @@ void	texture_calculation(t_game *g)
 
 	// tex_num : get number associate with texture (Here always 1)
 	// tex_width : get the exact texture width of the selected texture (here g->rc->no)
-	g->tex->texture_num = g->rc->map[g->rc->map_y][g->rc->map_x];
+	g->tex->texture_num = g->rc->map[g->rc->map_y][g->rc->map_x] - 1;
 	tex_width = (double)g->tex->no->texture.width;
 
 	//wall_x_hit gives the exact "x" which is in reality the "y" coordinate of the wall texture that we have to use 
