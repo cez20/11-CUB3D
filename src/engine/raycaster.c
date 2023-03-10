@@ -60,7 +60,7 @@ void	raycaster(t_game *g)
 		set_step(g->rc);
 		dda_time(g->rc); // calculates the distance to a wall (where collision happens) and identify which way the wall is facing
 		set_line_len(g); // calculates the size of the line to be drawn
-		//texture_calculation(g);
+		// texture_calculation(g);
 		bob_ross_line(g, i, g->rc->side); // draws each vertical slice
 	}
 }

@@ -22,7 +22,7 @@ int	**create_2D_array_textures(xpm_t *image)
 					image->texture.pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 0], 
 					image->texture.pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 1],
 					image->texture.pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 2], 
-					image->texture.pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 3]);
+					image->texture .pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 3]);
 		}
 	}
 	return (tab);
@@ -46,5 +46,4 @@ void 	load_xpm42_textures(t_game *g)
 	g->tex->s = create_2D_array_textures(g->tex->so);
 	g->tex->e = create_2D_array_textures(g->tex->ea);
 	g->tex->w = create_2D_array_textures(g->tex->we);
-
 }
