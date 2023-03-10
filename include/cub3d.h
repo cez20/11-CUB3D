@@ -139,8 +139,7 @@ typedef struct s_ray
 //********************************************************
 //*** DRAW_GAME.C ***
 void		floor_n_ceiling(t_game *g);
-//void		bob_ross_line(t_game *g, int i, int side);
-void		bob_ross_line2(t_game *g, xpm_t *tex, int **tab, int i);
+void		draw_texture_line(t_game *g, xpm_t *tex, int **tab, int i);
 
 //*** DRAW_MINIMAP.C ***
 void		draw_background(t_game *g);
@@ -167,7 +166,7 @@ void		raycaster(t_game *g);
 //*** TEXTURE.C ***
 void		texture_calculation(t_game *g);
 int			**create_2D_array_textures(xpm_t *image);
-void 		load_xpm42_textures(t_game *g);
+void 		load_textures(t_game *g);
 
 //*** UTILS.C ***
 int			init_mlx_variables(t_game *g);

@@ -35,7 +35,7 @@ void	floor_n_ceiling(t_game *g)
 // 		mlx_put_pixel(g->game, i, line, color);
 // }
 
-void	bob_ross_line2(t_game *g, xpm_t *tex, int **tab, int i)
+void	draw_texture_line(t_game *g, xpm_t *tex, int **tab, int i)
 {
 	double step;
 	double tex_pos;

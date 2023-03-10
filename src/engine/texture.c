@@ -41,8 +41,8 @@ int	**create_2D_array_textures(xpm_t *image)
 	while (++i < (int)image->texture.height + 4)
 	{	
 		j = 3;
-		tab[i - 4] =  ft_calloc(sizeof(int), image->texture.width + 4); // je crois qu,on pourrait enlever le + 4
-		while (++j < (int) image->texture.width)
+		tab[i - 4] =  ft_calloc(sizeof(int), image->texture.width); // je crois qu,on pourrait enlever le + 4
+		while (++j < (int) image->texture.width + 4)
 		{
 			tab[i - 4][j - 4] = get_color(
 					image->texture.pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 0], 
@@ -54,7 +54,7 @@ int	**create_2D_array_textures(xpm_t *image)
 	return (tab);
 }
 
-void 	load_xpm42_textures(t_game *g)
+void 	load_textures(t_game *g)
 {
 	g->tex->no = mlx_load_xpm42("./img/north.xpm42");
 	if (!g->tex->no)
