@@ -46,7 +46,8 @@ void	raycaster(t_game *g)
 		dda_time(g->rc);
 		set_line_len(g);
 		texture_calculation(g);
-		bob_ross_line(g, i, g->rc->side);
+		//bob_ross_line(g, i, g->rc->side);
+		bob_ross_line2(g, i, g->rc->side);
 	}
 }
 

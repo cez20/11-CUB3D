@@ -21,16 +21,33 @@ void	floor_n_ceiling(t_game *g)
 	}
 }
 
-void	bob_ross_line(t_game *g, int i, int side)
+// void	bob_ross_line(t_game *g, int i, int side)
+// {
+// 	int	color;
+// 	int	line;
+
+// 	line = g->rc->draw_start - 1;
+// 	if (side == 0)
+// 		color = get_color(255, 0, 0, 255);
+// 	else
+// 		color = get_color(255, 255, 0, 255);
+// 	while (++line <= g->rc->draw_end)
+// 		mlx_put_pixel(g->game, i, line, color);
+// }
+
+void	bob_ross_line2(t_game *g, int i, int side)
 {
 	int	color;
 	int	line;
+	(void)side;
+	(void)color;
 
 	line = g->rc->draw_start - 1;
-	if (side == 0)
-		color = get_color(255, 0, 0, 255);
-	else
-		color = get_color(255, 255, 0, 255);
+	g->tex->texture_y = 0;
+	//if (side == 0)
+		//color = get_color(255, 0, 0, 255);
+	//else
+		//color = get_color(255, 255, 0, 255);
 	while (++line <= g->rc->draw_end)
-		mlx_put_pixel(g->game, i, line, color);
+		mlx_put_pixel(g->game, i, line, g->tex->n[g->tex->texture_x][g->tex->texture_y]);
 }
