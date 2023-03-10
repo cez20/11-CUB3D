@@ -95,6 +95,9 @@ typedef struct s_tex
 	xpm_t			*we;
 	int				ceiling[3];
 	int				floor[3];
+	int				texture_x;
+	int				texture_y;
+	int				texture_num;
 }				t_tex;
 
 typedef struct s_ray
@@ -161,6 +164,8 @@ void		set_line_len(t_game *g);
 void		raycaster(t_game *g);
 
 //*** TEXTURE.C ***
+void		texture_calculation(t_game *g);
+int			**create_2D_array_textures(xpm_t *image);
 void 		load_xpm42_textures(t_game *g);
 
 //*** UTILS.C ***
