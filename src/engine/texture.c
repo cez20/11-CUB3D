@@ -12,7 +12,7 @@ void	texture_calculation(t_game *g)
 
 	//wall_x_hit gives the exact "x" which is in reality the "y" coordinate of the wall texture that we have to use 
 	//We round up the value to lower value to 
-    if (g->rc->side == 0)
+    if (g->rc->side == EAST || g->rc->side == WEST)
 		wall_x_hit = g->rc->pos_y + g->rc->intersect_dist * g->rc->ray_dir_y; 
 	else       
 		wall_x_hit = g->rc->pos_x + g->rc->intersect_dist * g->rc->ray_dir_x;
@@ -21,40 +21,16 @@ void	texture_calculation(t_game *g)
 	//texture gives the exact "x" coordinate on the texture we have to use  
 	g->tex->texture_x = (int)(wall_x_hit * tex_width);
 
-	if(g->rc->side == 0 && g->rc->ray_dir_x > 0)
+	if((g->rc->side == EAST || g->rc->side == WEST) && g->rc->ray_dir_x > 0)
 		g->tex->texture_x = tex_width - g->tex->texture_x - 1;
-	if(g->rc->side == 1 && g->rc->ray_dir_y < 0)
+	if((g->rc->side == SOUTH || g->rc->side == NORTH) && g->rc->ray_dir_y < 0)
 		g->tex->texture_x = tex_width - g->tex->texture_x - 1;
 }
 
-//This function createa a 2D array for textures based on width and height (64 X 64)
-//This functions calls the fonction get_color and transform the RGBA value into an int.
-// pixel[0] = R value, pixel[1] = G value, pixel[2] = 'B' value  pixel[3] = A value 
-// int	**create_2D_array_textures(xpm_t *image)
-// {
-// 	int **tab;
-// 	int i;
-// 	int j;
-
-// 	tab = ft_calloc(sizeof(int *), image->texture.height); // Maybe we should put height + 1 but not necessary 
-// 	i = 3;
-// 	while (++i < (int)image->texture.height + 4)
-// 	{	
-// 		j = 3;
-// 		tab[i - 4] =  ft_calloc(sizeof(int), image->texture.width); // je crois qu,on pourrait enlever le + 4
-// 		while (++j < (int) image->texture.width + 4)
-// 		{
-// 			tab[i - 4][j - 4] = get_color(
-// 					image->texture.pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 0], 
-// 					image->texture.pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 1],
-// 					image->texture.pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 2], 
-// 					image->texture.pixels[(image->texture.width * 4 * (i - 4)) + (4 * (j - 4)) + 3]);
-// 		}
-// 	}
-// 	return (tab);
-// }
-
-int	**create_2D_array_textures(xpm_t *image)
+//This function convert the texture into an 2D array of int
+//Each set of 4 pixels of the textures represents a RGBA color
+// First = R , Second = G, Third = G, Fourth = A
+int	**convert_texture_to_color_array(xpm_t *image)
 {
 	int **tab;
 	int	count;
@@ -82,23 +58,25 @@ int	**create_2D_array_textures(xpm_t *image)
 }
 
 
-void 	load_textures(t_game *g)
+//This function first load a texture image into a xpm42 format
+//Then it converts the xpm42 texture image into a 2D array of int
+// that each represent a color of the texture
+void 	load_and_convert_textures(t_game *g)
 {
 	g->tex->no = mlx_load_xpm42(g->tex->north);
 	if (!g->tex->no)
-		errmsg("Problem with loading xmp42 images", 1, g); // Je dois aussi free tout ce qui concerne mlx
+		errmsg(ERR_XPM42, 1, g); // Je dois aussi free tout ce qui concerne mlx
 	g->tex->so = mlx_load_xpm42(g->tex->south);
 	if (!g->tex->so)
-		errmsg("Problem with loading xmp42 images", 1, g); // Je dois aussi free tout ce qui concerne mlx
+		errmsg(ERR_XPM42, 1, g); // Je dois aussi free tout ce qui concerne mlx
 	g->tex->we = mlx_load_xpm42(g->tex->west);
 	if (!g->tex->we)
-		errmsg("Problem with loading xmp42 images", 1, g); // Je dois aussi free tout ce qui concerne mlx
+		errmsg(ERR_XPM42, 1, g); // Je dois aussi free tout ce qui concerne mlx
 	g->tex->ea = mlx_load_xpm42(g->tex->east);
 	if (!g->tex->ea)
-		errmsg("Problem with loading xmp42 images", 1, g); // Je dois aussi free tout ce qui concerne mlx
-	g->tex->n = create_2D_array_textures(g->tex->no);
-	g->tex->s = create_2D_array_textures(g->tex->so);
-	g->tex->e = create_2D_array_textures(g->tex->ea);
-	g->tex->w = create_2D_array_textures(g->tex->we);
-
+		errmsg(ERR_XPM42, 1, g); // Je dois aussi free tout ce qui concerne mlx
+	g->tex->n = convert_texture_to_color_array(g->tex->no);
+	g->tex->s = convert_texture_to_color_array(g->tex->so);
+	g->tex->e = convert_texture_to_color_array(g->tex->ea);
+	g->tex->w = convert_texture_to_color_array(g->tex->we);
 }

@@ -37,10 +37,15 @@ You should.\n"
  Valid characters: N, S, E, W, 0 and 1.\n"
 # define ERR_INTEGRITY "Error: Map must be surrounded by walls and have no uncontained\
  spaces inside its limits.\n"
+# define ERR_XPM42 "Error: Problem while loading xpm42 image\n"
 
 # define WIDTH 960
 # define HEIGHT 600 //480 before
 # define BPP sizeof(int32_t)
+# define EAST 0
+# define WEST 1
+# define SOUTH 2
+# define NORTH 3
 
 # define WHITESPACE " \n\t\v\r\f"
 
@@ -165,8 +170,8 @@ void		raycaster(t_game *g);
 
 //*** TEXTURE.C ***
 void		texture_calculation(t_game *g);
-int			**create_2D_array_textures(xpm_t *image);
-void 		load_textures(t_game *g);
+int			**convert_texture_to_color_array(xpm_t *image);
+void		load_and_convert_textures(t_game *g);
 
 //*** UTILS.C ***
 int			init_mlx_variables(t_game *g);
