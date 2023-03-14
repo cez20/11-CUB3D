@@ -105,6 +105,7 @@ void	raycaster(t_game *g)
 		else
 			draw_texture_line(g, g->tex->no, g->tex->n, i);
 	}
+	mlx_image_to_window(g->mlx, g->game, 0, 0);
 }
 
 //DEBUG PRINT

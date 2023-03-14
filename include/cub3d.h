@@ -253,6 +253,5 @@ void		mlx_end(t_game *g);
 //*** PRINT_UTILS.C ***
 void		print_variables(t_game *game);
 void		print_game(char **map);
-void		print_ddavariables (t_game *game);
 
 #endif

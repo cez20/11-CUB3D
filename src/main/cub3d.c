@@ -1,19 +1,10 @@
 #include "../include/cub3d.h"
 
-void	print_ddavariables(t_game *game)
-{
-	printf("posX   [ %f ]\t\tposY   [ %f ]\n", game->rc->pos_x, game->rc->pos_y);
-	printf("dirX   [ %f ]\t\tdirY   [ %f ]\n", game->rc->dir_x, game->rc->dir_y);
-	printf("planeX [ %f ]\t\tplaneY [ %f ]\n\n", \
-		game->rc->plane_x, game->rc->plane_y);
-}
-
 void	keybinding(mlx_key_data_t input, void *tmp)
 {
 	t_game	*g;
 
 	g = tmp;
-	//print_ddavariables(g);
 	if (input.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(g->mlx);
@@ -33,7 +24,7 @@ void	keybinding(mlx_key_data_t input, void *tmp)
 		backward(g->rc);
 	g->player_x = g->rc->pos_x;
 	g->player_y = g->rc->pos_y;
-	rendering(g);
+	raycaster(g);
 }
 
 void	rendering(void *tmp)
@@ -52,8 +43,10 @@ int	cub3d(t_game *g)
 		errmsg("Error: MLX failed.\n", 1, g);
 	init_dda_variables(g);
 	load_and_convert_textures(g);
-	rendering(g);
-	mlx_loop_hook(g->mlx, &rendering, g);
+	raycaster(g);
+	// mlx_image_to_window(g->mlx, g->game, 0, 0);
+	mlx_key_hook(g->mlx, &keybinding, g);
+//	mlx_loop_hook(g->mlx, &rendering, g);
 //	mlx_cursor_hook(); // optional (bonus)
 	mlx_loop(g->mlx);
 	return (0);
