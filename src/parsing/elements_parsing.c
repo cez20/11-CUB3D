@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:38:36 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/14 15:38:37 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:58:39 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	check_direction(t_game *game, char *str, char **texture_path)
 	{
 		tab = ft_split(str, ' ');
 		if (nb_of_strings(tab) != 2)
-			errmsg(ERR_TOOMUCH_TEXT, 1, game);
+			errmsg(ERR_WRONG_ELEMENT, 1, game);
 		*texture_path = create_texture_path(game, tab[1]);
 		free_double_pointer(tab);
 	}

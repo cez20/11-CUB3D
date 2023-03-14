@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:38:17 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/14 15:38:18 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:26:11 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ void	raycaster(t_game *g)
 	int	i;
 
 	i = -1;
+	g->player_x = g->rc->pos_x;
+	g->player_y = g->rc->pos_y;
 	floor_n_ceiling(g);
 	while (++i < WIDTH)
 	{
@@ -128,13 +130,13 @@ void	raycaster(t_game *g)
 		set_line_len(g);
 		texture_calculation(g);
 		if (g->rc->side == EAST)
-			draw_texture_line(g, g->tex->ea, g->tex->e, i);
+			draw_texture_ew(g, g->tex->ea, g->tex->e, i);
 		else if (g->rc->side == WEST)
-			draw_texture_line(g, g->tex->we, g->tex->w, i);
+			draw_texture_ew(g, g->tex->we, g->tex->w, i);
 		else if (g->rc->side == SOUTH)
-			draw_texture_line(g, g->tex->so, g->tex->s, i);
+			draw_texture_ns(g, g->tex->so, g->tex->s, i);
 		else
-			draw_texture_line(g, g->tex->no, g->tex->n, i);
+			draw_texture_ns(g, g->tex->no, g->tex->n, i);
 	}
 	mlx_image_to_window(g->mlx, g->game, 0, 0);
 }

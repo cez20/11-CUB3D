@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:37:31 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/14 15:37:32 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:26:56 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@
 # define ERR_DIR "Error: Do you know the difference between a file and a directory? \
 You should.\n"
 # define ERR_EMPTY_MAP "Error: Map is empty!\n"
-# define ERR_WRONG_ELEMENT "Error: Invalid game element is present. \
- Valid elements: NO, SO, WE, EA, F and C.\n"
+# define ERR_WRONG_ELEMENT "Error: Invalid game element is present. Valid \
+elements: NO, SO, WE, EA, F and C. One of each, followed by its details. \n"
 # define ERR_MISSING_ELEMENT "Error: One (or more) mandatory element is missing.\
  Check if NO, SO, WE, EA, F and C are all present!\n"
 # define ERR_EXTRA_ELEMENT "Error: One (or more) argument in the map details is duplicated.\
  Check texture's paths and floor/ceiling colors.\n"
-# define ERR_TOOMUCH_TEXT "Error: There is extra text after texture path!\n"
-# define ERR_TEXTURE_PATH "Error: There is an error in texture path.\n"
+# define ERR_TEXTURE_PATH "Error: There is an error in a texture's path.\n"
 # define ERR_PLAYER "Error: NO player found or TOO MANY players.\
  Must have only ONE player.\n"
 # define ERR_RGB "Error: Invalid RGB value. You must have only three integers\
@@ -48,7 +47,7 @@ You should.\n"
  Valid characters: N, S, E, W, 0 and 1.\n"
 # define ERR_INTEGRITY "Error: Map must be surrounded by walls and have no uncontained\
  spaces inside its limits.\n"
-# define ERR_XPM42 "Error: Problem while loading xpm42 image.\n"
+# define ERR_XPM42 "Error: Problem while loading xpm42 file.\n"
 
 # define WIDTH 960
 # define HEIGHT 600
@@ -138,7 +137,8 @@ typedef struct s_ray
 //********************************************************
 //*** DRAW_GAME.C ***
 void		floor_n_ceiling(t_game *g);
-void		draw_texture_line(t_game *g, xpm_t *tex, int **tab, int i);
+void		draw_texture_ns(t_game *g, xpm_t *tex, int **tab, int i);
+void		draw_texture_ew(t_game *g, xpm_t *tex, int **tab, int i);
 
 //*** MOVE.C ***
 void		look_right(t_ray *rc);

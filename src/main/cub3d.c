@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:38:29 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/14 15:38:30 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:11:11 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,25 @@ void	keybinding(mlx_key_data_t input, void *tmp)
 
 	g = tmp;
 	if (input.key == MLX_KEY_ESCAPE)
-	{
 		mlx_close_window(g->mlx);
-		return ;
-	}
-	if (input.key == MLX_KEY_RIGHT)
+	if (input.key == MLX_KEY_RIGHT && (input.action == MLX_PRESS
+			|| input.action == MLX_REPEAT))
 		look_right(g->rc);
-	if (input.key == MLX_KEY_LEFT)
+	if (input.key == MLX_KEY_LEFT && (input.action == MLX_PRESS
+			|| input.action == MLX_REPEAT))
 		look_left(g->rc);
-	if (input.key == MLX_KEY_A)
+	if (input.key == MLX_KEY_A && (input.action == MLX_PRESS
+			|| input.action == MLX_REPEAT))
 		strafe(g->rc, 'L');
-	if (input.key == MLX_KEY_D)
+	if (input.key == MLX_KEY_D && (input.action == MLX_PRESS
+			|| input.action == MLX_REPEAT))
 		strafe(g->rc, 'R');
-	if (input.key == MLX_KEY_W)
+	if (input.key == MLX_KEY_W && (input.action == MLX_PRESS
+			|| input.action == MLX_REPEAT))
 		forward(g->rc);
-	if (input.key == MLX_KEY_S)
+	if (input.key == MLX_KEY_S && (input.action == MLX_PRESS
+			|| input.action == MLX_REPEAT))
 		backward(g->rc);
-	g->player_x = g->rc->pos_x;
-	g->player_y = g->rc->pos_y;
 	raycaster(g);
 }
 
