@@ -27,17 +27,17 @@ UTILS_DIR			=	$(SRC_DIR)utils/
 OBJ_DIR		=	obj/
 
 #----------FILES----------#
-
-MAIN_F	=			\
-main.c				\
-cub3d.c				\
-
 ENGINE_F	=		\
 draw_game.c			\
 move.c				\
 raycaster.c			\
 texture.c 			\
 utils.c				\
+
+MAIN_F	=			\
+cub3d.c				\
+main.c				\
+
 
 PARSING_F =			\
 elements_parsing.c	\

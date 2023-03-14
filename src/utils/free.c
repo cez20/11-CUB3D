@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 15:39:01 by anarodri          #+#    #+#             */
+/*   Updated: 2023/03/14 15:39:02 by anarodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 static void	free_tex(t_tex *tex)
@@ -22,7 +34,7 @@ static void	free_tex(t_tex *tex)
 	xfree(tex->e);
 }
 
-void	mlx_end(t_game *g)
+static void	mlx_end(t_game *g)
 {
 	if (g->game)
 		mlx_delete_image(g->mlx, g->game);
@@ -64,4 +76,9 @@ void	free_double_pointer(char **str)
 	while (str[i])
 		xfree(str[i++]);
 	xfree(str);
+}
+
+void	close_fds(t_game *game)
+{
+	close(game->fd);
 }

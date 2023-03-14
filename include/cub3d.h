@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 15:37:31 by anarodri          #+#    #+#             */
+/*   Updated: 2023/03/14 15:37:32 by anarodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -11,7 +23,6 @@
 # include "./libft/libft.h"
 # include "./libft/GNL/get_next_line.h"
 # include "./MLX42/include/MLX42/MLX42.h"
-//# include "./mlx_linux/mlx.h"
 # include "../include/libft/libft.h"
 
 # define ERR_ARGS "Error: There is NO arguments or more than 1 argument!\n"
@@ -37,28 +48,14 @@ You should.\n"
  Valid characters: N, S, E, W, 0 and 1.\n"
 # define ERR_INTEGRITY "Error: Map must be surrounded by walls and have no uncontained\
  spaces inside its limits.\n"
-# define ERR_XPM42 "Error: Problem while loading xpm42 image\n"
+# define ERR_XPM42 "Error: Problem while loading xpm42 image.\n"
 
 # define WIDTH 960
-# define HEIGHT 600 //480 before
-# define BPP sizeof(int32_t)
+# define HEIGHT 600
 # define EAST 0
 # define WEST 1
 # define SOUTH 2
 # define NORTH 3
-
-# define WHITESPACE " \n\t\v\r\f"
-
-// typedef struct s_img
-// {
-// 	void	*img;
-// 	char	*addr;
-// 	int		bpp;
-// 	int		line_length;
-// 	int		endian;
-// 	int		width;
-// 	int		height;
-// }			t_img;
 
 typedef struct s_tex	t_tex;
 typedef struct s_ray	t_ray;
@@ -78,11 +75,10 @@ typedef struct s_game
 	char			**map_copy;
 	char			**elements_copy;	
 	mlx_t			*mlx;
-	mlx_image_t		*game; // game screen
-	mlx_image_t		*minimap; // DELETE MINIMAP FEATURES?
-	t_tex			*tex; // texture's data
-	t_ray			*rc; // raycaster's data
-}				t_game;
+	mlx_image_t		*game;
+	t_tex			*tex;
+	t_ray			*rc;
+}					t_game;
 
 typedef struct s_tex
 {
@@ -103,40 +99,39 @@ typedef struct s_tex
 	int				texture_x;
 	int				texture_y;
 	int				texture_num;
-}				t_tex;
+}					t_tex;
 
 typedef struct s_ray
 {
-	int				hit; // signals when collision happens
-	int				side; // which side (NO, SO, EA, WE) are the ray hitting
-	int				line_height; // data for vertical slices projection (deprecated?)
-	int				draw_start; // data for vertical slices projection
-	int				draw_end; // data for vertical slices projection
-	char			**map; 
-	int				map_x; //the current square of the map the ray is in
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	char			**map;
+	int				map_x;
 	int				map_y;
-	int				step_x; // what direction to step in each direction
+	int				step_x;
 	int				step_y;
-	double			pos_x; // player's position vector
+	double			pos_x;
 	double			pos_y;
-	double			dir_x; // player's direction vector
+	double			dir_x;
 	double			dir_y;
-	double			plane_x; // player's camera plane
+	double			plane_x;
 	double			plane_y;
-	double			ray_dir_x; // ray's direction vector
+	double			ray_dir_x;
 	double			ray_dir_y;
-	double			delta_dis_x; // distance the ray has to travel to go from one side to the next
+	double			delta_dis_x;
 	double			delta_dis_y;
-	double			side_dis_x; // distance the ray has to travel from its start position
+	double			side_dis_x;
 	double			side_dis_y;
-	double			camera_x; // x-coordinate in camera space
-	double			angle; // deprecated
-	double			move_speed; // movement modifier
-	double			rot_speed; // rotation modifier
+	double			camera_x;
+	double			move_speed;
+	double			rot_speed;
 	double			intersect_dist;
-	uint32_t		ceiling; // converted colors ready to be used with mlx
+	uint32_t		ceiling;
 	uint32_t		floor;
-}				t_ray;
+}					t_ray;
 
 //********************************************************
 //* 				ENGINE FOLDER 						 *
@@ -158,7 +153,6 @@ void		raycaster(t_game *g);
 //*** TEXTURE.C ***
 void		texture_calculation(t_game *g);
 void		load_and_convert_textures(t_game *g);
-u_int32_t	get_color(int r, int g, int b, int a);
 
 //*** UTILS.C ***
 int			init_mlx_variables(t_game *g);
@@ -170,12 +164,10 @@ void		init_dda_variables(t_game *g);
 
 //*** CUB3D.C ***
 int			cub3d(t_game *g);
-void		rendering(void *tmp);
 void		keybinding(mlx_key_data_t input, void *tmp);
 
 //*** MAIN.C ***
 void		init_variables(t_game *game);
-void		close_fds(t_game *game);
 int			main(int argc, char **argv);
 
 //********************************************************
@@ -189,13 +181,13 @@ void		check_direction(t_game *game, char *str, char **texture_path);
 void		verify_elements(t_game *game);
 
 //*** ELEMENTS_UTILS.C ***
+u_int32_t	get_color(int r, int g, int b, int a);
 int			is_floor_or_ceiling(char *str);
 int			nb_of_strings(char **str);
 int			ft_is_whitespace(char c);
 
 //*** GAME_PARSING.C ***
 void		game_parsing(t_game *game);
-void		game_valid_extension(t_game *game, char *str);
 void		game_validation(t_game *game, int argc, char *argv);
 
 //*** GAME_SECTIONS_COPY.C ***
@@ -227,15 +219,12 @@ void		skip_whitespaces(char **str);
 //********************************************************
 
 //*** ERROR.C ***
-void		error(char *str);
 void		errmsg(char *msg, int tofree, t_game *game);
 
 //*** FREE.C ***
 void		free_game(t_game *game);
 void		free_double_pointer(char **str);
-void		mlx_end(t_game *g);
-
-//*** GRAPH_UTILS.C ***
+void		close_fds(t_game *game);
 
 //*** PRINT_UTILS.C ***
 void		print_variables(t_game *game);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 15:38:22 by anarodri          #+#    #+#             */
+/*   Updated: 2023/03/14 15:38:23 by anarodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 //This function convert the texture into an 2D array of int
@@ -70,9 +82,4 @@ void	load_and_convert_textures(t_game *g)
 	g->tex->s = convert_texture_to_color_array(g->tex->so);
 	g->tex->e = convert_texture_to_color_array(g->tex->ea);
 	g->tex->w = convert_texture_to_color_array(g->tex->we);
-}
-
-u_int32_t	get_color(int r, int g, int b, int a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
 }

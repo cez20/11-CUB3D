@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 15:38:32 by anarodri          #+#    #+#             */
+/*   Updated: 2023/03/14 15:38:33 by anarodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 void	init_variables(t_game *game)
@@ -24,11 +36,6 @@ void	init_variables(t_game *game)
 	game->tex->ceiling[0] = -1;
 }
 
-void	close_fds(t_game *game)
-{
-	close(game->fd);
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -37,8 +44,7 @@ int	main(int argc, char **argv)
 	game_validation(&game, argc, argv[1]);
 	game_sections_copy(&game, argv[1]);
 	game_parsing(&game);
-	if (cub3d(&game) == -1)
-		errmsg("Error: Execution error!\n", 1, &game);
+	cub3d(&game);
 	close_fds(&game);
 	free_game(&game);
 	return (0);

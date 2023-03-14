@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_parsing.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 15:38:41 by anarodri          #+#    #+#             */
+/*   Updated: 2023/03/14 15:38:42 by anarodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 void	game_parsing(t_game *game)
@@ -8,7 +20,7 @@ void	game_parsing(t_game *game)
 	replace_map_spaces(game);
 }
 
-void	game_valid_extension(t_game *game, char *str)
+static void	game_valid_extension(t_game *game, char *str)
 {
 	str = ft_strrchr(str, '.');
 	if (str == NULL || ft_strncmp(str, ".cub", 5) != 0)

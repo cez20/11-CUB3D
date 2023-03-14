@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 15:38:52 by anarodri          #+#    #+#             */
+/*   Updated: 2023/03/14 15:38:53 by anarodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
-static int	is_out(int x, int y, t_game *game)
+/* static int	is_out(int x, int y, t_game *game)
 {
 	if ((x - 1 < 0)
 		|| (y - 1 < 0)
@@ -29,7 +41,7 @@ void	flood_fill(int x, int y, t_game *game)
 	flood_fill(x - 1, y + 1, game);
 	flood_fill(x + 1, y - 1, game);
 	flood_fill(x - 1, y - 1, game);
-}
+} */
 
 //This function indicates if character send as an arguments
 // is either a N, S, E or W 

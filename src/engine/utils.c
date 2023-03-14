@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 15:38:26 by anarodri          #+#    #+#             */
+/*   Updated: 2023/03/14 15:38:27 by anarodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 static void	set_direction(char direction, t_ray *rc)
@@ -6,25 +18,21 @@ static void	set_direction(char direction, t_ray *rc)
 	{
 		rc->dir_x = 0;
 		rc->dir_y = -1;
-		rc->angle = (3 * M_PI) / 2;
 	}
 	if (direction == 'S')
 	{
 		rc->dir_x = 0;
 		rc->dir_y = 1;
-		rc->angle = M_PI / 2;
 	}
 	if (direction == 'E')
 	{
 		rc->dir_x = -1;
 		rc->dir_y = 0;
-		rc->angle = 2 * M_PI;
 	}
 	if (direction == 'W')
 	{
 		rc->dir_x = 1;
 		rc->dir_y = 0;
-		rc->angle = M_PI;
 	}
 }
 
