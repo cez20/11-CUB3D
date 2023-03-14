@@ -8,10 +8,3 @@ void	errmsg(char *msg, int tofree, t_game *game)
 	close(game->fd);
 	exit(EXIT_FAILURE);
 }
-
-// void	error(char *str)
-// {
-// 	write(2, "Error\n", 6);
-// 	write(2, str, ft_strlen(str));
-// 	exit(EXIT_FAILURE);
-// }
