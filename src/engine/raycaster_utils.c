@@ -21,6 +21,7 @@ void	set_ray_posdir(t_game *g, double i)
 		g->rc->delta_dis_y = 1e30;
 	else
 		g->rc->delta_dis_y = fabs(1 / g->rc->ray_dir_y);
+	//printf("\t[%d]\tcameraX = %f / raydirX = %f / raydirY = %f / deltadistX = %f / deltadisY = %f / sidedisX = %f / sidedisY = %f\n", (int)i, g->rc->camera_x, g->rc->ray_dir_x, g->rc->ray_dir_y, g->rc->delta_dis_x, g->rc->delta_dis_y, g->rc->side_dis_x, g->rc->side_dis_y);
 }
 
 /* "The DDA algorithm will always jump exactly one square each loop,
@@ -74,7 +75,7 @@ void	set_step(t_ray *rc)
 
 void	set_line_len(t_game *g)
 {
-	if (g->rc->side == 0)
+	if (g->rc->side == 0 || g->rc->side == 1)
 		g->rc->intersect_dist = g->rc->side_dis_x - g->rc->delta_dis_x;
 	else
 		g->rc->intersect_dist = g->rc->side_dis_y - g->rc->delta_dis_y;
@@ -86,3 +87,19 @@ void	set_line_len(t_game *g)
 	if (g->rc->draw_end >= HEIGHT)
 		g->rc->draw_end = HEIGHT;
 }
+
+
+// void	set_line_len(t_game *g)
+// {
+// 	if (g->rc->side == 0)
+// 		g->rc->intersect_dist = g->rc->side_dis_x - g->rc->delta_dis_x;
+// 	else
+// 		g->rc->intersect_dist = g->rc->side_dis_y - g->rc->delta_dis_y;
+// 	g->rc->line_height = HEIGHT / g->rc->intersect_dist;
+// 	g->rc->draw_start = (-g->rc->line_height / 2) + (HEIGHT / 2);
+// 	if (g->rc->draw_start < 0)
+// 		g->rc->draw_start = 0;
+// 	g->rc->draw_end = (g->rc->line_height / 2) + (HEIGHT / 2);
+// 	if (g->rc->draw_end >= HEIGHT)
+// 		g->rc->draw_end = HEIGHT - 1;
+// }
