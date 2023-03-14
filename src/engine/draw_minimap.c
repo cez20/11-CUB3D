@@ -38,36 +38,6 @@ void	draw_background(t_game *g)
 // 		len--;
 // 	}
 // }
-// This function draws a red square to represent the player. Given
-// that X and Y represent here the position at the top left corner
-// I advanced bpth the x and y of 25 to get close to the middle of
-// each box.  
-// void	draw_player(t_game *g,  int x, int y, uint32_t color)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	mod_x;
-// 	int	mod_y;
-
-// 	i = 25;
-// 	j = 25;
-// 	mod_x = x + 25;
-// 	mod_y = y + 25;
-// 	p_ray(g, x + 32, y + 32);
-// 	while (i < 40)
-// 	{
-// 		while (j < 40)
-// 		{
-// 			mlx_put_pixel(g->minimap, mod_x, mod_y, color);
-// 			j++;
-// 			mod_x++;
-// 		}
-// 		mod_x = x + 25;
-// 		j = 25;
-// 		mod_y++;
-// 		i++;
-// 	}
-// }
 
 // This function draws a red square to represent the player. Given
 // that X and Y represent here the position at the top left corner
@@ -84,7 +54,6 @@ void	draw_player(t_game *g, int x, int y, uint32_t color)
 	y_offset = 1;
 	scaled_x = x;
 	scaled_y = y;
-	//p_ray(g, x + 32, y + 32);
 	while (y_offset < 10)
 	{
 		x_offset = 1;

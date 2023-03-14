@@ -37,10 +37,15 @@ You should.\n"
  Valid characters: N, S, E, W, 0 and 1.\n"
 # define ERR_INTEGRITY "Error: Map must be surrounded by walls and have no uncontained\
  spaces inside its limits.\n"
+# define ERR_XPM42 "Error: Problem while loading xpm42 image\n"
 
 # define WIDTH 960
 # define HEIGHT 600 //480 before
 # define BPP sizeof(int32_t)
+# define EAST 0
+# define WEST 1
+# define SOUTH 2
+# define NORTH 3
 
 # define WHITESPACE " \n\t\v\r\f"
 
@@ -95,6 +100,9 @@ typedef struct s_tex
 	xpm_t			*we;
 	int				ceiling[3];
 	int				floor[3];
+	int				texture_x;
+	int				texture_y;
+	int				texture_num;
 }				t_tex;
 
 typedef struct s_ray
@@ -136,7 +144,7 @@ typedef struct s_ray
 //********************************************************
 //*** DRAW_GAME.C ***
 void		floor_n_ceiling(t_game *g);
-void		bob_ross_line(t_game *g, int i, int side);
+void		draw_texture_line(t_game *g, xpm_t *tex, int **tab, int i);
 
 //*** DRAW_MINIMAP.C ***
 void		draw_background(t_game *g);
@@ -161,7 +169,9 @@ void		set_line_len(t_game *g);
 void		raycaster(t_game *g);
 
 //*** TEXTURE.C ***
-void 		load_xpm42_textures(t_game *g);
+void		texture_calculation(t_game *g);
+int			**convert_texture_to_color_array(xpm_t *image);
+void		load_and_convert_textures(t_game *g);
 
 //*** UTILS.C ***
 int			init_mlx_variables(t_game *g);
@@ -243,6 +253,5 @@ void		mlx_end(t_game *g);
 //*** PRINT_UTILS.C ***
 void		print_variables(t_game *game);
 void		print_game(char **map);
-void		print_ddavariables (t_game *game);
 
 #endif

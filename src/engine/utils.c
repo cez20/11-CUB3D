@@ -79,10 +79,8 @@ void	init_dda_variables(t_game *g)
 	g->rc->rot_speed = 0.15;
 	g->rc->floor = get_color(g->tex->floor[0], \
 		g->tex->floor[1], g->tex->floor[2], 255);
-	printf("The value of floor is %d\n", g->rc->floor);
 	g->rc->ceiling = get_color(g->tex->ceiling[0], \
 		g->tex->ceiling[1], g->tex->ceiling[2], 255);
-	printf("The value of floor is %d\n", g->rc->ceiling);
 }
 
 	//time? fps counter, etc
