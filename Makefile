@@ -34,9 +34,7 @@ cub3d.c				\
 
 ENGINE_F	=		\
 draw_game.c			\
-draw_minimap.c		\
 move.c				\
-raycaster_utils.c	\
 raycaster.c			\
 texture.c 			\
 utils.c				\

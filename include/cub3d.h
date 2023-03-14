@@ -145,13 +145,6 @@ typedef struct s_ray
 void		floor_n_ceiling(t_game *g);
 void		draw_texture_line(t_game *g, xpm_t *tex, int **tab, int i);
 
-//*** DRAW_MINIMAP.C ***
-void		draw_background(t_game *g);
-void		draw_player(t_game *g, int x, int y, uint32_t color);
-void		draw_square(t_game *g, int x, int y, uint32_t color);
-void		draw_map(t_game *g);
-u_int32_t	get_color(int r, int g, int b, int a);
-
 //*** MOVE.C ***
 void		look_right(t_ray *rc);
 void		look_left(t_ray *rc);
@@ -159,18 +152,13 @@ void		strafe(t_ray *rc, char dir);
 void		forward(t_ray *rc);
 void		backward(t_ray *rc);
 
-//*** RAYCASTER_UTILS.C ***
-void		set_ray_posdir(t_game *g, double i);
-void		set_step(t_ray *rc);
-void		set_line_len(t_game *g);
-
 //*** RAYCASTER.C ***
 void		raycaster(t_game *g);
 
 //*** TEXTURE.C ***
 void		texture_calculation(t_game *g);
-int			**convert_texture_to_color_array(xpm_t *image);
 void		load_and_convert_textures(t_game *g);
+u_int32_t	get_color(int r, int g, int b, int a);
 
 //*** UTILS.C ***
 int			init_mlx_variables(t_game *g);
