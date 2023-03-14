@@ -57,9 +57,9 @@ int	init_mlx_variables(t_game *g)
 	g->mlx = mlx_init(WIDTH, HEIGHT, "Cub3d", true);
 	if (!g->mlx)
 		return (-1);
-	g->minimap = mlx_new_image(g->mlx, g->map_width * 16, g->map_height * 16);
-	if (!g->minimap)
-		return (-1);
+	// g->minimap = mlx_new_image(g->mlx, g->map_width * 16, g->map_height * 16);
+	// if (!g->minimap)
+	// 	return (-1);
 	g->game = mlx_new_image(g->mlx, WIDTH, HEIGHT);
 	if (!g->game)
 		return (-1);
@@ -82,5 +82,3 @@ void	init_dda_variables(t_game *g)
 	g->rc->ceiling = get_color(g->tex->ceiling[0], \
 		g->tex->ceiling[1], g->tex->ceiling[2], 255);
 }
-
-	//time? fps counter, etc

@@ -1,6 +1,6 @@
 #include "../include/cub3d.h"
 
-void	check_colors(t_game *game, char *element)
+void	check_colors(t_game *game, char *element, int *area)
 {
 	int		i;
 	int		n;
@@ -12,21 +12,16 @@ void	check_colors(t_game *game, char *element)
 	rgb = ft_split(&element[2], ',');
 	while (rgb[++i])
 	{
-		if (i >= 3)
-			errmsg(ERR_RGB, 1, game);
 		n = ft_atoi(rgb[i]);
 		tmp = rgb[i];
 		skip_whitespaces(&tmp);
-		if ((n < 0 || n > 255) || !ft_strcmp(tmp, "-0"))
+		if ((n < 0 || n > 255) || !ft_strcmp(tmp, "-"))
 			errmsg(ERR_RGB, 1, game);
 		else
-		{
-			if (element[0] == 'F')
-				game->tex->floor[i] = n;
-			if (element[0] == 'C')
-				game->tex->ceiling[i] = n;
-		}
+			area[i] = n;
 	}
+	if (i != 3)
+		errmsg(ERR_RGB, 1, game);
 	free_table(rgb);
 }
 
@@ -72,8 +67,8 @@ void	verify_elements(t_game *game)
 {
 	int	i;
 
-	i = 0;
-	while (game->elements_copy[i])
+	i = -1;
+	while (game->elements_copy[++i])
 	{
 		if (ft_strncmp(game->elements_copy[i], "NO", 2) == 0)
 			check_direction(game, game->elements_copy[i], &game->tex->north);
@@ -83,12 +78,12 @@ void	verify_elements(t_game *game)
 			check_direction(game, game->elements_copy[i], &game->tex->west);
 		else if (ft_strncmp(game->elements_copy[i], "EA", 2) == 0)
 			check_direction(game, game->elements_copy[i], &game->tex->east);
-		else if (ft_strncmp(game->elements_copy[i], "F ", 2) == 0 \
-			|| ft_strncmp(game->elements_copy[i], "C ", 2) == 0)
-			check_colors(game, game->elements_copy[i]);
+		else if (ft_strncmp(game->elements_copy[i], "F ", 2) == 0)
+			check_colors(game, game->elements_copy[i], game->tex->floor);
+		else if (ft_strncmp(game->elements_copy[i], "C ", 2) == 0)
+			check_colors(game, game->elements_copy[i], game->tex->ceiling);
 		else
 			errmsg(ERR_WRONG_ELEMENT, 1, game);
-		i++;
 	}
 	if (!game->tex->north || !game->tex->south || !game->tex->east \
 	|| !game->tex->west || game->tex->floor[0] == -1 \

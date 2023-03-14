@@ -54,7 +54,7 @@ void	game_full_copy(t_game *game, char *argv)
 	{
 		map_line = get_next_line(game->fd);
 		game->game_copy[i] = ft_strtrim(map_line, "\n");
-		free(map_line);
+		xfree(map_line);
 		i++;
 	}
 }

@@ -27,16 +27,6 @@ void	keybinding(mlx_key_data_t input, void *tmp)
 	raycaster(g);
 }
 
-void	rendering(void *tmp)
-{
-	t_game	*g;
-
-	g = tmp;
-	mlx_key_hook(g->mlx, &keybinding, g);
-	raycaster(g);
-	mlx_image_to_window(g->mlx, g->game, 0, 0);
-}
-
 int	cub3d(t_game *g)
 {
 	if (init_mlx_variables(g) != 0)
@@ -44,10 +34,7 @@ int	cub3d(t_game *g)
 	init_dda_variables(g);
 	load_and_convert_textures(g);
 	raycaster(g);
-	// mlx_image_to_window(g->mlx, g->game, 0, 0);
 	mlx_key_hook(g->mlx, &keybinding, g);
-//	mlx_loop_hook(g->mlx, &rendering, g);
-//	mlx_cursor_hook(); // optional (bonus)
 	mlx_loop(g->mlx);
 	return (0);
 }

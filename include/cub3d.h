@@ -79,22 +79,22 @@ typedef struct s_game
 	char			**elements_copy;	
 	mlx_t			*mlx;
 	mlx_image_t		*game; // game screen
-	mlx_image_t		*minimap;
+	mlx_image_t		*minimap; // DELETE MINIMAP FEATURES?
 	t_tex			*tex; // texture's data
 	t_ray			*rc; // raycaster's data
 }				t_game;
 
 typedef struct s_tex
 {
-	char			*north; //
+	char			*north;
 	char			*south;
 	char			*east;
 	char			*west;
-	int**			n; // Need to be initialise 
-	int**			s; //
-	int**			e; // 
-	int**			w; //
-	xpm_t			*no; // texture's data
+	int				**n;
+	int				**s;
+	int				**e;
+	int				**w;
+	xpm_t			*no;
 	xpm_t			*so;
 	xpm_t			*ea;
 	xpm_t			*we;
@@ -134,7 +134,6 @@ typedef struct s_ray
 	double			move_speed; // movement modifier
 	double			rot_speed; // rotation modifier
 	double			intersect_dist;
-	int				old_x; // i don't remember why I created this...
 	uint32_t		ceiling; // converted colors ready to be used with mlx
 	uint32_t		floor;
 }				t_ray;
@@ -196,7 +195,7 @@ int			main(int argc, char **argv);
 //********************************************************
 
 //*** ELEMENTS_PARSING.C ***
-void		check_colors(t_game *game, char *element);
+void		check_colors(t_game *game, char *element, int *area);
 char		*create_texture_path(t_game *game, char *path);
 void		check_direction(t_game *game, char *str, char **texture_path);
 void		verify_elements(t_game *game);

@@ -1,11 +1,49 @@
 #include "../include/cub3d.h"
+static void free_tex(t_tex *tex)
+{
+	int i;
+
+	i = 0;
+	while (tex->n[i]){
+		xfree(tex->n[i]);
+		i++;
+	}
+	xfree(tex->n);
+	i = 0;
+	while (tex->s[i]){
+		xfree(tex->s[i]);
+		i++;
+	}
+	xfree(tex->s);
+	i = 0;
+	while (tex->w[i]){
+		xfree(tex->w[i]);
+		i++;
+	}
+	xfree(tex->w);
+	i = 0;
+	while (tex->e[i]){
+		xfree(tex->e[i]);
+		i++;
+	}
+	xfree(tex->e);
+}
 
 void	mlx_end(t_game *g)
 {
 	if (g->game)
 		mlx_delete_image(g->mlx, g->game);
-	if (g->minimap)
-		mlx_delete_image(g->mlx, g->minimap);
+	// if (g->minimap)
+	// 	mlx_delete_image(g->mlx, g->minimap);
+	free_tex(g->tex);
+	if (g->tex->no)
+		mlx_delete_xpm42(g->tex->no);
+	if (g->tex->so)
+		mlx_delete_xpm42(g->tex->so);
+	if (g->tex->ea)
+		mlx_delete_xpm42(g->tex->ea);
+	if (g->tex->we)
+		mlx_delete_xpm42(g->tex->we);
 	if (g->mlx)
 		mlx_terminate(g->mlx);
 }

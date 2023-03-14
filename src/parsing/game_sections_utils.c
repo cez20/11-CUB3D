@@ -48,7 +48,7 @@ void	game_length(t_game *game)
 		if (!str)
 			break ;
 		game->total_length++;
-		free(str);
+		xfree(str);
 		str = get_next_line(game->fd);
 	}
 	close(game->fd);
