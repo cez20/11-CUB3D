@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   elements_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cemenjiv <cemenjiv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:38:36 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/14 15:58:39 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:58:34 by cemenjiv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	check_if_digit(t_game *game,char **rgb)
+{
+	int	i;
+	int	j;
+	int space;
+
+	i = 0;
+	while (rgb[i])
+	{	
+		j = 0;
+		space = 0;
+		while (rgb[i][j])
+		{
+			if (ft_isdigit(rgb[i][j]) != 1 && rgb[i][j] != ' ')
+				errmsg(ERR_RGB, 1, game);
+			
+			j++;
+		}
+		i++;
+	}
+}
 
 void	check_colors(t_game *game, char *element, int *area)
 {
@@ -21,7 +43,8 @@ void	check_colors(t_game *game, char *element, int *area)
 
 	i = -1;
 	n = 0;
-	rgb = ft_split(&element[2], ',');
+	rgb = ft_split(&element[2], ',');  
+	check_if_digit(game, rgb);
 	while (rgb[++i])
 	{
 		n = ft_atoi(rgb[i]);
