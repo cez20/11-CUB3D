@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:38:44 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/14 15:38:45 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:18:07 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,19 @@ void	game_elements_copy(t_game *game)
 
 void	game_map_dimensions(t_game *game)
 {
+	int	i;
+
 	game->map_index = map_first_index(game->game_copy);
 	game->map_height = game->total_length - game->map_index;
+	i = game->map_index;
+	while (i < game->total_length)
+	{
+		if (!ft_strcmp(game->game_copy[i], "\n"))
+			break ;
+		i++;
+	}
+	if (i < game->total_length)
+		errmsg(ERR_INTEGRITY, 1, game);
 	game->map_width = map_longest_width(game);
 }
 

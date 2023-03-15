@@ -6,7 +6,7 @@
 /*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:37:31 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/14 16:26:56 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:17:23 by anarodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ elements: NO, SO, WE, EA, F and C. One of each, followed by its details. \n"
 # define ERR_CHAR "Error: Undefined (invalid) character on map.\
  Valid characters: N, S, E, W, 0 and 1.\n"
 # define ERR_INTEGRITY "Error: Map must be surrounded by walls and have no uncontained\
- spaces inside its limits.\n"
+ spaces inside its limits or be separated by empty lines. \n"
 # define ERR_XPM42 "Error: Problem while loading xpm42 file.\n"
 
 # define WIDTH 960
