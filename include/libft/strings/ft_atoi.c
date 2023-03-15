@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anarodri <anarodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cemenjiv <cemenjiv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 13:26:51 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/01 14:24:12 by anarodri         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:18:30 by cemenjiv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ int	ft_atoi(const char *str)
 		if (nbr * sign < INT_MIN)
 			return (0);
 	}
+	if (str[i] != '\0')
+		return (-1);
 	return (nbr * sign);
 }

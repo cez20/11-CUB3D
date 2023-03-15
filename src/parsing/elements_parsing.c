@@ -6,7 +6,7 @@
 /*   By: cemenjiv <cemenjiv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:38:36 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/15 11:58:34 by cemenjiv         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:11:24 by cemenjiv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	check_if_digit(t_game *game,char **rgb)
 		{
 			if (ft_isdigit(rgb[i][j]) != 1 && rgb[i][j] != ' ')
 				errmsg(ERR_RGB, 1, game);
-			
 			j++;
 		}
 		i++;
