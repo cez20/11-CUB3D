@@ -6,7 +6,7 @@
 /*   By: cemenjiv <cemenjiv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:37:31 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/15 12:03:03 by cemenjiv         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:59:58 by cemenjiv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int			main(int argc, char **argv);
 //********************************************************
 
 //*** ELEMENTS_PARSING.C ***
-void		check_if_digit(t_game *game,char **rgb);
+void		check_if_digit(t_game *game, char **rgb);
 void		check_colors(t_game *game, char *element, int *area);
 char		*create_texture_path(t_game *game, char *path);
 void		check_direction(t_game *game, char *str, char **texture_path);

@@ -6,17 +6,17 @@
 /*   By: cemenjiv <cemenjiv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:38:36 by anarodri          #+#    #+#             */
-/*   Updated: 2023/03/15 12:11:24 by cemenjiv         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:58:52 by cemenjiv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	check_if_digit(t_game *game,char **rgb)
+void	check_if_digit(t_game *game, char **rgb)
 {
 	int	i;
 	int	j;
-	int space;
+	int	space;
 
 	i = 0;
 	while (rgb[i])
@@ -42,7 +42,7 @@ void	check_colors(t_game *game, char *element, int *area)
 
 	i = -1;
 	n = 0;
-	rgb = ft_split(&element[2], ',');  
+	rgb = ft_split(&element[2], ',');
 	check_if_digit(game, rgb);
 	while (rgb[++i])
 	{
