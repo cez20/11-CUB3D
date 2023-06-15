@@ -9,8 +9,7 @@ RM		=	@rm -rf
 CFLAGS	=	-Wall -Werror -Wextra -g
 INCLUDE	=	-framework OpenGL -framework AppKit ./include/libft/libft.a ./include/MLX42/libmlx42.a
 LIB_FLAG= 	-L./include/libft -lft
-MLX_FLAG_ANA=	-lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
-MLX_FLAG_CESAR=	-lglfw -L /Users/$(USER)/sgoinfre/Perso/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
+MLX_FLAGS =	-L./include/glfw/ -lglfw
 
 #----------FOLDER PATHS----------#
 INC_DIR		=	include/
@@ -78,14 +77,8 @@ $(NAME):	$(OBJ_DIR) $(OBJS)
 			@echo "\033[1;32mCompiling MLX42...\033[0m"
 			@make --silent -C $(MLX_DIR)
 			@echo "\033[1;32m\nCompiling $(NAME)...\033[0m"
-ifeq ($(USER), anarodri)
-				$(CC) $(CFLAGS) $(OBJS) -Iinclude/ -o $(NAME) $(INCLUDE) $(LIB_FLAG) $(MLX_FLAG_ANA)
-else
-				$(CC) $(CFLAGS) $(OBJS) -Iinclude/ -o $(NAME) $(INCLUDE) $(LIB_FLAG) $(MLX_FLAG_CESAR)
-endif
+			$(CC) $(CFLAGS) $(OBJS) -Iinclude/ -o $(NAME) $(INCLUDE) $(LIB_FLAG) $(MLX_FLAGS)
 			@echo "\033[1;32mDone\033[0m"
-
-
 
 obj:
 			@mkdir -p $(OBJ_DIR)
