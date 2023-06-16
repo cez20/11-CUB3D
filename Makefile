@@ -6,10 +6,10 @@ RM		=	@rm -rf
 
 #----------FLAGS----------#
 #INCLUDE	= ./libft/libft.a
-CFLAGS	=	-Wall -Werror -Wextra -g
-INCLUDE	=	-framework OpenGL -framework AppKit ./include/libft/libft.a ./include/MLX42/libmlx42.a
+CFLAGS	=	-Wall -Werror -Wextra -g -w #Added -w to remove the warnings 
+INCLUDE	=	-framework OpenGL -framework AppKit -framework Cocoa -framework IOKit ./include/libft/libft.a ./include/MLX42/libmlx42.a
 LIB_FLAG= 	-L./include/libft -lft
-MLX_FLAGS =	-L./include/glfw/ -lglfw
+MLX_FLAGS =	-L./include/glfw/build/src/ -lglfw3
 
 #----------FOLDER PATHS----------#
 INC_DIR		=	include/
