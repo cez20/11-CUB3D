@@ -70,18 +70,28 @@ $(OBJ_DIR)%.o: %.c $(SRC_DIR)
 #----------RECIPES----------#
 all:		obj $(NAME)
 
-$(NAME):	$(OBJ_DIR) $(OBJS)
+$(NAME):	$(OBJ_DIR) $(OBJS) glfw
 			@echo "\033[1;32mCompiling libft...\033[0m"
 			@make --silent -C $(LIBFT_DIR)
 			@echo "\033[1;32mDone\n\033[0m"
 			@echo "\033[1;32mCompiling MLX42...\033[0m"
 			@make --silent -C $(MLX_DIR)
+			@echo "\033[1;32mDone\n\033[0m"
 			@echo "\033[1;32m\nCompiling $(NAME)...\033[0m"
 			$(CC) $(CFLAGS) $(OBJS) -Iinclude/ -o $(NAME) $(INCLUDE) $(LIB_FLAG) $(MLX_FLAGS)
 			@echo "\033[1;32mDone\033[0m"
 
 obj:
 			@mkdir -p $(OBJ_DIR)
+
+glfw:		
+			@echo "\033[1;32mCompiling glfw...\033[0m"
+			@cd include/glfw &&\
+			mkdir -p build && \
+			cd build  && \
+			cmake .. >/dev/null && \
+    		make -s >/dev/null
+			@echo "\033[1;32mDone\n\033[0m"
 
 leak:		obj $(NAME)
 #			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./cub3d ./mapfiles/pdf_minimal.cub
