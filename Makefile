@@ -7,9 +7,9 @@ RM		=	@rm -rf
 #----------FLAGS----------#
 #INCLUDE	= ./libft/libft.a
 CFLAGS	=	-Wall -Werror -Wextra -g
-INCLUDE	=	-framework OpenGL -framework AppKit ./include/libft/libft.a ./include/MLX42/libmlx42.a
+INCLUDE	=	-framework Cocoa -framework IOKit ./include/libft/libft.a ./include/MLX42/libmlx42.a
 LIB_FLAG= 	-L./include/libft -lft
-GLFW = 		-L./include/glfw/build/src -lglfw
+GLFW = 		-L./include/glfw/build/src -lglfw3
 
 #----------FOLDER PATHS----------#
 INC_DIR		=	include/
@@ -68,7 +68,7 @@ $(OBJ_DIR)%.o: %.c $(SRC_DIR)
 			$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
 
 #----------RECIPES----------#
-all:		obj $(NAME)
+all:		obj glfw $(NAME)
 
 $(NAME):	$(OBJ_DIR) $(OBJS)
 			@echo "\033[1;32mCompiling libft...\033[0m"
@@ -102,6 +102,13 @@ fclean:		clean
 			@make -C $(LIBFT_DIR) fclean
 			@make -C $(MLX_DIR) fclean
 			@echo "\033[1;32mDone\033[0m"
+
+glfw:
+			cd ./include/glfw && \
+			mkdir -p build && \
+			cd build && \
+			cmake .. && \
+			make 
 
 re:			fclean all
 
