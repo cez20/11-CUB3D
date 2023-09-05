@@ -17,7 +17,7 @@ Here are the instructions in order to compile the program:
 The program takes a map as an argument under the format .cub
 
 ```shell
-./minishell mapfiles/<nameOfMap>
+./cub3d mapfiles/<nameOfMap>
 ```	
 
 ## Important Commands
